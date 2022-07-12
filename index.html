@@ -192,7 +192,8 @@
 <li>OIS,	ODS</li>
 </ul>
 </blockquote>
-<h2 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h2><p><img src="D:\cxm\blogs\source\assets\BlogImg\confusion_matrix.png"></p>
+<h2 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h2><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/confusion_matrix.png" class="">
+
 <p>Precision, Recall, F1, Ovarll accuracy 等都可以基于该矩阵(表格) 进行计算</p>
 <table>
 <thead>
@@ -224,7 +225,7 @@
 </tr>
 <tr>
 <td align="center">Matthew correlation coefficient (MCC)(马修斯相关系数)</td>
-<td align="center"><img src="/../assets/BlogImg/mcc.png"></td>
+<td align="center"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/mcc.png" class=""></td>
 <td align="center">二分类模型结果的评估指标之一，值在[-1，+1], 由于Precision,recall只考虑了正类，而忽略了负类的表现，为了解决这个问题，可以将prediction与真实结果看为两个0-1分布，然后用马修斯相关系数衡量两个分布的相似性。当<strong>FP&#x3D;FN&#x3D;0 <strong>即完全预测正确时 <strong>MCC&#x3D;1</strong>，当完全预测错误时</strong>MCC&#x3D;-1</strong>，此时将标签逆转即可。</td>
 </tr>
 <tr>
@@ -262,12 +263,12 @@
 </thead>
 <tbody><tr>
 <td align="left">OIS (<strong>Optimal Image Scale</strong>)</td>
-<td><img src="/../assets/BlogImg/OIS.png"></td>
+<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/OIS.png" class=""></td>
 <td align="left">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 OIS。</td>
 </tr>
 <tr>
 <td align="left">ODS (<strong>Optimal Dataset Scale</strong>)</td>
-<td><img src="/../assets/BlogImg/ODS.png"></td>
+<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ODS.png" class=""></td>
 <td align="left">针对数据集的一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到ODS</td>
 </tr>
 <tr>
@@ -283,11 +284,12 @@
 </tbody></table>
 <h1 id="P-R-曲线"><a href="#P-R-曲线" class="headerlink" title="P-R 曲线"></a>P-R 曲线</h1><blockquote>
 <p>选取不同的阈值对预测样本进行划分，可以计算出不同的 precision 和 recall, P-R曲线就是以不同阈值下取得的 precision(纵坐标）, recall（横坐标） 绘制曲线。平衡点（BEP）是P&#x3D;R时的取值，如果这个值较大，则说明学习器的性能较好。。</p>
-<p><img src="D:\cxm\blogs\source\assets\BlogImg\PR_curve.png"></p>
+<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/PR_curve.png" class="">
 </blockquote>
 <h1 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a><strong>ROC曲线</strong></h1><blockquote>
 <p>ROC 曲线最早应用于雷达信号检测区域，用于区分信号与噪声。<strong>很多分类器是为测试样本产生一个实值或概率预测，然后根据一个阈值对样本进行分类。若想得到更好的 precision, 则可以提高阈值，尽可能得使得对每一个预测值都有充分的自信。在不同阈值下得到的 FPR, TPR.  然后以 FPR 为横坐标，TPR 为纵坐标绘制 ROC 曲线。TPR, FPR 都是从实际样本出发，因此不受样本不平衡的影响</strong></p>
-<p><img src="D:\cxm\blogs\source\assets\BlogImg\ROC.png"></p>
+<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ROC.png" class="">
+
 <p><strong>AUC（曲线下面积，the area under the ROC curve)</strong> 是指 ROC曲线下与横坐标轴构成的区域面积， AUC表示了可分离的程度或测度。ROC 曲线纵坐标轴是 TPR，TPR 越高表示模型正确预测正例的概率越大，因此理想情况就是，曲线离 (0,1) 点越近，AUC面积越接近 1，模型性能越好。<strong>若连接对角线，AUC面积正好是 0.5 对角线的实际含义是：随机判断响应与不响应，正负样本覆盖率应该都是 50%，表示随机效果</strong></p>
 </blockquote>
 <table>
@@ -300,7 +302,7 @@
 </thead>
 <tbody><tr>
 <td align="center"><strong>Average Precision (AP)</strong></td>
-<td align="center"><img src="/../assets/BlogImg/AP.png"></td>
+<td align="center"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/AP.png" class=""></td>
 <td align="center"><strong>等于P-R曲线下面积</strong>，一般通过逼近的方法求曲线下面积吗</td>
 </tr>
 <tr>

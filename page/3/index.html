@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 29
+			总文章数 28
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,123 +160,6 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-    <article id="post-One-hot-coding-for-mask-images-in-semantic-segmentation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/26/One-hot-coding-for-mask-images-in-semantic-segmentation/">One_hot coding for mask images in semantic segmentation</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/26/One-hot-coding-for-mask-images-in-semantic-segmentation/" class="archive-article-date">
-  	<time datetime="2022-05-26T12:55:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="one-hot-encoding"><a href="#one-hot-encoding" class="headerlink" title="one-hot encoding"></a>one-hot encoding</h1><p>在 loss 的计算时，Pytorch 有些 loss 函数需要 网络的 ouput 与 label 的 shape 相同，因此需要对 label 进行 one-hot encoding</p>
-<h2 id="分割中的独热编码示例"><a href="#分割中的独热编码示例" class="headerlink" title="分割中的独热编码示例"></a>分割中的独热编码示例</h2><blockquote>
-<p>语义分割中的独热编码：</p>
-<p><img src="/../assets/blogImg/One_hot_encoding2.png" alt="One_hot_encoding2"></p>
-<p><img src="/../assets/blogImg/One_hot_encoding3.png" alt="One_hot_encoding3"></p>
-</blockquote>
-<h2 id="Python-代码实现"><a href="#Python-代码实现" class="headerlink" title="Python 代码实现"></a>Python 代码实现</h2><p>Python 实现的思路</p>
-<p>参考 <a target="_blank" rel="noopener" href="https://discuss.pytorch.org/t/efficient-way-to-one-hot-encode-whole-image-for-semantic-segmentation/75220">https://discuss.pytorch.org/t/efficient-way-to-one-hot-encode-whole-image-for-semantic-segmentation/75220</a></p>
-<blockquote>
-<p>网络的输出的 shape 为 ( batch_size, num_classes, h, w );</p>
-<p>标签的 shape 为 ( batch_size, 1, h, w );</p>
-<p>需要将 shape 表示成 独<strong>热编码</strong> 的形式：</p>
-<blockquote>
-<p>label 的独热编码形式将 label 的 shape 变为 <code>（ batch_size, num_classes, h, w )</code>. 一个 **类别 **为一个通道，在该类别的通道上，只有属于该类别的像素为 1，其余为 0 .</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>生成 <code>num_classes</code> 个 大小为  <code>( batch_size, h, w)</code> 的全为 1 的 <code>tmplate</code> 张量，将 <code>tmplate</code>中属于该类别的改为 1，其余为 0， 并 reshape 成 <code>(batch_size, 1, h, w)</code>, 最后在 第二维对所有的 <code>tmplate</code> 张量 concatenate</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<p><img src="/../assets/blogImg/One_hot_encoding1.png" alt="One_hot_encoding1"></p>
-</blockquote>
-</blockquote>
-<blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&gt;<span class="comment"># 网络的输出是一个 （batch_size, num_classes, h, w) shape 的张量</span></span><br><span class="line">&gt;&gt;<span class="comment"># label 是一个 （batch_size, 1, h, w) shape 的张量</span></span><br><span class="line">&gt;&gt;<span class="keyword">def</span> <span class="title function_">mask2one_hot</span>(<span class="params">label, out</span>):</span><br><span class="line">   <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">   label: 标签图像 # （batch_size, 1, h, w)</span></span><br><span class="line"><span class="string">   out: 网络的输出</span></span><br><span class="line"><span class="string">   &quot;&quot;&quot;</span></span><br><span class="line">   num_classes = out.shape[<span class="number">1</span>] <span class="comment"># 分类类别数</span></span><br><span class="line"></span><br><span class="line">   current_label = label.squeeze(<span class="number">1</span>)  <span class="comment">#（batch_size, 1, h, w) ---&gt; （batch_size, h, w)</span></span><br><span class="line"></span><br><span class="line">   batch_size, h,w = current_label.shape[<span class="number">0</span>],current_label.shape[<span class="number">1</span>],current_label.shape[<span class="number">2</span>] </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="built_in">print</span>(h,w,batch_size)</span><br><span class="line"></span><br><span class="line">   one_hots = []</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">       tmplate = torch.ones(batch_size, h, w) <span class="comment"># （batch_size, h, w)</span></span><br><span class="line">       tmplate[current_label != i] = <span class="number">0</span></span><br><span class="line">       tmplate = tmplate.view(batch_size,<span class="number">1</span>,h,w) <span class="comment"># （batch_size, h, w) --&gt; （batch_size, 1, h, w)</span></span><br><span class="line"></span><br><span class="line">       one_hots.append(tmplate)</span><br><span class="line"></span><br><span class="line">   onehot = torch.cat(one_hots, dim=<span class="number">1</span>) </span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> onehot</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-</blockquote>
-<blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;<span class="keyword">import</span> torch</span><br><span class="line">&gt;&gt;torch.random.manual_seed(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt;out = torch.rand(<span class="number">4</span>,<span class="number">3</span>,<span class="number">384</span>,<span class="number">544</span>)	<span class="comment"># 网络的输出</span></span><br><span class="line">&gt;&gt;label = torch.randint(<span class="number">0</span>,<span class="number">3</span>,(<span class="number">4</span>,<span class="number">1</span>,<span class="number">384</span>,<span class="number">544</span>))	<span class="comment"># 图像标签</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;oh = mask2one_hot(label,out)</span><br><span class="line">&gt;&gt;oh	<span class="comment"># shape ---&gt; (4,3,384,544)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Deep learning, Semantic segmentation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/26/One-hot-coding-for-mask-images-in-semantic-segmentation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
     <article id="post-Python-Abstract-Class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

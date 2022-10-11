@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 34
+			总文章数 35
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,112 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Python-iterator-and-generator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/25/Python-iterator-and-generator/">Python iterator and generator</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/25/Python-iterator-and-generator/" class="archive-article-date">
+  	<time datetime="2022-05-25T02:25:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="iterator-迭代器"><a href="#iterator-迭代器" class="headerlink" title="iterator (迭代器)"></a>iterator (迭代器)</h1><p><strong>可迭代对象</strong>拥有一个迭代器，可以用 <code>.__iter__()</code> 方法获得</p>
+<p>一个迭代器需要满足以下两个条件：</p>
+<ol>
+<li><code>.__iter__()</code>方法返回自身</li>
+<li><code>.__next__()</code> 方法返回下一个迭代值，当迭代完成后，抛出一个 StopIteration 异常</li>
+</ol>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">i = x.__iter__()</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x00000274A925AAD0</span>&gt;</span><br><span class="line"></span><br><span class="line">x <span class="keyword">is</span> x.__iter__()</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line">i.__next__()</span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line">i.__next__()</span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line">i.__next__()</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">i.__next__()</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>自定义迭代器</strong></p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># 自定义一个 list 的反序迭代器</span></span><br><span class="line">&gt;<span class="keyword">class</span> <span class="title class_">ReverseListIterator</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, <span class="built_in">list</span></span>):</span><br><span class="line">       self.<span class="built_in">list</span> = <span class="built_in">list</span></span><br><span class="line">       self.index = <span class="built_in">len</span>(<span class="built_in">list</span>)</span><br><span class="line">       </span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">       <span class="keyword">return</span> self</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line">       self.index -= <span class="number">1</span></span><br><span class="line">       <span class="keyword">if</span> self.index &gt;= <span class="number">0</span>:</span><br><span class="line">           <span class="keyword">return</span> self.<span class="built_in">list</span>[self.index]</span><br><span class="line">       <span class="keyword">else</span>:</span><br><span class="line">           <span class="keyword">raise</span> StopIteration</span><br><span class="line">           </span><br><span class="line">           </span><br><span class="line">&gt;x = <span class="built_in">range</span>(<span class="number">10</span>)</span><br><span class="line">&gt;<span class="keyword">for</span> i <span class="keyword">in</span> ReverseListIterator(x):</span><br><span class="line">   <span class="built_in">print</span>(i)</span><br><span class="line">   </span><br><span class="line">&gt;<span class="comment"># output: </span></span><br><span class="line"></span><br><span class="line">&gt;<span class="number">9</span></span><br><span class="line">&gt;<span class="number">8</span></span><br><span class="line">&gt;<span class="number">7</span></span><br><span class="line">&gt;<span class="number">6</span></span><br><span class="line">&gt;<span class="number">5</span></span><br><span class="line">&gt;<span class="number">4</span></span><br><span class="line">&gt;<span class="number">3</span></span><br><span class="line">&gt;<span class="number">2</span></span><br><span class="line">&gt;<span class="number">1</span></span><br><span class="line">&gt;<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="generator-生成器"><a href="#generator-生成器" class="headerlink" title="(generator) 生成器"></a>(generator) 生成器</h1><p>直接实现自定义类型迭代器比较麻烦，一个更简单的方法是使用生成器</p>
+<blockquote>
+<p>例如</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">test_generator</span>():</span><br><span class="line">   <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">   <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line">   <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line">   </span><br><span class="line">&gt;g = test_generator()</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 生成器也是满足迭代器定义的</span></span><br><span class="line">&gt;g.__iter__() <span class="keyword">is</span> g</span><br><span class="line">&gt;<span class="literal">True</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 生成器会按照定义时，yield产出的值进行迭代：</span></span><br><span class="line">&gt;<span class="built_in">next</span>(g)</span><br><span class="line">&gt;<span class="number">1</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">next</span>(g)</span><br><span class="line">&gt;<span class="number">5</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">next</span>(g)</span><br><span class="line">&gt;<span class="number">3</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">next</span>(g)</span><br><span class="line">&gt;---------------------------------------------------------------------------</span><br><span class="line">&gt;StopIteration                             Traceback (most recent call last)</span><br><span class="line">&gt;Input In [<span class="number">17</span>], <span class="keyword">in</span> &lt;cell line: <span class="number">1</span>&gt;()</span><br><span class="line">&gt;----&gt; <span class="number">1</span> <span class="built_in">next</span>(g)</span><br><span class="line">&gt;StopIteration: </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># 逆序函数也可以用生成器实现</span></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">my_reverse</span>(<span class="params">data</span>):</span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> data[::-<span class="number">1</span>]:</span><br><span class="line">       <span class="keyword">yield</span> i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">for</span> i <span class="keyword">in</span> my_reverse(<span class="string">&#x27;abcde&#x27;</span>):</span><br><span class="line">   <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># output </span></span><br><span class="line">&gt;e</span><br><span class="line">&gt;d</span><br><span class="line">&gt;c</span><br><span class="line">&gt;b</span><br><span class="line">&gt;a</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/25/Python-iterator-and-generator/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Python-高级函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

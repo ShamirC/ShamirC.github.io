@@ -894,7 +894,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Likelihood-似然"><a href="#Likelihood-似然" class="headerlink" title="Likelihood (似然)"></a>Likelihood (似然)</h1><h1 id="Entropy-熵"><a href="#Entropy-熵" class="headerlink" title="Entropy (熵)"></a>Entropy (熵)</h1><h1 id="Kullback-Leibler-KL-divergence-KL-散度-x2F-相对熵"><a href="#Kullback-Leibler-KL-divergence-KL-散度-x2F-相对熵" class="headerlink" title="Kullback-Leibler (KL) divergence (KL 散度&#x2F; 相对熵)"></a>Kullback-Leibler (KL) divergence (KL 散度&#x2F; 相对熵)</h1><h1 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h1><h1 id="二分类交叉熵"><a href="#二分类交叉熵" class="headerlink" title="二分类交叉熵"></a>二分类交叉熵</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangguchangqing/p/12068084.html">一文搞懂交叉熵损失 - Brook_icv - 博客园 (cnblogs.com)</a></p>
+        <h1 id="Likelihood-似然-与-Maximun-Likelihood-Estimation"><a href="#Likelihood-似然-与-Maximun-Likelihood-Estimation" class="headerlink" title="Likelihood (似然) 与 Maximun Likelihood Estimation"></a>Likelihood (似然) 与 Maximun Likelihood Estimation</h1><p><strong>似然与概率</strong></p>
+<p>概率是已知模型的参数，求某个事情发生的可能性。概率可以表示为  $p(x|\Theta)$</p>
+<p>似然是根据统计信息，推测产生这种统计结果的可能参数，似然可表示为 $ L(x|\Theta)$</p>
+<p><strong>在结果和参数相互对应时，概率与似然在值上是相等的，但是意义并不相同。</strong> </p>
+<p><strong>极大似然估计中采样需满足一个重要的假设，就是所有的采样都是独立同分布的（即采样得到的样本的分布，要与所有样本总体的分布相同）。</strong></p>
+<p><strong>似然函数</strong></p>
+<blockquote>
+<p>概率描述的是在一定条件下某个事件发生的可能性，概率越大说明这件事情越可能会发生；而似然描述的是结果已知的情况下，该事件在不同条件下发生的可能性，似然函数的值越大说明该事件在对应的条件下发生的可能性越大。–<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/22092462">https://zhuanlan.zhihu.com/p/22092462</a></p>
+</blockquote>
+<p>如抛硬币，我们可以假设抛硬币的模型是 二项分布</p>
+<p>则似然函数<br>$$<br>f(x;\Theta) &#x3D;<br>        \begin{cases}<br>        \Theta, &amp; \text{if x &#x3D; 1}\<br>        1-\Theta, &amp; \text{if x &#x3D; 0}<br>        \end{cases}<br>$$<br> 也可以写成<br>$$<br>f(x) &#x3D; \Theta^x(1-\Theta)^{1-x},  x\in{0,1}<br>$$<br>若抛十次的统计数据 x 是： 反正正正正反正正正反</p>
+<p>则似然函数为<br>$$<br>f(x) &#x3D; (1-\Theta) \times \Theta\times \Theta\times \Theta\times \Theta\times (1-\Theta) \times\Theta\ \times\Theta\ \times\Theta \times(1-\Theta)<br>&#x3D;\Theta^7(1-\Theta)^3<br>$$<br>令似然函数的骗到数为 0， 求得极大值；</p>
+<p>这里 $\Theta$ 有无数种选择，但是选取的原则应该是选择 $\Theta$ 是的出现该统计结果的可能性最大</p>
+<p>在 $\Theta &#x3D; 0.7$ 时，似然函数取得最大值，也可以画出图直观地看</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011508640/article/details/72815981">https://blog.csdn.net/u011508640/article/details/72815981</a></p>
+<h1 id="Entropy-熵"><a href="#Entropy-熵" class="headerlink" title="Entropy (熵)"></a>Entropy (熵)</h1><p>信息量</p>
+<p>设 X 是一个离散型随机变量， 其取值为集合 $ X &#x3D; {x_0, x_1, x_2, …, x_n}$， 则其概率分布函数为</p>
+<p>$p(x) &#x3D; P_r(X&#x3D;x), x\in X$, 则定义时间 $X&#x3D;x_0$的信息量为：<br>$$<br>I(x0) &#x3D; -log(p(x_0))<br>$$<br><strong>当 $p(x0) &#x3D; 1$ 时，该事件必定发生，其信息量为 0</strong></p>
+<p><strong>熵是用来衡量一个系统的混乱程度的</strong>，代表系统中信息量的总和。其计算公式如下<br>$$<br>H(x) &#x3D; -\sum_{i&#x3D;1}^np(x_i)log(p(x_i))<br>$$<br>其中 $p(x_i)$为事件 $X&#x3D;x_i$的概率，$-log(p(xi))$为事件 $X&#x3D;x_i$的信息量。<strong>熵就是所有事件的信息量的加权和（信息量的期望值）</strong></p>
+<h1 id="Kullback-Leibler-KL-divergence-KL-散度-x2F-Relative-Entropy相对熵"><a href="#Kullback-Leibler-KL-divergence-KL-散度-x2F-Relative-Entropy相对熵" class="headerlink" title="Kullback-Leibler (KL) divergence (KL 散度&#x2F; Relative Entropy相对熵)"></a>Kullback-Leibler (KL) divergence (KL 散度&#x2F; Relative Entropy相对熵)</h1><p>相对熵也称为 KL 散度， 表示同一个随机变量的两个不同分布的距离。</p>
+<p>设 $p(x)$ 和 $q(x)$分别是离散随机变量 X 的两个概率分布， 则 p 对 q 的<strong>相对熵</strong>( KL散度）是：<br>$$<br>D_{KL}(p||q) &#x3D; \sum_i p(x_i)log(\frac{p(x_i)}{p(y_i)})<br>$$<br>相对熵具有一下性质：</p>
+<blockquote>
+<ul>
+<li>如果 p(x)和 q(x) 的分布相同，则其相对熵等于 0</li>
+<li>$D_KL(p||q) \neq D_KL(q||p) $，也就是相对熵不具有对称性。</li>
+<li>$D_KL(p||q) \geq 0 $</li>
+</ul>
+</blockquote>
+<p><strong>在实际应用中，假如p(x)是目标真实的分布，而q(x)是预测得来的分布，为了让这两个分布尽可能的相同的，就需要最小化KL散度。</strong></p>
+<h1 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h1><p>设 $p(x$),$q(x)$分别是 离散随机变量X的两个概率分布，其中$p(x)$是目标分布，**$p$和$q$的交叉熵可以看做是，使用分布$q(x)$表示目标分布$p(x)$的困难程度**<br>$$<br>H(p,q) &#x3D; \sum_ip(x_i)log(\frac{1}{logq(xi)}) &#x3D; -\sum_i p(x_i)logq(x_i)<br>$$<br><strong>将熵、相对熵以及交叉熵的关系</strong><br>$$<br>\text{熵： } H(p) &#x3D; \sum_i p(x_i)logp(x_i) \<br>\text{KL散度:    } D_{KL}(p||q) &#x3D; \sum_i (p(x_i)logp(x_i) - p(xi)logq(xi)) \<br>\text{交叉熵： } H(p,q) &#x3D; -\sum_ip(x_i)logq(x_i)<br>$$<br>通过上面三个公式就可以得到<br>$$<br>D_{KL}(p||q) &#x3D; H(p,q) - H(p)<br>$$<br>从上面可以看到 KL 散度 &#x3D; 交叉熵 - 熵</p>
+<p><strong>在机器学习中，目标的分布 p(x)  通常是训练数据的分布是固定的，即 H(p) 是一个常量。这样两个分布的交叉熵，也就等价于最小化这两个分布的相对熵。</strong></p>
+<blockquote>
+<p>设p(x) 是目标分布（训练数据的分布），我们的目标的就让训练得到的分布q(x)尽可能的接近 p(x)，这时候就可以最小化 $D_KL(p,q)$，等价于最小化交叉熵$H(p,q)$ 。</p>
+</blockquote>
+<h1 id="从最大似然函数看交叉熵"><a href="#从最大似然函数看交叉熵" class="headerlink" title="从最大似然函数看交叉熵"></a>从最大似然函数看交叉熵</h1><p>设有一组训练样本 $ X &#x3D; {x_1, x_2, x_3, …, x_m}$，该样本的分布为 $p(x)$。假设使用 $\Theta$ 参数化模型得到 $q(x;\Theta)$，现在用这个模型估计 X 的概率分布($\Theta$), 得到似然函数：<br>$$<br>L(\Theta) &#x3D; q(X;\Theta) &#x3D; \prod_{i}^{m}q(x_i;\Theta)<br>$$<br>最大似然估计就是求 参数  $\Theta$ 是的 似然函数 $L(\Theta)$ 最大， 也就是<br>$$<br>\Theta_{ML} \begin{gathered}<br>&#x3D; \operatorname*{arg,max}_\Theta \prod_i^m q(x_i,\Theta) \<br>\end{gathered}<br>$$<br>对上面的式子两边取 log，等价于优化 log 的最大似然估计，即 log-likehood，对最大似然估计</p>
+<p>并对式子进行缩放（式子右边除以样本的个数 m）不会改变 argmax 的解<br>$$<br>\Theta_{ML} \begin{gathered}<br> &#x3D;\operatorname*{arg,max}<em>\Theta \frac{1}{m} \sum_i^mlog q(x_i,\Theta)<br>\end{gathered}<br>$$<br>**上式最大化 $\Theta</em>{ML}$ 和训练样本是没有关联的，就需要某种变换使其可以用训练样本的分布来表示，因为训练样本的分布可以看作是已知的，也是对最大似然的一个约束**</p>
+<p>上是的 $ \frac{1}{m} \sum_i^mlogq(x_i,\Theta)$ 相当于求 随机变量 X 的函数 $log(X;\Theta)$ 的均值</p>
+<p>根据大数定理，<strong>当样本容量趋于无穷时，样本的均值趋于其期望</strong>。也就是说<br>$$<br>\frac{1}{m} \sum_i^mlog q(x_i,\Theta) \rightarrow  E_{x\sim p}(logq(x;\Theta))<br>$$<br><strong>其中 $E_{X \sim P}$ 表示符合样本分布 P 的期望，这样就将最大似然估计使用真实样本的期望来表示</strong>。对右边取符号，将最大化变成最小化<br>$$<br>\Theta_{ML}<br>\begin{gathered}<br> &#x3D;\operatorname*{arg,max}<em>\Theta E</em>{X \sim P}(logq(x;\Theta))<br>\end{gathered}<br>\<br>\begin{gathered}<br> &#x3D;\operatorname*{arg,min}<em>\Theta E</em>{X \sim P}(-logq(x;\Theta))<br>\end{gathered}<br>$$<br>KL 散度<br>$$<br>D_{KL}(p||q) &#x3D; \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\<br>\text{x 是训练样本，其分布已知}\<br>&#x3D; E_{x\sim p}(log \frac{p(x)}{q(x)})\<br>&#x3D; E_{x\sim p}(log p(x) - log(q(x))\<br>&#x3D;E_{x\sim p}(log(p(x)) - E_{x\sim p}(logq(x))<br>$$<br>由于 $E_{x\sim p}(log(p(x))$ 是训练样本的期望，是个常数，因此在求最小值的时候可以忽略，所以最小化  $D_{KL}(p||q)$ 就变成了最小化 $- E_{x\sim p}(logq(x))$， 这和最大似然估计是等价的</p>
+<blockquote>
+<p>最大化似然函数，等于求 $\begin{gathered}<br> \operatorname*{arg,min}<em>\Theta E</em>{X \sim P}(-logq(x;\Theta))<br>\end{gathered}$</p>
+<p>因此最小化 KL 散度等于求 $\Theta$ 使得似然函数最小</p>
+<p>而训练参数的熵是已知的，因此等价于最小化交叉熵</p>
+<p><strong>交叉熵可以用于计算“学习模型的分布”与“训练数据分布”之间的不同。当交叉熵最低时(等于训练数据分布的熵)，我们学到了“最好的模型”。</strong></p>
+</blockquote>
+<h1 id="二分类交叉"><a href="#二分类交叉" class="headerlink" title="二分类交叉"></a>二分类交叉</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangguchangqing/p/12068084.html">一文搞懂交叉熵损失 - Brook_icv - 博客园 (cnblogs.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011508640/article/details/72815981">https://blog.csdn.net/u011508640/article/details/72815981</a></p>
 
       
 

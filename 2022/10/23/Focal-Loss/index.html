@@ -6,17 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Model Initialization | Hexo</title>
+  <title>Focal Loss | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Pytorch模型参数初始化方法self.modules() (torch.nn.Module.modules)self.children() 存储网络结构的子层模块 self.children() (torch.nn.Module.children)self.modules()采用深度优先遍历的方式，存储了net的所有模块。还包含了整个网络结构，这个网络结构的子结构等等 1. 使用 apply">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Model Initialization">
-<meta property="og:url" content="http://example.com/2022/07/03/Model-Initialization/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Focal Loss">
+<meta property="og:url" content="http://example.com/2022/10/23/Focal-Loss/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Pytorch模型参数初始化方法self.modules() (torch.nn.Module.modules)self.children() 存储网络结构的子层模块 self.children() (torch.nn.Module.children)self.modules()采用深度优先遍历的方式，存储了net的所有模块。还包含了整个网络结构，这个网络结构的子结构等等 1. 使用 apply">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-03T13:01:55.000Z">
-<meta property="article:modified_time" content="2022-07-03T15:14:41.627Z">
+<meta property="article:published_time" content="2022-10-23T02:20:11.000Z">
+<meta property="article:modified_time" content="2022-10-23T02:20:57.386Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -163,44 +161,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Model-Initialization" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Focal-Loss" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Model Initialization
+      Focal Loss
     </h1>
   
 
         
-        <a href="/2022/07/03/Model-Initialization/" class="archive-article-date">
-  	<time datetime="2022-07-03T13:01:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-03</time>
+        <a href="/2022/10/23/Focal-Loss/" class="archive-article-date">
+  	<time datetime="2022-10-23T02:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Pytorch模型参数初始化方法"><a href="#Pytorch模型参数初始化方法" class="headerlink" title="Pytorch模型参数初始化方法"></a>Pytorch模型参数初始化方法</h1><h2 id="self-modules-torch-nn-Module-modules"><a href="#self-modules-torch-nn-Module-modules" class="headerlink" title="self.modules() (torch.nn.Module.modules)"></a>self.modules() (torch.nn.Module.modules)</h2><p><code>self.children()</code> 存储网络结构的子层模块</p>
-<h2 id="self-children-torch-nn-Module-children"><a href="#self-children-torch-nn-Module-children" class="headerlink" title="self.children() (torch.nn.Module.children)"></a>self.children() (torch.nn.Module.children)</h2><p>self.modules()采用<strong>深度优先遍历</strong>的方式，存储了net的所有模块。还包含了整个网络结构，这个网络结构的子结构等等</p>
-<h2 id="1-使用-apply-torch-nn-Module-apply"><a href="#1-使用-apply-torch-nn-Module-apply" class="headerlink" title="1. 使用 apply (torch.nn.Module.apply)"></a>1. 使用 apply (torch.nn.Module.apply)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># hyper parameters</span></span><br><span class="line">in_dim=<span class="number">1</span></span><br><span class="line">n_hidden_1=<span class="number">1</span></span><br><span class="line">n_hidden_2=<span class="number">1</span></span><br><span class="line">out_dim=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_dim, n_hidden_1, n_hidden_2, out_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.layer = nn.Sequential(</span><br><span class="line">            nn.Linear(in_dim, n_hidden_1), </span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_1, n_hidden_2),</span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_2, out_dim)</span><br><span class="line">            </span><br><span class="line">             )    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.layer1(x)</span><br><span class="line">        x = self.layer2(x)</span><br><span class="line">        x = self.layer3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"> </span><br><span class="line"> <span class="comment"># 1. 根据网络层的不同定义不同的初始化方式     </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">weight_init</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">        nn.init.xavier_normal_(m.weight)</span><br><span class="line">        nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 也可以判断是否为conv2d，使用相应的初始化方式 </span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.Conv2d):</span><br><span class="line">        nn.init.kaiming_normal_(m.weight, mode=<span class="string">&#x27;fan_out&#x27;</span>, nonlinearity=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">     <span class="comment"># 是否为批归一化层</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.BatchNorm2d):</span><br><span class="line">        nn.init.constant_(m.weight, <span class="number">1</span>)</span><br><span class="line">        nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 2. 初始化网络结构        </span></span><br><span class="line">model = Net(in_dim, n_hidden_1, n_hidden_2, out_dim)</span><br><span class="line"><span class="comment"># 3. 将weight_init应用在子模块上</span></span><br><span class="line">model.apply(weight_init)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-在-init-中迭代循环self-modules-来初始化网络参数"><a href="#2-在-init-中迭代循环self-modules-来初始化网络参数" class="headerlink" title="2. 在__init__中迭代循环self.modules()来初始化网络参数"></a>2. 在<code>__init__</code>中迭代循环<code>self.modules()</code>来初始化网络参数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># hyper parameters</span></span><br><span class="line">in_dim=<span class="number">1</span></span><br><span class="line">n_hidden_1=<span class="number">1</span></span><br><span class="line">n_hidden_2=<span class="number">1</span></span><br><span class="line">out_dim=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_dim, n_hidden_1, n_hidden_2, out_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.layer = nn.Sequential(</span><br><span class="line">            nn.Linear(in_dim, n_hidden_1), </span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_1, n_hidden_2),</span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_2, out_dim)</span><br><span class="line">            </span><br><span class="line">             )</span><br><span class="line">        <span class="comment"># 迭代循环初始化参数</span></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> self.modules():</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">                nn.init.constant_(m.weight, <span class="number">1</span>)</span><br><span class="line">                nn.init.constant_(m.bias, -<span class="number">100</span>)</span><br><span class="line">            <span class="comment"># 也可以判断是否为conv2d，使用相应的初始化方式 </span></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.Conv2d):</span><br><span class="line">                nn.init.kaiming_normal_(m.weight, mode=<span class="string">&#x27;fan_out&#x27;</span>, nonlinearity=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">             </span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.BatchNorm2d):</span><br><span class="line">                nn.init.constant_(m.weight.item(), <span class="number">1</span>)</span><br><span class="line">                nn.init.constant_(m.bias.item(), <span class="number">0</span>)    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.layer(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x      </span><br><span class="line">model = Net(in_dim, n_hidden_1, n_hidden_2, out_dim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印参数信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_weight</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;weight&quot;</span>, m.weight.item())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bias:&quot;</span>, m.bias.item())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;next...&quot;</span>)</span><br><span class="line">model.apply(print_weight)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83958518">https://blog.csdn.net/dss_dssssd/article/details/83958518</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83990511">https://blog.csdn.net/dss_dssssd/article/details/83990511</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/97651850">https://zhuanlan.zhihu.com/p/97651850</a></p>
-
+        
       
 
       
@@ -235,7 +216,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Pytorch//" class="article-tag-list-link color3">Pytorch</a>
+        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
         		</li>
       		
 		</ul>
@@ -290,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/03/Model-Initialization/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/10/23/Focal-Loss/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +285,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux与硬件
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">AlignSeg: Feature-Aligned Segmentation Networks</div>
+    <a href="/2022/09/27/Note/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Note</div>
       <i class="icon-circle-right"></i>
     </a>
   

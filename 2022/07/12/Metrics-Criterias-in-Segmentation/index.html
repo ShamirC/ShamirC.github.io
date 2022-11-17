@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://example.com/2022/07/12/Metrics-Criterias-in-Segmentation/ROC.png">
 <meta property="og:image" content="http://example.com/2022/07/12/Metrics-Criterias-in-Segmentation/AP.png">
 <meta property="article:published_time" content="2022-07-12T07:09:17.000Z">
-<meta property="article:modified_time" content="2022-07-13T06:58:48.251Z">
+<meta property="article:modified_time" content="2022-11-17T07:24:04.901Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2022/07/12/Metrics-Criterias-in-Segmentation/confusion_matrix.png">
@@ -74,7 +74,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 35
+			总文章数 36
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -274,12 +274,12 @@
 <tbody><tr>
 <td align="left">OIS (<strong>Optimal Image Scale</strong>)</td>
 <td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/OIS.png" class=""></td>
-<td align="left">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 OIS。</td>
+<td align="left">针对数据集的一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到 OIS</td>
 </tr>
 <tr>
 <td align="left">ODS (<strong>Optimal Dataset Scale</strong>)</td>
 <td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ODS.png" class=""></td>
-<td align="left">针对数据集的一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到ODS</td>
+<td align="left">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 ODS。</td>
 </tr>
 <tr>
 <td align="left"></td>
@@ -367,6 +367,7 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/AAAAshin/article/details/106793101"> BSDS500数据集边缘检测任务结果评估</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43019433/article/details/118118265">边缘检测的评价指标：PR曲线，OIS，ODS，AP的计算与代码实现</a></p>
 <p># RCF 作者的开源项目：<a target="_blank" rel="noopener" href="https://github.com/yun-liu/RCF">https://github.com/yun-liu/RCF</a></p>
+<p>OIS ODS python代码：<a target="_blank" rel="noopener" href="https://github.com/Walstruzz/edge_eval_python">https://github.com/Walstruzz/edge_eval_python</a></p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46714763">【机器学习笔记】：一文让你彻底理解准确率，精准率，召回率，真正率，假正率，ROC&#x2F;AUC - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/30643044">精确率、召回率、F1 值、ROC、AUC 各自的优缺点是什么？ - 知乎 (zhihu.com)</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/42939bf83b8a">语义分割之MIoU原理与实现 - 简书 (jianshu.com)</a></p>

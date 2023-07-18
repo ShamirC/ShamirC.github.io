@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Python decorator | Hexo</title>
+  <title>Archives: 2023/7 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Decorator (装饰器)基础用法以函数作为参数，并且返回一个新函数的函数是一个装饰器 12345678910111213141516def dec(f):    print(f&amp;#x27;I am decorating function &amp;#123;f.__name__&amp;#125;&amp;#x27;)    return fdec(len)# outputI am decorating funct">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python decorator">
-<meta property="og:url" content="http://example.com/2022/05/25/Python-decorator/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/archives/2023/07/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Decorator (装饰器)基础用法以函数作为参数，并且返回一个新函数的函数是一个装饰器 12345678910111213141516def dec(f):    print(f&amp;#x27;I am decorating function &amp;#123;f.__name__&amp;#125;&amp;#x27;)    return fdec(len)# outputI am decorating funct">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-05-25T02:55:33.000Z">
-<meta property="article:modified_time" content="2022-06-23T15:45:34.403Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -164,196 +159,87 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Python-decorator" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Python decorator
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2023" class="archive-year">2023</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2023/07/07/PCA/" class="archive-article-date">
+  	<time datetime="2023-07-07T12:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/07/07/PCA/">PCA</a>
     </h1>
   
 
-        
-        <a href="/2022/05/25/Python-decorator/" class="archive-article-date">
-  	<time datetime="2022-05-25T02:55:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Decorator-装饰器"><a href="#Decorator-装饰器" class="headerlink" title="Decorator (装饰器)"></a>Decorator (装饰器)</h1><h2 id="基础用法"><a href="#基础用法" class="headerlink" title="基础用法"></a>基础用法</h2><p>以函数作为参数，并且返回一个新函数的函数是一个装饰器</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dec</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;I am decorating function <span class="subst">&#123;f.__name__&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line"></span><br><span class="line">dec(<span class="built_in">len</span>)</span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">I am decorating function <span class="built_in">len</span></span><br><span class="line">&lt;function <span class="built_in">len</span>(obj, /)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装饰器可以在函数定义时用 @ 定义</span></span><br><span class="line"><span class="meta">@dec</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"><span class="comment"># output,调用add相当于调用 dec(add) </span></span><br><span class="line">I am decorating function add</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <div class="article-info info-on-right">
+          
+          
 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义两个装饰器函数，一个将原来的函数值加一，另一个乘二</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plus_one</span>(<span class="params">f</span>):</span><br><span class="line"><span class="comment">#     print(f)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(f(x))</span><br><span class="line">        <span class="keyword">return</span> f(x) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> new_func</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">times_two</span>(<span class="params">f</span>):</span><br><span class="line"><span class="comment">#     print(f.__name__())</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(f)</span><br><span class="line">        <span class="keyword">return</span> f(x) * <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> new_func</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@plus_one</span></span><br><span class="line"><span class="meta">@times_two</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用foo(x)相当于调用 plus_one(times_two(foo))(x)</span></span><br><span class="line">&lt;function foo at <span class="number">0x0000027B23E61670</span>&gt;</span><br><span class="line"><span class="number">26</span></span><br><span class="line">&lt;function foo at <span class="number">0x0000027B23E61670</span>&gt;</span><br><span class="line"><span class="number">27</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="装饰器工厂"><a href="#装饰器工厂" class="headerlink" title="装饰器工厂"></a>装饰器工厂</h2><p>生成装饰器的函数较装饰器工厂</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plus_n</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">plus_dec</span>(<span class="params">f</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">            <span class="keyword">return</span> f(x) + n</span><br><span class="line">        <span class="keyword">return</span> new_func</span><br><span class="line">    <span class="keyword">return</span> plus_dec</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 plus_one 替换成 plus_n(1)</span></span><br><span class="line"><span class="meta">@plus_n(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line"><span class="meta">@times_two</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2023/07/01/useful-tools-for-research/" class="archive-article-date">
+  	<time datetime="2023-07-01T05:15:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-01</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2023/07/01/useful-tools-for-research/">useful_tools_for_research</a>
+    </h1>
+  
 
-      
+        <div class="article-info info-on-right">
+          
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/05/25/Python-decorator/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2022/05/26/Median-Frequency-Balancing/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Median Frequency Balancing
-        
-      </div>
-    </a>
   
   
-    <a href="/2022/05/25/Python-iterator-and-generator/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python iterator and generator</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -376,8 +262,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

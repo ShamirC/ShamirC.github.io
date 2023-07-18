@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 37
+			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,160 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-PCA" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/07/PCA/">PCA</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/07/PCA/" class="archive-article-date">
+  	<time datetime="2023-07-07T12:00:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="主成分分析（Principle-component-analysis-PCA"><a href="#主成分分析（Principle-component-analysis-PCA" class="headerlink" title="主成分分析（Principle component analysis, PCA)"></a>主成分分析（Principle component analysis, PCA)</h1><p>主成分分析是一种数据降维方法。数据中的多个变量之间可能存在相关性，增加了问题分析的复杂性</p>
+<p>由于各变量之间存在一定的相关关系，因此可以考虑将关系紧密的变量变成尽可能少的新变量，使这些新变量是两两不相</p>
+<p>关的，那么就可以用较少的综合指标分别代表存在于各个变量中的各类信息。</p>
+<p><strong>PCA算法有两种实现方法：基于特征值分解协方差矩阵实现PCA算法、基于SVD分解协方差矩阵实现PCA算法。</strong></p>
+<h2 id="基于特征值分解协方差矩阵实现PCA算法"><a href="#基于特征值分解协方差矩阵实现PCA算法" class="headerlink" title="基于特征值分解协方差矩阵实现PCA算法"></a><strong>基于特征值分解协方差矩阵实现PCA算法</strong></h2><p>对于需要降维的数据 $$ X &#x3D; {x_1,x_2,x_3,…,x_n} $$，将X降到K维</p>
+<ol>
+<li>去平均值（即去中心化），即每一位特征减去各自的平均值</li>
+<li>计算<strong>协方差矩阵</strong>$$ \frac 1 n X X^T $$</li>
+<li>用特征值分解法求<strong>协方差矩阵 $$ \frac 1 n X X^T $$ 的特征值和特征向量</strong></li>
+<li>对特征值从大到小排序，选择其中最大的k个。然后将其对应的k个特征向量分别作为行向量组成特征向量矩阵P。</li>
+<li>将数据转换到k个特征向量构建的新空间中，即Y&#x3D;PX。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/07/PCA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-useful-tools-for-research" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/07/01/useful-tools-for-research/">useful_tools_for_research</a>
+    </h1>
+  
+
+        
+        <a href="/2023/07/01/useful-tools-for-research/" class="archive-article-date">
+  	<time datetime="2023-07-01T05:15:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>是</p>
+<p><strong>Tools for Research Purpose</strong></p>
+<p>一、GMTR 地学绘图软件</p>
+<p>二、R&#x2F;Matlab&#x2F;Python&#x2F;QGIS 科研制图</p>
+<p>三、GEE 遥感云计算平台</p>
+<p>四、数据下载</p>
+<p>五、</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/07/01/useful-tools-for-research/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Lecture-wirting-for-paper-and-program-application" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -928,343 +1082,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/15/Visualization-of-Image-Dataset/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Pytorch-Tensorboard" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/13/Pytorch-Tensorboard/">Pytorch_Tensorboard</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/13/Pytorch-Tensorboard/" class="archive-article-date">
-  	<time datetime="2022-07-13T02:16:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Tensorboard"><a href="#Tensorboard" class="headerlink" title="Tensorboard"></a>Tensorboard</h1><p>在训练过程中，我们需要监控训练时 loss 的变化， 验证阶段相关精度指标的变化, 预测结果可视化等。除此之外，测试阶段还可能需要对特征图进行可视化。这些都可以通过 Pytorch 提供的 Tensorboard 模块实现。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TensorBoard</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,cfg</span>):</span><br><span class="line">        <span class="built_in">super</span>(TensorBoard, self).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># tenesorboard log 文件</span></span><br><span class="line">        logs = cfg.logs</span><br><span class="line">        self.writer = SummaryWriter(cfg.logs)</span><br><span class="line"></span><br><span class="line">        self.tag1 = <span class="string">&#x27;train&#x27;</span></span><br><span class="line">        self.tag2 = <span class="string">&#x27;valid&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 记录训练和验证的每个 Iteration/Epoch 的损失值</span></span><br><span class="line">    <span class="comment"># 训练和验证损失随 epoch 变化画在一张折现图中</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">loss</span>(<span class="params">self, phase, loss, tag, step</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        :param phase: 训练/验证阶段</span></span><br><span class="line"><span class="string">        :param loss: 损失值</span></span><br><span class="line"><span class="string">        :param step: batch/epoch 索引</span></span><br><span class="line"><span class="string">        :param tag: 表格标签</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;epoch&quot;</span> <span class="keyword">in</span> tag:</span><br><span class="line">            <span class="keyword">assert</span> <span class="built_in">isinstance</span>(loss, (<span class="built_in">list</span>,<span class="built_in">tuple</span>))</span><br><span class="line">            self.writer.add_scalars(tag,&#123;</span><br><span class="line">                self.tag1: loss[<span class="number">0</span>],</span><br><span class="line">                self.tag2: loss[<span class="number">1</span>],</span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;batch&quot;</span> <span class="keyword">in</span> tag:</span><br><span class="line">            self.writer.add_scalar(phase + <span class="string">&quot;/&quot;</span> + tag, loss, step)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> NotImplementedError(<span class="string">&quot;%s %s is not allowed&quot;</span> % (phase,tag))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">criteria</span>(<span class="params">self, phase, value, tag, step</span>):</span><br><span class="line">        self.writer.add_scalar(phase + <span class="string">&quot;/&quot;</span> + tag, value, step)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fmap</span>(<span class="params">self, phase, images, step</span>):</span><br><span class="line">        <span class="keyword">assert</span> <span class="built_in">isinstance</span>(images,(<span class="built_in">list</span>,<span class="built_in">tuple</span>))</span><br><span class="line">        self.writer.add_images(phase + <span class="string">&quot; batch predictions&quot;</span>, images, step)</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/13/Pytorch-Tensorboard/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Metrics-Criterias-in-Segmentation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/12/Metrics-Criterias-in-Segmentation/">Metrics_Criterias_in_Segmentation</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/12/Metrics-Criterias-in-Segmentation/" class="archive-article-date">
-  	<time datetime="2022-07-12T07:09:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Metric-criteria"><a href="#Metric-criteria" class="headerlink" title="Metric criteria"></a>Metric criteria</h1><p>机器学习中评价模型精度的指标有</p>
-<blockquote>
-<ul>
-<li>Precision,	Recall,	F1</li>
-<li>overall accuracy</li>
-<li>ROC-Curve, PR-Curve</li>
-<li>Average Precision (AP),	mAP	</li>
-<li>Matthew correlation coefficient (MCC)</li>
-<li>OIS,	ODS</li>
-</ul>
-</blockquote>
-<h2 id="Confusion-Matrix"><a href="#Confusion-Matrix" class="headerlink" title="Confusion Matrix"></a>Confusion Matrix</h2><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/confusion_matrix.png" class="">
-
-<p>Precision, Recall, F1, Ovarll accuracy 等都可以基于该矩阵(表格) 进行计算</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">公式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Precsion</td>
-<td align="center">P &#x3D; TP &#x2F; (TP + FP)</td>
-<td align="center">模型预测中，预测为正例中实际也为正例的所占的比例</td>
-</tr>
-<tr>
-<td align="center">Recall</td>
-<td align="center">R &#x3D; TP &#x2F; (TP + FN)</td>
-<td align="center">样本中，正样本被正确预测所占的比例</td>
-</tr>
-<tr>
-<td align="center">F1</td>
-<td align="center">F1&#x3D; 2*<em>P</em> *R &#x2F; (R + P) or TP&#x2F;(2*TP+FN+FP)</td>
-<td align="center">Precision 和 Recall 的调和平均值</td>
-</tr>
-<tr>
-<td align="center">IoU（Intersection over Union) &#x2F; Jaccard</td>
-<td align="center">IoU &#x3D; TP &#x2F; (TP + FP + FN)</td>
-<td align="center">语义分割模型的重要衡量指标之一，是预测值和真实值的交集和并集之比</td>
-</tr>
-<tr>
-<td align="center">Matthew correlation coefficient (MCC)(马修斯相关系数)</td>
-<td align="center"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/mcc.png" class=""></td>
-<td align="center">二分类模型结果的评估指标之一，值在[-1，+1], 由于Precision,recall只考虑了正类，而忽略了负类的表现，为了解决这个问题，可以将prediction与真实结果看为两个0-1分布，然后用马修斯相关系数衡量两个分布的相似性。当<strong>FP&#x3D;FN&#x3D;0 <strong>即完全预测正确时 <strong>MCC&#x3D;1</strong>，当完全预测错误时</strong>MCC&#x3D;-1</strong>，此时将标签逆转即可。</td>
-</tr>
-<tr>
-<td align="center">Dice-coefficient</td>
-<td align="center">2*|X∩Y|&#x2F;(|X| + |Y|)</td>
-<td align="center">用于度量两个样本的相似性，dice 等同于 F1。也可以作为loss</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>除了评价模型对测试样本的指标之外，如</p>
-<ul>
-<li><strong>执行时间</strong></li>
-<li><strong>内存占用</strong></li>
-</ul>
-<p>这些衡量模型执行速度，内存占用的指标在某些情况下也需要考虑。</p>
-</blockquote>
-<p>常用的精度评价曲线有 ROC (Receiver Operating Characteristic, 受试者曲线）, P-R 曲线</p>
-<h2 id="针对线性目标提取的指标"><a href="#针对线性目标提取的指标" class="headerlink" title="针对线性目标提取的指标"></a>针对线性目标提取的指标</h2><table>
-<thead>
-<tr>
-<th align="left"></th>
-<th>公式</th>
-<th align="left">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">OIS (<strong>Optimal Image Scale</strong>)</td>
-<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/OIS.png" class=""></td>
-<td align="left">针对数据集的一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到 OIS</td>
-</tr>
-<tr>
-<td align="left">ODS (<strong>Optimal Dataset Scale</strong>)</td>
-<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ODS.png" class=""></td>
-<td align="left">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 ODS。</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"></td>
-<td></td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<h1 id="P-R-曲线"><a href="#P-R-曲线" class="headerlink" title="P-R 曲线"></a>P-R 曲线</h1><blockquote>
-<p>选取不同的阈值对预测样本进行划分，可以计算出不同的 precision 和 recall, P-R曲线就是以不同阈值下取得的 precision(纵坐标）, recall（横坐标） 绘制曲线。平衡点（BEP）是P&#x3D;R时的取值，如果这个值较大，则说明学习器的性能较好。。</p>
-<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/PR_curve.png" class="">
-</blockquote>
-<h1 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a><strong>ROC曲线</strong></h1><blockquote>
-<p>ROC 曲线最早应用于雷达信号检测区域，用于区分信号与噪声。<strong>很多分类器是为测试样本产生一个实值或概率预测，然后根据一个阈值对样本进行分类。若想得到更好的 precision, 则可以提高阈值，尽可能得使得对每一个预测值都有充分的自信。在不同阈值下得到的 FPR, TPR.  然后以 FPR 为横坐标，TPR 为纵坐标绘制 ROC 曲线。TPR, FPR 都是从实际样本出发，因此不受样本不平衡的影响</strong></p>
-<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ROC.png" class="">
-
-<p><strong>AUC（曲线下面积，the area under the ROC curve)</strong> 是指 ROC曲线下与横坐标轴构成的区域面积， AUC表示了可分离的程度或测度。ROC 曲线纵坐标轴是 TPR，TPR 越高表示模型正确预测正例的概率越大，因此理想情况就是，曲线离 (0,1) 点越近，AUC面积越接近 1，模型性能越好。<strong>若连接对角线，AUC面积正好是 0.5 对角线的实际含义是：随机判断响应与不响应，正负样本覆盖率应该都是 50%，表示随机效果</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">公式</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center"><strong>Average Precision (AP)</strong></td>
-<td align="center"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/AP.png" class=""></td>
-<td align="center"><strong>等于P-R曲线下面积</strong>，一般通过逼近的方法求曲线下面积吗</td>
-</tr>
-<tr>
-<td align="center">mAP</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">Ture Positive Rate (TPR) (正阳率，灵敏度) &#x2F; Sensitivity</td>
-<td align="center">TPR &#x3D; TP &#x2F; (TP+FN)</td>
-<td align="center">与 recall 相同，</td>
-</tr>
-<tr>
-<td align="center">Speficity(特异度)</td>
-<td align="center">S &#x3D; TN &#x2F; (FP + TN)</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">False Positive Rate (TNR) (假阳率，特异度) &#x2F; Specificity</td>
-<td align="center">FPR &#x3D; 1- S &#x3D; FP &#x2F; (FP + TN)</td>
-<td align="center"><strong>从公式可以看出，TPR, FPR是分别从实际的正样本和负样本中来观察相关概率问题的，因此不受样本不平衡的影响</strong></td>
-</tr>
-<tr>
-<td align="center">AUC</td>
-<td align="center"></td>
-<td align="center"><strong>ROC 曲线下面积</strong></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="precision-recall-F1"><a href="#precision-recall-F1" class="headerlink" title="precision, recall, F1"></a>precision, recall, F1</h2><blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># P,R,F</span></span><br><span class="line">&gt;<span class="comment"># for semantic segmentation and edge detection</span></span><br><span class="line">&gt;<span class="comment"># for binary classfication tasks</span></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">get_statistics</span>(<span class="params">preds, labels</span>):</span><br><span class="line">   <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">   return tp,fp,fn</span></span><br><span class="line"><span class="string">   &quot;&quot;&quot;</span></span><br><span class="line">   tp = np.<span class="built_in">sum</span>((pred==<span class="number">1</span>) &amp; (gt==<span class="number">1</span>))</span><br><span class="line">   fp = np.<span class="built_in">sum</span>((pred==<span class="number">1</span>) &amp; (gt==<span class="number">0</span>))</span><br><span class="line">   fn = np.<span class="built_in">sum</span>((pred==<span class="number">0</span>) &amp; (gt==<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> [tp,fp,fn]</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 返回不同阈值下计算的 precision，recall, f </span></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">cal_prf</span>(<span class="params">preds, labels, thre_step</span>):</span><br><span class="line"></span><br><span class="line">final_acuracy_all = []</span><br><span class="line">  	<span class="keyword">for</span> thresh <span class="keyword">in</span> np.arange(<span class="number">0.0</span>,<span class="number">1.0</span>, thresh_step):</span><br><span class="line">       statistics = []</span><br><span class="line">          preds = (preds &gt; thresh).astype(<span class="string">&#x27;uint8&#x27;</span>)</span><br><span class="line">          labels = labels.astype(<span class="string">&quot;uint8&quot;</span>)</span><br><span class="line">          <span class="comment"># 计算每一张图像</span></span><br><span class="line">          statistics.append(get_statistics(preds, labels))</span><br><span class="line">  </span><br><span class="line">   <span class="comment"># tp, fp, fn</span></span><br><span class="line">      tp = np.<span class="built_in">sum</span>([v[<span class="number">0</span>] <span class="keyword">for</span> v <span class="keyword">in</span> statistics])</span><br><span class="line">      fp = np.<span class="built_in">sum</span>([v[<span class="number">1</span>] <span class="keyword">for</span> v <span class="keyword">in</span> statistics])</span><br><span class="line">      fn = np.<span class="built_in">sum</span>([v[<span class="number">2</span>] <span class="keyword">for</span> v <span class="keyword">in</span> statistics])</span><br><span class="line">  </span><br><span class="line">   eps = <span class="number">1e-6</span></span><br><span class="line">          <span class="comment"># precision</span></span><br><span class="line">     p = <span class="number">1.0</span> <span class="keyword">if</span> t==<span class="number">0</span> <span class="keyword">and</span> fp==<span class="number">0</span> <span class="keyword">else</span> tp/(tp+fp+eps)</span><br><span class="line">      <span class="comment"># recall</span></span><br><span class="line">      r = tp / (tp + fn + eps)</span><br><span class="line">      <span class="comment"># f</span></span><br><span class="line">      f = <span class="number">2</span> * f * r / (p + r + eps)</span><br><span class="line">  </span><br><span class="line">   final_acuracy_all.append([thresh, p, r, f])</span><br><span class="line">  </span><br><span class="line">   <span class="keyword">return</span> final_accuracy_all</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="IoU"><a href="#IoU" class="headerlink" title="IoU"></a>IoU</h1><blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># 对于二分类分割，我们关心的是样本较少的正类，因此 IoU 是比 mIoU 更好的选择 </span></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">cal_IoU</span>(<span class="params">preds,labels,thre_step，num_classes</span>):</span><br><span class="line">&gt;final_accuracy_all = []</span><br><span class="line">&gt;<span class="keyword">for</span> thresh <span class="keyword">in</span> np.arange(<span class="number">0.0</span>,<span class="number">1.0</span>,thresh_step):</span><br><span class="line">  statistics = []</span><br><span class="line"></span><br><span class="line">  preds = (preds&gt;thresh).astype(<span class="string">&#x27;uint8&#x27;</span>)</span><br><span class="line">  labels = labels.astype(<span class="string">&quot;uint8&quot;</span>)</span><br><span class="line"></span><br><span class="line">  statistics.append(get_statistics(preds,labels,num_classes))</span><br><span class="line"></span><br><span class="line">counts = []</span><br><span class="line"><span class="comment"># tp,fp,fn</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">      tp = np.<span class="built_in">sum</span>([v[i][<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> statistics])</span><br><span class="line">      fp = np.<span class="built_in">sum</span>([v[i][<span class="number">1</span>] <span class="keyword">for</span> i <span class="keyword">in</span> statistics])</span><br><span class="line">      fn = np.<span class="built_in">sum</span>([v[i][<span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> statistics])</span><br><span class="line"></span><br><span class="line">  	counts.append([tp,fp,fn])</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 计算 每个类别的IoU</span></span><br><span class="line">  ious = []</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">      iou = v[i][<span class="number">0</span>] / (np.<span class="built_in">sum</span>(v[i]) <span class="keyword">for</span> v <span class="keyword">in</span> counts)</span><br><span class="line">    	ious.append(iou)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 计算 mIoU</span></span><br><span class="line">  miou = np.<span class="built_in">sum</span>([v[<span class="number">0</span>]/(np.<span class="built_in">sum</span>(v)) <span class="keyword">for</span> v <span class="keyword">in</span> counts])/num_cls</span><br><span class="line">  final_accuracy_all.append([thresh, ious, miou])</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">return</span> final_accuracy_all</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">get_statistics</span>(<span class="params">preds, labels, num_classes=<span class="number">2</span></span>):</span><br><span class="line">&gt;<span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">&gt;返回 tp,fp,fn</span></span><br><span class="line"><span class="string">&gt;&quot;&quot;&quot;</span></span><br><span class="line">&gt;h,w = gt.shape</span><br><span class="line">&gt;statistics = []</span><br><span class="line">&gt;<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num_classes):</span><br><span class="line">  tp = np.<span class="built_in">sum</span>((pred==i) &amp; (gt==i))</span><br><span class="line">  fp = np.<span class="built_in">sum</span>((pred==i) &amp; (gt!=i))</span><br><span class="line">  fn = np.<span class="built_in">sum</span>((pred!=i) &amp; (gt==i))</span><br><span class="line">  statistics.append([tp,fp,fn])</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">return</span> statistics</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-<h2 id="P-R-ROC"><a href="#P-R-ROC" class="headerlink" title="P-R , ROC"></a>P-R , ROC</h2><blockquote>
-<p>获得不同阈值下的 precision, recall， 以 precision 为横轴， recall 为纵轴绘制 P-R 曲线</p>
-<p>参考 :</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># P-R 曲线</span></span><br><span class="line">&gt;<span class="comment"># 使用上面获得的不同阈值下的 p,r,f 绘制,参考 https://github.com/yhlleo/DeepSegmentor</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">plot_prc</span>()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>ROC曲线与 P-R 曲线类似。 ROC 以 FPR 为横轴， TPR 为纵轴绘制</p>
-</blockquote>
-<h2 id="OIS-ODS，AP"><a href="#OIS-ODS，AP" class="headerlink" title="OIS, ODS，AP"></a>OIS, ODS，AP</h2><p>使用 BSR_BDS500 提供的 benchmark 计算（Matlab):</p>
-<p>BDS500: <a target="_blank" rel="noopener" href="https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html">https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://its301.com/article/qq_43019433/118118265">边缘检测的评价指标：PR曲线，OIS，ODS，AP的计算与代码实现_轻舟的万重重山的博客-程序员ITS301_边缘检测评价指标 - 程序员ITS301</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/AAAAshin/article/details/106793101"> BSDS500数据集边缘检测任务结果评估</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43019433/article/details/118118265">边缘检测的评价指标：PR曲线，OIS，ODS，AP的计算与代码实现</a></p>
-<p># RCF 作者的开源项目：<a target="_blank" rel="noopener" href="https://github.com/yun-liu/RCF">https://github.com/yun-liu/RCF</a></p>
-<p>OIS ODS python代码：<a target="_blank" rel="noopener" href="https://github.com/Walstruzz/edge_eval_python">https://github.com/Walstruzz/edge_eval_python</a></p>
-<p> <a target="_blank" rel="noopener" href="https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html">https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html</a></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46714763">【机器学习笔记】：一文让你彻底理解准确率，精准率，召回率，真正率，假正率，ROC&#x2F;AUC - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/30643044">精确率、召回率、F1 值、ROC、AUC 各自的优缺点是什么？ - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/42939bf83b8a">语义分割之MIoU原理与实现 - 简书 (jianshu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lingzhou33/article/details/87901365">(1条消息) 语义分割的评价指标——IoU_lingzhou33的博客-CSDN博客_语义分割iou</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/121036836">https://zhuanlan.zhihu.com/p/121036836</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c61ae11cc5f6">机器学习之分类性能度量指标 : ROC曲线、AUC值、正确率、召回率 - 简书 (jianshu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/53405779">目标检测中的mAP是什么含义？ - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269592183">语义分割之dice loss深度分析（梯度可视化） - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/88896868">https://zhuanlan.zhihu.com/p/88896868</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.kaggle.com/code/yassinealouini/all-the-segmentation-metrics/notebook">https://www.kaggle.com/code/yassinealouini/all-the-segmentation-metrics/notebook</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/12/Metrics-Criterias-in-Segmentation/">展开全文 >></a>
         </p>
       
 

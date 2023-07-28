@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 39
+			总文章数 41
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,184 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Linux-档案权限与目录配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/29/Linux-%E6%A1%A3%E6%A1%88%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">Linux 档案权限与目录配置</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/29/Linux-%E6%A1%A3%E6%A1%88%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2022-07-29T01:29:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="使用者与群组"><a href="#使用者与群组" class="headerlink" title="使用者与群组"></a>使用者与群组</h1><h2 id="档案拥有者-User"><a href="#档案拥有者-User" class="headerlink" title="档案拥有者(User)"></a>档案拥有者(User)</h2><p>Linux 允许多人工作，因此，一些个人文档可以设置档案拥有者，这样可以保护隐私权以及每个人喜好的工作环境</p>
+<h2 id="群组-Group"><a href="#群组-Group" class="headerlink" title="群组(Group)"></a>群组(Group)</h2><p>Linux 可以设定 <strong>群组</strong>，一个群组有多个成员，通过档案权限设定，可以限制非群组的成员浏览修改档案。</p>
+<p>其他人（Others）则是对于群组成员来说的团队外的成员</p>
+<h2 id="Linux-使用者身份与群组记录的档案"><a href="#Linux-使用者身份与群组记录的档案" class="headerlink" title="Linux 使用者身份与群组记录的档案"></a>Linux 使用者身份与群组记录的档案</h2><p>在预设情况下</p>
+<ul>
+<li>所有的系统上的账号与一般身份使用者，还有 root 的相关资讯，都记录在 <code>/etc/passwd</code></li>
+<li>个人密码记录在 <code>/etc/shadow</code></li>
+<li>Linux 所有的<strong>群组名称</strong> 都记录在 <code>/etc/group</code></li>
+</ul>
+<h1 id="Linux-档案权限"><a href="#Linux-档案权限" class="headerlink" title="Linux 档案权限"></a>Linux 档案权限</h1><h2 id="档案属性"><a href="#档案属性" class="headerlink" title="档案属性"></a>档案属性</h2><p><code>ls -al </code> 指令查看档案</p>
+<p><img src="/../assets/BlogImg/Linux_dangan.png"></p>
+<p>上面 7 栏分别为：档案类型权限，连结数，档案拥有者，档案所属群组，档案容量(默认为bytes)，档案最后被修改时间，档案名</p>
+<blockquote>
+<p>第 一 栏 第一个字符为档案类型权限：</p>
+<ul>
+<li>第一个字符，<code>[d]</code> 则表示这个档案是 <strong>目录</strong></li>
+<li>当第一个字符为 <code>[-]</code>, 则是 <strong>档案</strong></li>
+<li>若第一个字符为 <code>[l]</code> ， 则表示为 连结档（link file)</li>
+<li>若第一个字符为 <code>[b]</code> , 则表示为装置档案里面的<strong>可共存储的周边设备</strong></li>
+<li>若第一个字符为 <code>[c]</code> , 则表示为装置档案里的键盘，鼠标等一次性读取装置</li>
+</ul>
+<p>第 一 栏 接下来的字符中，已三个为一组，且均为 <code>[rwx]</code>的三个参数组合, 三个权限的位置不会改变，如果没有对应权限，就会出现 <code>[-]</code></p>
+<ul>
+<li>r 代表可读 （read), w 代表可写 （write), x 代表可执行 (execute)</li>
+<li>三组 <code>[rwx]</code> 分别为 <code>档案拥有者</code> 可具备的权限，<code>加入此群组账号</code>的权限，<code>非本人且没有加入本群组的其它账号</code>的权限</li>
+</ul>
+</blockquote>
+<h2 id="改变档案属性与权限"><a href="#改变档案属性与权限" class="headerlink" title="改变档案属性与权限"></a>改变档案属性与权限</h2><ul>
+<li><code>chgrp</code> : 改变档案所属 group</li>
+<li><code>chown</code>: 改变档案 user</li>
+<li><code>chmod</code>: 改变档案的权限， SUID, SGID, SBIT 等等的特性</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/29/Linux-%E6%A1%A3%E6%A1%88%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Visualization-of-Image-Dataset" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/15/Visualization-of-Image-Dataset/">Visualization of Image Dataset</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/15/Visualization-of-Image-Dataset/" class="archive-article-date">
+  	<time datetime="2022-07-15T04:38:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/15/Visualization-of-Image-Dataset/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Pytorch-Tensorboard" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1195,259 +1373,9 @@
 
 
   
-    <article id="post-AlignSeg-Feature-Aligned-Segmentation-Networks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/">AlignSeg: Feature-Aligned Segmentation Networks</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/" class="archive-article-date">
-  	<time datetime="2022-06-30T14:00:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本文是2021年 TPAMI 上的一篇关于语义分割的文章，这篇文章核心工作是提出了一个用于对齐不同分辨率特征的模块。</p>
-<p>论文源码：<a target="_blank" rel="noopener" href="https://github.com/speedinghzl/AlignSeg">https://github.com/speedinghzl/AlignSeg</a></p>
-<p>深度学习的FCN结构的发展为语义分割带来了飞跃式的发展。 </p>
-<p>FCN提取的特征有一个特点，即层级性（hierarchical)，低层级的特征具有丰富的空间信息（纹理，边缘等），但是缺乏语义信息（这是由于它们的感受野小），而高层级的特征则相反；全局上下文（global context) 可以提供有用的信息用以减轻复杂区域预测的混淆程度；基于以上两个原则，很多工作整合不同卷积块的特征来构建分割网络。</p>
-<p>但是，<strong>特征对齐</strong> 问题这一个重要的问题没有得到充分的考虑和研究</p>
-<p>作者认为特征不对齐主要来自两个方面：</p>
-<ol>
-<li>所有的卷积神经都会对特征进行下采样，导致上采样之后的特征图与网络低层的特征图进行整合时会导致空间上的不对齐。</li>
-<li>常用的引入上下文信息的方法是对所有像素点进行同质上下文嵌入，而不考虑它们的内部差异，这样无法对其的上下文就会导致错误分类。:(</li>
-</ol>
-<p>针对上述两点，作者分别提出Feature-Aligned Segmentation (AlignSeg) Networks, 包含两个主要模块</p>
-<ul>
-<li>Aligned Feature Aggregation (AlignFA)，为高-低特征融合对齐高分辨率和低分辨率特征图</li>
-<li>Aligned Context Modeling (AlignCM)， 进行适应性的，选择性的和具有丰富上下文的池化操作</li>
-</ul>
-<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><p>语义分割研究中，学习具有丰富语义信息和空间信息的特征是非常重要的，围绕这一问题开展的研究有两个主要方向，即<strong>特征整合（feature aggregation）</strong>和 <strong>上下文建模（context modeling)</strong> </p>
-<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p>AlignSeg 的结构如下图所示，使用了 bottom-up 的结构，Backbone 为 ResNet</p>
-<p><img src="/../assets/blogImg/Fig1_AlignSeg.png"></p>
-<p>FAM特征对齐模块可以表示如下：</p>
-<blockquote>
-<p><img src="/../assets/blogImg/Fig2_AlignSeg.png"></p>
-<p>u 为 配准函数，F为需要配准的特征图，假设 F 中每个点的空间位置为 {(1, 1), (1, 2), …, (H, W )}，偏移量图为 ∆ ∈ R^2×H×W</p>
-<p>配准方程如下</p>
-<p><img src="/../assets/blogImg/Fig3_AlignSeg.png"></p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Paper//" class="article-tag-list-link color1">Paper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/">&lt;Multi-Task Learning for Dense Prediction Tasks: A Survey&gt;</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/" class="archive-article-date">
-  	<time datetime="2022-06-28T10:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文是深度学习顶刊 TPAMI 上一篇关于 <strong>Multi-Task Learning</strong> 在密集预测（<strong>dense prediction</strong>, 如语义分割，实例分割等)中的综述。这篇文章根据之前的研究综述，提出了一种新的 多任务学习 模型的划分方法，还有一个与之前综述不同之处是，作者通过实验比较了不同模型的效果，并开源了代码。</p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Introduction 部分叙述了 Multi-Task Learning（MTL）  任务的应用，基本概念，其在 像素级的dense prediction 中的应用特点，以及已有的相关综述。</p>
-<p>本文的总体框架如下图所示</p>
-<p><img src="/../assets/blogImg/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<p><strong>关于 MTL：</strong></p>
-<blockquote>
-<p>MTL 旨在通过相关任务中特定的领域信息（domain-specific information) 来提高 泛化性</p>
-<p>与 单任务（single task) 相比，MTL有如下几个优点：</p>
-<ul>
-<li>由于 MTL 网络中内部不同任务有共享层，可以节省内存</li>
-<li>由于 MTL 不需要重复计算共享层的特征，因此相较于 单任务，推理速度会更快</li>
-<li>如果任务之间可以分享互补信息，那么就有可能会提高模型性能，或者作为另一个任务的 正则项</li>
-</ul>
-</blockquote>
-<p><strong>MTL 在密集预测与图片级分类上的不同：</strong></p>
-<blockquote>
-<ul>
-<li>多任务密集预测中使用多个不同的 loss 函数。而图像分类通常使用 交叉熵，这就需要考虑到在训练过程中有些任务可能会被 overwhalme。</li>
-<li>与图片级分类相反，密集预测任务无法直接从全局共享的特征表达中得到预测结果。</li>
-<li>场景理解中，不同的像素级任务通常会提取相似的特征，这些相似性可以在 MTL 的设定下提高预测表现</li>
-</ul>
-</blockquote>
-<h1 id="MTL-网络结构的分类"><a href="#MTL-网络结构的分类" class="headerlink" title="MTL 网络结构的分类"></a>MTL 网络结构的分类</h1><h2 id="已有研究的分类方法"><a href="#已有研究的分类方法" class="headerlink" title="已有研究的分类方法"></a>已有研究的分类方法</h2><h3 id="非深度学习方法的分类"><a href="#非深度学习方法的分类" class="headerlink" title="非深度学习方法的分类"></a>非深度学习方法的分类</h3><p>在深度学习时代之前， MTL 的工作主要是致力于对不同任务之间的共同信息建模，希望这种联合任务学习可以提升泛化性。作者列举了一些相关工作。一些研究假设参数之间应该距离很近。 例如，使用一些距离指标（distance metric) 来分析任务参数之间的相关性；有的研究假设不同任务有共同的概率先验，或者任务的参数处于一个相同的低维子空间中。</p>
-<p>上述假设在不同任务之间有关联时效果很不错，但是如果在不想关联的任务之间发生信息共享时，或导致性能下降，即negative transfer 问题。</p>
-<p>Note: 对这部分并不能很好的理解 :(</p>
-<h3 id="深度学习中的软参数和硬参数共享（Soft-and-Hard-Parameter-Sharing-in-Deep-Learning"><a href="#深度学习中的软参数和硬参数共享（Soft-and-Hard-Parameter-Sharing-in-Deep-Learning" class="headerlink" title="深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)"></a>深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)</h3><p>在深度学习的语境下，MTL 从多任务监督信号中学习共享的（特征）表达。<strong>历史上</strong>，深度学习中多任务网络结构被划分为 **soft parameter sharing **（SPS） 和 <strong>hard parameter sharing</strong>  (HPS)，分别如下图所示。</p>
-<p><img src="/../assets/blogImg/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<blockquote>
-<p><strong>hard parameter sharing</strong></p>
-<p>在 HPS 中，模型的参数可以划分为 共享参数 和 特定任务 参数。典型的结构如上图中 (a) 所示，不同的任务共享一个 encoder, 这个 enconder 后面特定的任务分支。</p>
-<p>作者列举的例子有</p>
-<ul>
-<li><p>UberNet，第一次使用 HPS 方式联合地处理大量的低，中，高级视觉任务</p>
-</li>
-<li><p>HPS 结构最突出的特点是，一个共享的 encoder及其处理特定任务的分 decoding 支。作者列举的该类论文有</p>
-</li>
-</ul>
-<p> A. Kendall, Y. Gal, and R. Cipolla, “Multi-task learning using uncertainty to weigh losses for scene geometry and semantics,” in CVPR, 2018.</p>
-<p> Z. Chen, V. Badrinarayanan, C.-Y. Lee, and A. Rabinovich, “Gradnorm: Gradient normalization for adaptive loss balancing in deep multitask networks,” in ICML, 2018.</p>
-<p> O. Sener and V. Koltun, “Multi-task learning as multi-objective optimization,” in NIPS, 2018.];</p>
-<p> [D. Neven, B. De Brabandere, S. Georgoulis, M. Proesmans, and L. Van Gool, “Fast scene understanding for autonomous driving,” in IV Workshops, 2017.</p>
-<p> M. Teichmann, M. Weber, M. Zoellner, R. Cipolla, and R. Urtasun, “Multinet: Real-time joint semantic reasoning for autonomous driving,” in IV, 2018.</p>
-<ul>
-<li>但是 encoder 的 分支点应该在哪儿很难确定，不适合的分支点可能会导致非最（次）优的任务分组（suboptimal task groupings) ；<strong>因此下列文章提出了有效的流程来自动确定什么时候开始分支。</strong></li>
-</ul>
-<p> Y. Lu, A. Kumar, S. Zhai, Y. Cheng, T. Javidi, and R. Feris, “Fullyadaptive feature sharing in multi-task networks with applications in person attribute classification,” in CVPR, 2017.</p>
-<p> S. Vandenhende, S. Georgoulis, B. De Brabandere, and L. Van Gool, “Branched multi-task networks: Deciding what layers to share,” in BMVC, 2020.</p>
-<p> D. Bruggemann, M. Kanakis, S. Georgoulis, and L. V. Gool, “Automated search for resource-efficient branched multi-task networks,” 2020.</p>
-<p> P. Guo, C.-Y. Lee, and D. Ulbricht, “Learning to branch for multitask learning,” in ICML, 2020.</p>
-<p><strong>soft parameter sharing</strong></p>
-<p>在 SPS 中，如上图 (b), 每一个任务都有自己的一套参数，一个参数共享机制处理跨任务（cross-talk) 交流。</p>
-<p>Cross-stitch networks（十字绣网络） 提出了 MTL 框架的 SPS。Cross-stitch network 在网络的每一层。，通过学习输入激活映射的线性组合来建模共享表示。</p>
-<p>Sluice network 在 Cross-stitch networks 的基础上进行了扩展，有选择性地确定哪些是参数需要共享的层</p>
-<p>NDRR-CNN 将维度降低（dimensionality reduction) 嵌入特征融合层</p>
-<p>不同地，MTAN，使用一个注意力机制来分享不同任务网络之间的特征池化</p>
-</blockquote>
-<h2 id="作者提出的新分类方法"><a href="#作者提出的新分类方法" class="headerlink" title="作者提出的新分类方法"></a>作者提出的新分类方法</h2><p>随着多任务模型的发展，最近有不少的研究同时具有 SPS 和 HPS 的特点，因此作者认为 SPS, HPS 不能继续作为划分 MTL 的主要方法。因此作者提出了一个新的分类方法，根据不同任务发生交集的位置划分不同结构，即任务之间发生信息（或特征）交换（分享）的位置。根据这一点，作者将 MTL 网络划分了两种了类型： <strong>Encoder-foucsed Architectures</strong> 和 <strong>Decoder-focused Architectures</strong></p>
-<p><img src="/../assets/blogImg/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h3 id="Encoder-focused-Architectures"><a href="#Encoder-focused-Architectures" class="headerlink" title="Encoder-focused Architectures"></a>Encoder-focused Architectures</h3><p>Encoder-focused architectures 只在 Encoder 共享参数，在使用单独的特定的任务头（task-specific head) decode 每一个任务之前，使用 HPS 或 SPS 方法共享。</p>
-<h4 id="Cross-stitch-Networks"><a href="#Cross-stitch-Networks" class="headerlink" title="Cross-stitch Networks"></a>Cross-stitch Networks</h4><p>Cross-stitch Networks 在 encoder 中单任务网络之间共享激活（activations)，如下图所示。</p>
-<p><img src="/../assets/blogImg/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<p>十字绣网络的共享层可以由以下方程表示</p>
-<p><img src="/../assets/blogImg/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<p>xA, xB 表示某一层的两个任务（网络）的 激活特征图，a 是可以学习权重  ̃xA,  ̃ xB 是转换后的结果。</p>
-<p>通过学习到的权重a，网络可以决定任务之间特征共享的程度。十字绣网络的缺点是模型的参数量随着任务数量增加而线性。</p>
-<h4 id="Multi-Task-Attention-Networks"><a href="#Multi-Task-Attention-Networks" class="headerlink" title="Multi-Task Attention Networks"></a>Multi-Task Attention Networks</h4><p>Multi-Task Attention Networks (MTAN)，如下图所示，MTAN 使用一个共享参数的 backbone, 在 bakcnbone 的每个 stage 的特征都被不同 任务的分支作为输入，每个特定任务分支都由多个 attention modules （注意力模块）组成，这些attention modules 可以从输入的 feature maps 中筛特征。</p>
-<p><img src="/../assets/blogImg/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h4 id="Branched-Multi-task-Learning-Networks"><a href="#Branched-Multi-task-Learning-Networks" class="headerlink" title="Branched Multi-task Learning Networks"></a>Branched Multi-task Learning Networks</h4><p>上述网络都是在encoding 阶段以 SPS的形式共享参数</p>
-<p>不同的是，Branched Multi-task Learning Networks 使用 HPS 方式共享参数</p>
-<p>如我们所知，深度卷积神经网络学习到的特征是有层级性的，网络的低层学习到的低级特征，如纹理，边缘等，更具一般性。而深层倾向于提取更特定于某一个任务的高级特征。Branched Multi-task Learning Networks 正是利用这一特点选择性，这类网络一般开始有多个共享的层，然后分出多组不同特定任务的分支。</p>
-<p>然而，要决定哪些层共享，什么时候开始分支非常困难，因为有大多的组合方式来构成网络</p>
-<p>因此，一些工作在跟顶的计算开销指标（如FLOPS)下，自动化选择分支位置, 作者列举了一些工作，如 <strong>Fully-Adaptive Feature Sharing (FAFS)</strong></p>
-<h3 id="Decoder-focused-Architectures"><a href="#Decoder-focused-Architectures" class="headerlink" title="Decoder-focused Architectures"></a>Decoder-focused Architectures</h3><p>与 Encoder-focused architectures 不同，Decoder-focused Architectures 在 decoding 阶段也会共享参数。</p>
-<h5 id="PAD-Net"><a href="#PAD-Net" class="headerlink" title="PAD-Net"></a>PAD-Net</h5><p>PAD-Net 是 Decoder-focused Architectures 的先驱之一。</p>
-<p><img src="/../assets/blogImg/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h5 id="Pattern-Affinitive-Propagation-Networks-PAP-Net"><a href="#Pattern-Affinitive-Propagation-Networks-PAP-Net" class="headerlink" title="Pattern-Affinitive Propagation Networks (PAP-Net)"></a>Pattern-Affinitive Propagation Networks (PAP-Net)</h5><p><img src="/../assets/blogImg/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h5 id="Joint-Task-Recursive-Learning-JTRL"><a href="#Joint-Task-Recursive-Learning-JTRL" class="headerlink" title="Joint Task-Recursive Learning (JTRL)"></a>Joint Task-Recursive Learning (JTRL)</h5><p><img src="/../assets/blogImg/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h5 id="Multi-Scale-Task-Interaction-Networks-MTI-Net"><a href="#Multi-Scale-Task-Interaction-Networks-MTI-Net" class="headerlink" title="Multi-Scale Task Interaction Networks (MTI-Net)"></a>Multi-Scale Task Interaction Networks (MTI-Net)</h5><p><img src="/../assets/blogImg/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
-<h1 id="Optimization-in-MTL"><a href="#Optimization-in-MTL" class="headerlink" title="Optimization in MTL"></a>Optimization in MTL</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/500647063">https://zhuanlan.zhihu.com/p/500647063</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Paper//" class="article-tag-list-link color1">Paper</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 

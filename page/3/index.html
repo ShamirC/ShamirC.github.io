@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 39
+			总文章数 41
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,256 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-AlignSeg-Feature-Aligned-Segmentation-Networks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/">AlignSeg: Feature-Aligned Segmentation Networks</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/" class="archive-article-date">
+  	<time datetime="2022-06-30T14:00:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本文是2021年 TPAMI 上的一篇关于语义分割的文章，这篇文章核心工作是提出了一个用于对齐不同分辨率特征的模块。</p>
+<p>论文源码：<a target="_blank" rel="noopener" href="https://github.com/speedinghzl/AlignSeg">https://github.com/speedinghzl/AlignSeg</a></p>
+<p>深度学习的FCN结构的发展为语义分割带来了飞跃式的发展。 </p>
+<p>FCN提取的特征有一个特点，即层级性（hierarchical)，低层级的特征具有丰富的空间信息（纹理，边缘等），但是缺乏语义信息（这是由于它们的感受野小），而高层级的特征则相反；全局上下文（global context) 可以提供有用的信息用以减轻复杂区域预测的混淆程度；基于以上两个原则，很多工作整合不同卷积块的特征来构建分割网络。</p>
+<p>但是，<strong>特征对齐</strong> 问题这一个重要的问题没有得到充分的考虑和研究</p>
+<p>作者认为特征不对齐主要来自两个方面：</p>
+<ol>
+<li>所有的卷积神经都会对特征进行下采样，导致上采样之后的特征图与网络低层的特征图进行整合时会导致空间上的不对齐。</li>
+<li>常用的引入上下文信息的方法是对所有像素点进行同质上下文嵌入，而不考虑它们的内部差异，这样无法对其的上下文就会导致错误分类。:(</li>
+</ol>
+<p>针对上述两点，作者分别提出Feature-Aligned Segmentation (AlignSeg) Networks, 包含两个主要模块</p>
+<ul>
+<li>Aligned Feature Aggregation (AlignFA)，为高-低特征融合对齐高分辨率和低分辨率特征图</li>
+<li>Aligned Context Modeling (AlignCM)， 进行适应性的，选择性的和具有丰富上下文的池化操作</li>
+</ul>
+<h1 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h1><p>语义分割研究中，学习具有丰富语义信息和空间信息的特征是非常重要的，围绕这一问题开展的研究有两个主要方向，即<strong>特征整合（feature aggregation）</strong>和 <strong>上下文建模（context modeling)</strong> </p>
+<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p>AlignSeg 的结构如下图所示，使用了 bottom-up 的结构，Backbone 为 ResNet</p>
+<p><img src="/../assets/blogImg/Fig1_AlignSeg.png"></p>
+<p>FAM特征对齐模块可以表示如下：</p>
+<blockquote>
+<p><img src="/../assets/blogImg/Fig2_AlignSeg.png"></p>
+<p>u 为 配准函数，F为需要配准的特征图，假设 F 中每个点的空间位置为 {(1, 1), (1, 2), …, (H, W )}，偏移量图为 ∆ ∈ R^2×H×W</p>
+<p>配准方程如下</p>
+<p><img src="/../assets/blogImg/Fig3_AlignSeg.png"></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Paper//" class="article-tag-list-link color1">Paper</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/">&lt;Multi-Task Learning for Dense Prediction Tasks: A Survey&gt;</a>
+    </h1>
+  
+
+        
+        <a href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/" class="archive-article-date">
+  	<time datetime="2022-06-28T10:30:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>本文是深度学习顶刊 TPAMI 上一篇关于 <strong>Multi-Task Learning</strong> 在密集预测（<strong>dense prediction</strong>, 如语义分割，实例分割等)中的综述。这篇文章根据之前的研究综述，提出了一种新的 多任务学习 模型的划分方法，还有一个与之前综述不同之处是，作者通过实验比较了不同模型的效果，并开源了代码。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Introduction 部分叙述了 Multi-Task Learning（MTL）  任务的应用，基本概念，其在 像素级的dense prediction 中的应用特点，以及已有的相关综述。</p>
+<p>本文的总体框架如下图所示</p>
+<p><img src="/../assets/blogImg/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><strong>关于 MTL：</strong></p>
+<blockquote>
+<p>MTL 旨在通过相关任务中特定的领域信息（domain-specific information) 来提高 泛化性</p>
+<p>与 单任务（single task) 相比，MTL有如下几个优点：</p>
+<ul>
+<li>由于 MTL 网络中内部不同任务有共享层，可以节省内存</li>
+<li>由于 MTL 不需要重复计算共享层的特征，因此相较于 单任务，推理速度会更快</li>
+<li>如果任务之间可以分享互补信息，那么就有可能会提高模型性能，或者作为另一个任务的 正则项</li>
+</ul>
+</blockquote>
+<p><strong>MTL 在密集预测与图片级分类上的不同：</strong></p>
+<blockquote>
+<ul>
+<li>多任务密集预测中使用多个不同的 loss 函数。而图像分类通常使用 交叉熵，这就需要考虑到在训练过程中有些任务可能会被 overwhalme。</li>
+<li>与图片级分类相反，密集预测任务无法直接从全局共享的特征表达中得到预测结果。</li>
+<li>场景理解中，不同的像素级任务通常会提取相似的特征，这些相似性可以在 MTL 的设定下提高预测表现</li>
+</ul>
+</blockquote>
+<h1 id="MTL-网络结构的分类"><a href="#MTL-网络结构的分类" class="headerlink" title="MTL 网络结构的分类"></a>MTL 网络结构的分类</h1><h2 id="已有研究的分类方法"><a href="#已有研究的分类方法" class="headerlink" title="已有研究的分类方法"></a>已有研究的分类方法</h2><h3 id="非深度学习方法的分类"><a href="#非深度学习方法的分类" class="headerlink" title="非深度学习方法的分类"></a>非深度学习方法的分类</h3><p>在深度学习时代之前， MTL 的工作主要是致力于对不同任务之间的共同信息建模，希望这种联合任务学习可以提升泛化性。作者列举了一些相关工作。一些研究假设参数之间应该距离很近。 例如，使用一些距离指标（distance metric) 来分析任务参数之间的相关性；有的研究假设不同任务有共同的概率先验，或者任务的参数处于一个相同的低维子空间中。</p>
+<p>上述假设在不同任务之间有关联时效果很不错，但是如果在不想关联的任务之间发生信息共享时，或导致性能下降，即negative transfer 问题。</p>
+<p>Note: 对这部分并不能很好的理解 :(</p>
+<h3 id="深度学习中的软参数和硬参数共享（Soft-and-Hard-Parameter-Sharing-in-Deep-Learning"><a href="#深度学习中的软参数和硬参数共享（Soft-and-Hard-Parameter-Sharing-in-Deep-Learning" class="headerlink" title="深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)"></a>深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)</h3><p>在深度学习的语境下，MTL 从多任务监督信号中学习共享的（特征）表达。<strong>历史上</strong>，深度学习中多任务网络结构被划分为 **soft parameter sharing **（SPS） 和 <strong>hard parameter sharing</strong>  (HPS)，分别如下图所示。</p>
+<p><img src="/../assets/blogImg/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<blockquote>
+<p><strong>hard parameter sharing</strong></p>
+<p>在 HPS 中，模型的参数可以划分为 共享参数 和 特定任务 参数。典型的结构如上图中 (a) 所示，不同的任务共享一个 encoder, 这个 enconder 后面特定的任务分支。</p>
+<p>作者列举的例子有</p>
+<ul>
+<li><p>UberNet，第一次使用 HPS 方式联合地处理大量的低，中，高级视觉任务</p>
+</li>
+<li><p>HPS 结构最突出的特点是，一个共享的 encoder及其处理特定任务的分 decoding 支。作者列举的该类论文有</p>
+</li>
+</ul>
+<p> A. Kendall, Y. Gal, and R. Cipolla, “Multi-task learning using uncertainty to weigh losses for scene geometry and semantics,” in CVPR, 2018.</p>
+<p> Z. Chen, V. Badrinarayanan, C.-Y. Lee, and A. Rabinovich, “Gradnorm: Gradient normalization for adaptive loss balancing in deep multitask networks,” in ICML, 2018.</p>
+<p> O. Sener and V. Koltun, “Multi-task learning as multi-objective optimization,” in NIPS, 2018.];</p>
+<p> [D. Neven, B. De Brabandere, S. Georgoulis, M. Proesmans, and L. Van Gool, “Fast scene understanding for autonomous driving,” in IV Workshops, 2017.</p>
+<p> M. Teichmann, M. Weber, M. Zoellner, R. Cipolla, and R. Urtasun, “Multinet: Real-time joint semantic reasoning for autonomous driving,” in IV, 2018.</p>
+<ul>
+<li>但是 encoder 的 分支点应该在哪儿很难确定，不适合的分支点可能会导致非最（次）优的任务分组（suboptimal task groupings) ；<strong>因此下列文章提出了有效的流程来自动确定什么时候开始分支。</strong></li>
+</ul>
+<p> Y. Lu, A. Kumar, S. Zhai, Y. Cheng, T. Javidi, and R. Feris, “Fullyadaptive feature sharing in multi-task networks with applications in person attribute classification,” in CVPR, 2017.</p>
+<p> S. Vandenhende, S. Georgoulis, B. De Brabandere, and L. Van Gool, “Branched multi-task networks: Deciding what layers to share,” in BMVC, 2020.</p>
+<p> D. Bruggemann, M. Kanakis, S. Georgoulis, and L. V. Gool, “Automated search for resource-efficient branched multi-task networks,” 2020.</p>
+<p> P. Guo, C.-Y. Lee, and D. Ulbricht, “Learning to branch for multitask learning,” in ICML, 2020.</p>
+<p><strong>soft parameter sharing</strong></p>
+<p>在 SPS 中，如上图 (b), 每一个任务都有自己的一套参数，一个参数共享机制处理跨任务（cross-talk) 交流。</p>
+<p>Cross-stitch networks（十字绣网络） 提出了 MTL 框架的 SPS。Cross-stitch network 在网络的每一层。，通过学习输入激活映射的线性组合来建模共享表示。</p>
+<p>Sluice network 在 Cross-stitch networks 的基础上进行了扩展，有选择性地确定哪些是参数需要共享的层</p>
+<p>NDRR-CNN 将维度降低（dimensionality reduction) 嵌入特征融合层</p>
+<p>不同地，MTAN，使用一个注意力机制来分享不同任务网络之间的特征池化</p>
+</blockquote>
+<h2 id="作者提出的新分类方法"><a href="#作者提出的新分类方法" class="headerlink" title="作者提出的新分类方法"></a>作者提出的新分类方法</h2><p>随着多任务模型的发展，最近有不少的研究同时具有 SPS 和 HPS 的特点，因此作者认为 SPS, HPS 不能继续作为划分 MTL 的主要方法。因此作者提出了一个新的分类方法，根据不同任务发生交集的位置划分不同结构，即任务之间发生信息（或特征）交换（分享）的位置。根据这一点，作者将 MTL 网络划分了两种了类型： <strong>Encoder-foucsed Architectures</strong> 和 <strong>Decoder-focused Architectures</strong></p>
+<p><img src="/../assets/blogImg/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h3 id="Encoder-focused-Architectures"><a href="#Encoder-focused-Architectures" class="headerlink" title="Encoder-focused Architectures"></a>Encoder-focused Architectures</h3><p>Encoder-focused architectures 只在 Encoder 共享参数，在使用单独的特定的任务头（task-specific head) decode 每一个任务之前，使用 HPS 或 SPS 方法共享。</p>
+<h4 id="Cross-stitch-Networks"><a href="#Cross-stitch-Networks" class="headerlink" title="Cross-stitch Networks"></a>Cross-stitch Networks</h4><p>Cross-stitch Networks 在 encoder 中单任务网络之间共享激活（activations)，如下图所示。</p>
+<p><img src="/../assets/blogImg/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p>十字绣网络的共享层可以由以下方程表示</p>
+<p><img src="/../assets/blogImg/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p>xA, xB 表示某一层的两个任务（网络）的 激活特征图，a 是可以学习权重  ̃xA,  ̃ xB 是转换后的结果。</p>
+<p>通过学习到的权重a，网络可以决定任务之间特征共享的程度。十字绣网络的缺点是模型的参数量随着任务数量增加而线性。</p>
+<h4 id="Multi-Task-Attention-Networks"><a href="#Multi-Task-Attention-Networks" class="headerlink" title="Multi-Task Attention Networks"></a>Multi-Task Attention Networks</h4><p>Multi-Task Attention Networks (MTAN)，如下图所示，MTAN 使用一个共享参数的 backbone, 在 bakcnbone 的每个 stage 的特征都被不同 任务的分支作为输入，每个特定任务分支都由多个 attention modules （注意力模块）组成，这些attention modules 可以从输入的 feature maps 中筛特征。</p>
+<p><img src="/../assets/blogImg/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h4 id="Branched-Multi-task-Learning-Networks"><a href="#Branched-Multi-task-Learning-Networks" class="headerlink" title="Branched Multi-task Learning Networks"></a>Branched Multi-task Learning Networks</h4><p>上述网络都是在encoding 阶段以 SPS的形式共享参数</p>
+<p>不同的是，Branched Multi-task Learning Networks 使用 HPS 方式共享参数</p>
+<p>如我们所知，深度卷积神经网络学习到的特征是有层级性的，网络的低层学习到的低级特征，如纹理，边缘等，更具一般性。而深层倾向于提取更特定于某一个任务的高级特征。Branched Multi-task Learning Networks 正是利用这一特点选择性，这类网络一般开始有多个共享的层，然后分出多组不同特定任务的分支。</p>
+<p>然而，要决定哪些层共享，什么时候开始分支非常困难，因为有大多的组合方式来构成网络</p>
+<p>因此，一些工作在跟顶的计算开销指标（如FLOPS)下，自动化选择分支位置, 作者列举了一些工作，如 <strong>Fully-Adaptive Feature Sharing (FAFS)</strong></p>
+<h3 id="Decoder-focused-Architectures"><a href="#Decoder-focused-Architectures" class="headerlink" title="Decoder-focused Architectures"></a>Decoder-focused Architectures</h3><p>与 Encoder-focused architectures 不同，Decoder-focused Architectures 在 decoding 阶段也会共享参数。</p>
+<h5 id="PAD-Net"><a href="#PAD-Net" class="headerlink" title="PAD-Net"></a>PAD-Net</h5><p>PAD-Net 是 Decoder-focused Architectures 的先驱之一。</p>
+<p><img src="/../assets/blogImg/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h5 id="Pattern-Affinitive-Propagation-Networks-PAP-Net"><a href="#Pattern-Affinitive-Propagation-Networks-PAP-Net" class="headerlink" title="Pattern-Affinitive Propagation Networks (PAP-Net)"></a>Pattern-Affinitive Propagation Networks (PAP-Net)</h5><p><img src="/../assets/blogImg/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h5 id="Joint-Task-Recursive-Learning-JTRL"><a href="#Joint-Task-Recursive-Learning-JTRL" class="headerlink" title="Joint Task-Recursive Learning (JTRL)"></a>Joint Task-Recursive Learning (JTRL)</h5><p><img src="/../assets/blogImg/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h5 id="Multi-Scale-Task-Interaction-Networks-MTI-Net"><a href="#Multi-Scale-Task-Interaction-Networks-MTI-Net" class="headerlink" title="Multi-Scale Task Interaction Networks (MTI-Net)"></a>Multi-Scale Task Interaction Networks (MTI-Net)</h5><p><img src="/../assets/blogImg/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<h1 id="Optimization-in-MTL"><a href="#Optimization-in-MTL" class="headerlink" title="Optimization in MTL"></a>Optimization in MTL</h1><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/500647063">https://zhuanlan.zhihu.com/p/500647063</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Paper//" class="article-tag-list-link color1">Paper</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Explanation-of-Cross-Entropy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1222,217 +1472,9 @@
 
 
   
-    <article id="post-Python-面向对象继承与复用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/">Python 面向对象继承与复用</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2022-05-30T13:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Super-函数"><a href="#Super-函数" class="headerlink" title="Super() 函数"></a>Super() 函数</h2><blockquote>
-<p>Python提供了<code>super()</code>函数，在子类中调用父类的方法</p>
-<p>其具体定义如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Leaf</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, color=<span class="string">&#x27;green&#x27;</span></span>):</span><br><span class="line">        self.color = color</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self, season=<span class="string">&quot;autumn&quot;</span></span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;A leaf falls in <span class="subst">&#123;season&#125;</span>!&quot;</span>)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MapleLeaf</span>(<span class="title class_ inherited__">Leaf</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">change_color</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.color == <span class="string">&quot;green&quot;</span>:</span><br><span class="line">            self.color = <span class="string">&quot;red&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self, season=<span class="string">&quot;autumn&quot;</span></span>):</span><br><span class="line">        self.change_color()</span><br><span class="line">        <span class="built_in">super</span>(MapleLeaf, self).fall(season)</span><br><span class="line">        <span class="comment"># print(f&quot;A leaf falls in &#123;season&#125;!&quot;)</span></span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mleaf = MapleLeaf()</span><br><span class="line"></span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># &#x27;green&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mleaf.fall()</span><br><span class="line"><span class="comment"># A leaf falls in autumn!</span></span><br><span class="line"></span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># red</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-上下文管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">Python 上下文管理器</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2022-05-27T15:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h1><p>上下文管理器可以防止在读写文件时，文件未被正常关闭。</p>
-<p>Python 的上下文管理器， 与关键字 <code>with</code> 一起使用：</p>
-<blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="keyword">with</span> &lt;expression&gt; :</span><br><span class="line">   &lt;statements&gt;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;my_file&quot;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">   data fp.write(<span class="string">&quot;hello word !&quot;</span>)</span><br><span class="line">&gt;<span class="keyword">finally</span>:</span><br><span class="line">   fp.close()</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">&gt;<span class="comment"># 等效于：</span></span><br><span class="line"></span><br><span class="line">&gt;fp = <span class="built_in">open</span>(<span class="string">&#x27;my_file&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">&gt;<span class="keyword">try</span>:</span><br><span class="line">   <span class="comment"># do stuff with f</span></span><br><span class="line">   data = fp.write(<span class="string">&quot;Hello world&quot;</span>)</span><br><span class="line">&gt;<span class="keyword">finally</span>:</span><br><span class="line">   fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>上下文管理器需要  <code>&lt;expression&gt;</code>  能够支持 <code>.__enter__()</code> 和 <code>.__exit__()</code> 方法</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;fp = <span class="built_in">open</span>(<span class="string">&quot;my_file&quot;</span> <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">&gt;fp.__enter__</span><br><span class="line">&gt;<span class="comment"># &lt;function TextIOWrapper.__enter__&gt;</span></span><br><span class="line">&gt;fp.__exit__</span><br><span class="line">&gt;<span class="comment"># &lt;function TextIOWrapper.__exit__&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-</blockquote>
-<h2 id="自定义上下文管理器"><a href="#自定义上下文管理器" class="headerlink" title="自定义上下文管理器"></a>自定义上下文管理器</h2><blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self， exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Hello</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>如果在执行过程中发生了异常，<code>.eixt()</code> 方法会先被执行，然后抛出异常</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span> / <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># ZeroDivisionError                         Traceback (most recent call last)</span></span><br><span class="line"><span class="comment"># C:\Users\CHENXI~1\AppData\Local\Temp/ipykernel_32120/3608834592.py in &lt;module&gt;</span></span><br><span class="line"><span class="comment">#      1 with TestManager():</span></span><br><span class="line"><span class="comment"># ----&gt; 2     print(1 / 0)</span></span><br><span class="line"><span class="comment">#      3 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="方法-enter-的返回值"><a href="#方法-enter-的返回值" class="headerlink" title="方法.enter()的返回值"></a><strong>方法.<strong>enter</strong>()的返回值</strong></h2><p>在读文件的例子中，<code>&lt;statements&gt; </code> 中使用文件对象时使用了 <code>as</code> 关键字的形式， 将 <code>open</code> 函数返回的文件对象赋给了 <code>f</code>  .</p>
-<p>事实上，<code>as</code> 关键字只是将上下文管理器 <code>.__enter__()</code> 方法的返回值赋给了 <code>f</code> ， <strong>而文件对象的 <code>.__enter__()</code>  方法的返回值刚好是它本身</strong>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;my_file&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fp.__enter__() <span class="keyword">is</span> fp</span><br><span class="line"><span class="comment"># True</span></span><br><span class="line">fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>一个通常的做法是将<code>.__enter__()</code>方法的返回值设为这个上下文管理器对象本身，也可以是其他值：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager() <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Hello</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>__exit__()</code> 方法接受的参数中有一些错误信息，如果没有错误，这些参数为 <code>None</code> ，如果有错误，可以在这个方法里对一些错误进行处理：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Exception: <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">            </span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"><span class="comment"># Exception: division by zero</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># ZeroDivisionError                         Traceback (most recent call last)</span></span><br><span class="line"><span class="comment"># C:\Users\CHENXI~1\AppData\Local\Temp/ipykernel_32120/3736940376.py in &lt;module&gt;</span></span><br><span class="line">      <span class="comment"># 1 with TestManager() as f:</span></span><br><span class="line"><span class="comment"># ----&gt; 2     print(1 / 0)</span></span><br><span class="line"><span class="comment">#       3 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>如果不想让异常继续抛出，只需要将<code>.__exit__()</code>方法的返回值设为<code>True</code>：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Exception: <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager() <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span> / <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"><span class="comment"># Exception: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 

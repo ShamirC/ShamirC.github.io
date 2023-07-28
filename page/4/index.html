@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 39
+			总文章数 41
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,214 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Python-面向对象继承与复用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/">Python 面向对象继承与复用</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2022-05-30T13:31:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Super-函数"><a href="#Super-函数" class="headerlink" title="Super() 函数"></a>Super() 函数</h2><blockquote>
+<p>Python提供了<code>super()</code>函数，在子类中调用父类的方法</p>
+<p>其具体定义如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Leaf</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, color=<span class="string">&#x27;green&#x27;</span></span>):</span><br><span class="line">        self.color = color</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self, season=<span class="string">&quot;autumn&quot;</span></span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;A leaf falls in <span class="subst">&#123;season&#125;</span>!&quot;</span>)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MapleLeaf</span>(<span class="title class_ inherited__">Leaf</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">change_color</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.color == <span class="string">&quot;green&quot;</span>:</span><br><span class="line">            self.color = <span class="string">&quot;red&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self, season=<span class="string">&quot;autumn&quot;</span></span>):</span><br><span class="line">        self.change_color()</span><br><span class="line">        <span class="built_in">super</span>(MapleLeaf, self).fall(season)</span><br><span class="line">        <span class="comment"># print(f&quot;A leaf falls in &#123;season&#125;!&quot;)</span></span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mleaf = MapleLeaf()</span><br><span class="line"></span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># &#x27;green&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mleaf.fall()</span><br><span class="line"><span class="comment"># A leaf falls in autumn!</span></span><br><span class="line"></span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># red</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/30/Python-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%8D%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python-上下文管理器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">Python 上下文管理器</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2022-05-27T15:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h1><p>上下文管理器可以防止在读写文件时，文件未被正常关闭。</p>
+<p>Python 的上下文管理器， 与关键字 <code>with</code> 一起使用：</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="keyword">with</span> &lt;expression&gt; :</span><br><span class="line">   &lt;statements&gt;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;my_file&quot;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">   data fp.write(<span class="string">&quot;hello word !&quot;</span>)</span><br><span class="line">&gt;<span class="keyword">finally</span>:</span><br><span class="line">   fp.close()</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">&gt;<span class="comment"># 等效于：</span></span><br><span class="line"></span><br><span class="line">&gt;fp = <span class="built_in">open</span>(<span class="string">&#x27;my_file&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">&gt;<span class="keyword">try</span>:</span><br><span class="line">   <span class="comment"># do stuff with f</span></span><br><span class="line">   data = fp.write(<span class="string">&quot;Hello world&quot;</span>)</span><br><span class="line">&gt;<span class="keyword">finally</span>:</span><br><span class="line">   fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>上下文管理器需要  <code>&lt;expression&gt;</code>  能够支持 <code>.__enter__()</code> 和 <code>.__exit__()</code> 方法</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;fp = <span class="built_in">open</span>(<span class="string">&quot;my_file&quot;</span> <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">&gt;fp.__enter__</span><br><span class="line">&gt;<span class="comment"># &lt;function TextIOWrapper.__enter__&gt;</span></span><br><span class="line">&gt;fp.__exit__</span><br><span class="line">&gt;<span class="comment"># &lt;function TextIOWrapper.__exit__&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+</blockquote>
+<h2 id="自定义上下文管理器"><a href="#自定义上下文管理器" class="headerlink" title="自定义上下文管理器"></a>自定义上下文管理器</h2><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self， exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Hello</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>如果在执行过程中发生了异常，<code>.eixt()</code> 方法会先被执行，然后抛出异常</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span> / <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#---------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># ZeroDivisionError                         Traceback (most recent call last)</span></span><br><span class="line"><span class="comment"># C:\Users\CHENXI~1\AppData\Local\Temp/ipykernel_32120/3608834592.py in &lt;module&gt;</span></span><br><span class="line"><span class="comment">#      1 with TestManager():</span></span><br><span class="line"><span class="comment"># ----&gt; 2     print(1 / 0)</span></span><br><span class="line"><span class="comment">#      3 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="方法-enter-的返回值"><a href="#方法-enter-的返回值" class="headerlink" title="方法.enter()的返回值"></a><strong>方法.<strong>enter</strong>()的返回值</strong></h2><p>在读文件的例子中，<code>&lt;statements&gt; </code> 中使用文件对象时使用了 <code>as</code> 关键字的形式， 将 <code>open</code> 函数返回的文件对象赋给了 <code>f</code>  .</p>
+<p>事实上，<code>as</code> 关键字只是将上下文管理器 <code>.__enter__()</code> 方法的返回值赋给了 <code>f</code> ， <strong>而文件对象的 <code>.__enter__()</code>  方法的返回值刚好是它本身</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;my_file&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"></span><br><span class="line">fp.__enter__() <span class="keyword">is</span> fp</span><br><span class="line"><span class="comment"># True</span></span><br><span class="line">fp.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>一个通常的做法是将<code>.__enter__()</code>方法的返回值设为这个上下文管理器对象本身，也可以是其他值：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager() <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Hello</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><code>__exit__()</code> 方法接受的参数中有一些错误信息，如果没有错误，这些参数为 <code>None</code> ，如果有错误，可以在这个方法里对一些错误进行处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Exception: <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">            </span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"><span class="comment"># Exception: division by zero</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># ZeroDivisionError                         Traceback (most recent call last)</span></span><br><span class="line"><span class="comment"># C:\Users\CHENXI~1\AppData\Local\Temp/ipykernel_32120/3736940376.py in &lt;module&gt;</span></span><br><span class="line">      <span class="comment"># 1 with TestManager() as f:</span></span><br><span class="line"><span class="comment"># ----&gt; 2     print(1 / 0)</span></span><br><span class="line"><span class="comment">#       3 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ZeroDivisionError: division by zero</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>如果不想让异常继续抛出，只需要将<code>.__exit__()</code>方法的返回值设为<code>True</code>：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestManager</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__enter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Entering&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__exit__</span>(<span class="params">self, exc_type, exc_value, traceback</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Exiting&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> exc_type <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Exception: <span class="subst">&#123;exc_value&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> TestManager() <span class="keyword">as</span> f:</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span> / <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Entering</span></span><br><span class="line"><span class="comment"># Exiting</span></span><br><span class="line"><span class="comment"># Exception: division by zero</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/27/Python-%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-One-hot-coding-for-mask-images-in-semantic-segmentation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -942,84 +1150,9 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/12/hello-world/" class="archive-article-date">
-  	<time datetime="2022-05-12T11:41:24.806Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/12/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 

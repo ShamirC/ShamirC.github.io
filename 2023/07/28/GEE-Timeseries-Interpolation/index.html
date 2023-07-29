@@ -8,13 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>GEE_Timeseries_Interpolation | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="光学遥感影像去云后后会留下空缺，本文记录如何在GEE中对空缺值进行填充 去云根据网上的资料，GEE中常用的去云方法有三种：  利用光学遥感影像的质量评估（Quality assesment, QA）波段 如 S2（sentinel-2）的”QA60”波段，包含了云、云影、卷云、水体等信息。 参考：【遥感】遥感影像中的QA波段（质量评估波段）存储方式介绍_qa_pixel和bqa_碧空慧眼的博客-C">
+<meta property="og:type" content="article">
 <meta property="og:title" content="GEE_Timeseries_Interpolation">
 <meta property="og:url" content="http://example.com/2023/07/28/GEE-Timeseries-Interpolation/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="光学遥感影像去云后后会留下空缺，本文记录如何在GEE中对空缺值进行填充 去云根据网上的资料，GEE中常用的去云方法有三种：  利用光学遥感影像的质量评估（Quality assesment, QA）波段 如 S2（sentinel-2）的”QA60”波段，包含了云、云影、卷云、水体等信息。 参考：【遥感】遥感影像中的QA波段（质量评估波段）存储方式介绍_qa_pixel和bqa_碧空慧眼的博客-C">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-28T09:25:17.000Z">
-<meta property="article:modified_time" content="2023-07-28T09:25:17.500Z">
+<meta property="article:modified_time" content="2023-07-29T05:23:42.405Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -181,7 +183,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>光学遥感影像去云后后会留下空缺，本文记录如何在GEE中对空缺值进行填充</p>
+<h1 id="去云"><a href="#去云" class="headerlink" title="去云"></a>去云</h1><p>根据网上的资料，GEE中常用的去云方法有三种：</p>
+<ol>
+<li><p>利用光学遥感影像的质量评估（Quality assesment, QA）波段</p>
+<p>如 S2（sentinel-2）的”QA60”波段，包含了云、云影、卷云、水体等信息。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_35845997/article/details/122316102">【遥感】遥感影像中的QA波段（质量评估波段）存储方式介绍_qa_pixel和bqa_碧空慧眼的博客-CSDN博客</a></p>
+<p>GEE的S2去云：</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">rmCloudByScore</span>(<span class="params">image, thread</span>) &#123; </span><br><span class="line">  <span class="keyword">var</span> preBands = [<span class="string">&quot;B2&quot;</span>,<span class="string">&quot;B3&quot;</span>,<span class="string">&quot;B4&quot;</span>,<span class="string">&quot;B8&quot;</span>,<span class="string">&quot;B11&quot;</span>,<span class="string">&quot;B12&quot;</span>]; </span><br><span class="line">  <span class="keyword">var</span> newBands = [<span class="string">&#x27;blue&#x27;</span>,<span class="string">&#x27;green&#x27;</span>,<span class="string">&#x27;red&#x27;</span>,<span class="string">&#x27;nir&#x27;</span>,<span class="string">&#x27;swir1&#x27;</span>,<span class="string">&#x27;swir2&#x27;</span>]; </span><br><span class="line">  <span class="keyword">var</span> score = <span class="title function_">_cloudScore</span>(image.<span class="title function_">select</span>(preBands, newBands)); </span><br><span class="line">  score = score.<span class="title function_">multiply</span>(<span class="number">100</span>).<span class="title function_">byte</span>().<span class="title function_">rename</span>(<span class="string">&#x27;cloud&#x27;</span>); </span><br><span class="line">  <span class="keyword">return</span> image.<span class="title function_">addBands</span>(score) </span><br><span class="line">              .<span class="title function_">updateMask</span>(score.<span class="title function_">lte</span>(thread)); </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>使用”S2_CLOUD_PROBABILITY”算法去云</p>
+<p>GEE使用机器学习算法生成了一个sentinel-2云掩膜数据集,但是这个数据集并不是在所有地点和时间都有数据</p>
+</li>
+</ol>
+<h1 id="时序插值"><a href="#时序插值" class="headerlink" title="时序插值"></a>时序插值</h1>
       
 
       
@@ -211,6 +228,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/GEE//" class="article-tag-list-link color4">GEE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 

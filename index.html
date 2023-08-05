@@ -196,7 +196,23 @@
 <p>GEE使用机器学习算法生成了一个sentinel-2云掩膜数据集,但是这个数据集并不是在所有地点和时间都有数据</p>
 </li>
 </ol>
-<h1 id="时序插值"><a href="#时序插值" class="headerlink" title="时序插值"></a>时序插值</h1>
+<h1 id="时序插值"><a href="#时序插值" class="headerlink" title="时序插值"></a>时序插值</h1><p>方法一、使用线性插值后，再使用时序滤波进行平滑</p>
+<blockquote>
+<p>使用待插值日期前后的影像进行线性插值，然后使用S-G等滤波方法对插值后的影像进行滤波；滤波可以平滑数据，并且起到填充缺失值的作用。</p>
+<p><a target="_blank" rel="noopener" href="https://code.earthengine.google.com/2ec240f2558dd2d6a486483a38927dd4">https://code.earthengine.google.com/2ec240f2558dd2d6a486483a38927dd4</a></p>
+</blockquote>
+<p>方法二、使用往年同期的近30天影像的平均值进行插值</p>
+<blockquote>
+<p>选择待插值影像往年的同期影像，并对前后15天影像的像元值求平均，使用求平均后的结果对待插值影像进行插值</p>
+<p><a target="_blank" rel="noopener" href="https://code.earthengine.google.com/3d6d930e24e1a96fdd671e4c00bf309f">https://code.earthengine.google.com/3d6d930e24e1a96fdd671e4c00bf309f</a></p>
+</blockquote>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/541444233">遥感影像SG滤波（基于GEE） - 知乎 (zhihu.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29800394">https://zhuanlan.zhihu.com/p/29800394</a></p>
+<p>GEE缺失影像插补平滑完整方案2：使用S-G和Whittaker滤波（微信公众号：地学实践教程）</p>
+<p>GEE之时间序列S-G滤波 （微信公众号：遥感迷）</p>
+<p>GEE之SG滤波和Python版GEE使用教程（附视频）（微信公众号：GEE遥感训练营）</p>
+
       
 
       

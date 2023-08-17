@@ -43,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/avatar_G2.png" class="js-avatar">
+			<img src="/img/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -82,13 +82,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="github" target="_blank" href="https://github.com/ShamirC" title="github"><i class="icon-github"></i></a>
 		        
 			</div>
 		</nav>
@@ -106,7 +100,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/avatar_G2.png" class="js-avatar">
+				<img src="/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -125,13 +119,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="github" target="_blank" href="https://github.com/ShamirC" title="github"><i class="icon-github"></i></a>
 			        
 				</div>
 			</nav>
@@ -485,13 +473,13 @@
 <p>语义分割研究中，学习具有丰富语义信息和空间信息的特征是非常重要的，围绕这一问题开展的研究有两个主要方向，即<strong>特征整合（feature aggregation）</strong>和 <strong>上下文建模（context modeling)</strong></p>
 <h1 id="网络结构">网络结构</h1>
 <p>AlignSeg 的结构如下图所示，使用了 bottom-up 的结构，Backbone 为 ResNet</p>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig1_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig1_AlignSeg.png"></p>
 <p>FAM特征对齐模块可以表示如下：</p>
 <blockquote>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig2_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig2_AlignSeg.png"></p>
 <p>u 为 配准函数，F为需要配准的特征图，假设 F 中每个点的空间位置为 {(1, 1), (1, 2), ..., (H, W )}，偏移量图为 ∆ ∈ R^2×H×W</p>
 <p>配准方程如下</p>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig3_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig3_AlignSeg.png"></p>
 </blockquote>
 
       
@@ -571,7 +559,7 @@
 <h1 id="introduction">Introduction</h1>
 <p>Introduction 部分叙述了 Multi-Task Learning（MTL） 任务的应用，基本概念，其在 像素级的dense prediction 中的应用特点，以及已有的相关综述。</p>
 <p>本文的总体框架如下图所示</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p><strong>关于 MTL：</strong></p>
 <blockquote>
 <p>MTL 旨在通过相关任务中特定的领域信息（domain-specific information) 来提高 泛化性</p>
@@ -598,7 +586,7 @@
 <p>Note: 对这部分并不能很好的理解 :(</p>
 <h3 id="深度学习中的软参数和硬参数共享soft-and-hard-parameter-sharing-in-deep-learning">深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)</h3>
 <p>在深度学习的语境下，MTL 从多任务监督信号中学习共享的（特征）表达。<strong>历史上</strong>，深度学习中多任务网络结构被划分为 <strong>soft parameter sharing </strong>（SPS） 和 <strong>hard parameter sharing</strong> (HPS)，分别如下图所示。</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <blockquote>
 <p><strong>hard parameter sharing</strong></p>
 <p>在 HPS 中，模型的参数可以划分为 共享参数 和 特定任务 参数。典型的结构如上图中 (a) 所示，不同的任务共享一个 encoder, 这个 enconder 后面特定的任务分支。</p>
@@ -628,19 +616,19 @@
 </blockquote>
 <h2 id="作者提出的新分类方法">作者提出的新分类方法</h2>
 <p>随着多任务模型的发展，最近有不少的研究同时具有 SPS 和 HPS 的特点，因此作者认为 SPS, HPS 不能继续作为划分 MTL 的主要方法。因此作者提出了一个新的分类方法，根据不同任务发生交集的位置划分不同结构，即任务之间发生信息（或特征）交换（分享）的位置。根据这一点，作者将 MTL 网络划分了两种了类型： <strong>Encoder-foucsed Architectures</strong> 和 <strong>Decoder-focused Architectures</strong></p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h3 id="encoder-focused-architectures">Encoder-focused Architectures</h3>
 <p>Encoder-focused architectures 只在 Encoder 共享参数，在使用单独的特定的任务头（task-specific head) decode 每一个任务之前，使用 HPS 或 SPS 方法共享。</p>
 <h4 id="cross-stitch-networks">Cross-stitch Networks</h4>
 <p>Cross-stitch Networks 在 encoder 中单任务网络之间共享激活（activations)，如下图所示。</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p>十字绣网络的共享层可以由以下方程表示</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p>xA, xB 表示某一层的两个任务（网络）的 激活特征图，a 是可以学习权重 ̃xA, ̃ xB 是转换后的结果。</p>
 <p>通过学习到的权重a，网络可以决定任务之间特征共享的程度。十字绣网络的缺点是模型的参数量随着任务数量增加而线性。</p>
 <h4 id="multi-task-attention-networks">Multi-Task Attention Networks</h4>
 <p>Multi-Task Attention Networks (MTAN)，如下图所示，MTAN 使用一个共享参数的 backbone, 在 bakcnbone 的每个 stage 的特征都被不同 任务的分支作为输入，每个特定任务分支都由多个 attention modules （注意力模块）组成，这些attention modules 可以从输入的 feature maps 中筛特征。</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h4 id="branched-multi-task-learning-networks">Branched Multi-task Learning Networks</h4>
 <p>上述网络都是在encoding 阶段以 SPS的形式共享参数</p>
 <p>不同的是，Branched Multi-task Learning Networks 使用 HPS 方式共享参数</p>
@@ -651,13 +639,13 @@
 <p>与 Encoder-focused architectures 不同，Decoder-focused Architectures 在 decoding 阶段也会共享参数。</p>
 <h5 id="pad-net">PAD-Net</h5>
 <p>PAD-Net 是 Decoder-focused Architectures 的先驱之一。</p>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="pattern-affinitive-propagation-networks-pap-net">Pattern-Affinitive Propagation Networks (PAP-Net)</h5>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="joint-task-recursive-learning-jtrl">Joint Task-Recursive Learning (JTRL)</h5>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="multi-scale-task-interaction-networks-mti-net">Multi-Scale Task Interaction Networks (MTI-Net)</h5>
-<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h1 id="optimization-in-mtl">Optimization in MTL</h1>
 <h1 id="参考">参考</h1>
 <p>https://zhuanlan.zhihu.com/p/500647063</p>

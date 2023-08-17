@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Introduction 本文是2021年 TPAMI 上的一篇关于语义分割的文章，这篇文章核心工作是提出了一个用于对齐不同分辨率特征的模块。 论文源码：https:&#x2F;&#x2F;github.com&#x2F;speedinghzl&#x2F;AlignSeg 深度学习的FCN结构的发展为语义分割带来了飞跃式的发展。 FCN提取的特征有一个特点，即层级性（hierarchical)，低层级的特征具有丰富的空间信息（纹">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig1_AlignSeg.png">
-<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig2_AlignSeg.png">
-<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig3_AlignSeg.png">
+<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig1_AlignSeg.png">
+<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig2_AlignSeg.png">
+<meta property="og:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig3_AlignSeg.png">
 <meta property="article:published_time" content="2022-06-30T14:00:22.000Z">
-<meta property="article:modified_time" content="2022-07-03T12:59:28.356Z">
+<meta property="article:modified_time" content="2023-08-17T14:22:09.367Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig1_AlignSeg.png">
+<meta name="twitter:image" content="http://example.com/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig1_AlignSeg.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -51,7 +51,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/avatar_G2.png" class="js-avatar">
+			<img src="/img/avatar.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -90,13 +90,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="github" target="_blank" href="https://github.com/ShamirC" title="github"><i class="icon-github"></i></a>
 		        
 			</div>
 		</nav>
@@ -114,7 +108,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/avatar_G2.png" class="js-avatar">
+				<img src="/img/avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -133,13 +127,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
-			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="github" target="_blank" href="https://github.com/ShamirC" title="github"><i class="icon-github"></i></a>
 			        
 				</div>
 			</nav>
@@ -207,13 +195,13 @@
 <p>语义分割研究中，学习具有丰富语义信息和空间信息的特征是非常重要的，围绕这一问题开展的研究有两个主要方向，即<strong>特征整合（feature aggregation）</strong>和 <strong>上下文建模（context modeling)</strong></p>
 <h1 id="网络结构">网络结构</h1>
 <p>AlignSeg 的结构如下图所示，使用了 bottom-up 的结构，Backbone 为 ResNet</p>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig1_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig1_AlignSeg.png"></p>
 <p>FAM特征对齐模块可以表示如下：</p>
 <blockquote>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig2_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig2_AlignSeg.png"></p>
 <p>u 为 配准函数，F为需要配准的特征图，假设 F 中每个点的空间位置为 {(1, 1), (1, 2), ..., (H, W )}，偏移量图为 ∆ ∈ R^2×H×W</p>
 <p>配准方程如下</p>
-<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig3_AlignSeg.png"></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/Fig3_AlignSeg.png"></p>
 </blockquote>
 
       

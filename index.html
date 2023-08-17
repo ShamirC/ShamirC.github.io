@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 41
+			总文章数 43
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,192 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-列空间和零向量-Columnspace-and-Nullspace" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/">列空间和零向量_Columnspace_and_Nullspace</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/" class="archive-article-date">
+  	<time datetime="2023-08-17T01:51:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="向量空间（Spaces-of-Vectors-和子空间（Subspaces"><a href="#向量空间（Spaces-of-Vectors-和子空间（Subspaces" class="headerlink" title="向量空间（Spaces of Vectors)和子空间（Subspaces)"></a>向量空间（Spaces of Vectors)和子空间（Subspaces)</h1><p>首先需要了解一些概念和<strong>定义</strong></p>
+<blockquote>
+<p>1.标准的 n-dimension 空间  $R^n$ 包含所有实数向量，并且每个向量有 n 个 元素；如 ： 二维平面空间：$R^2$ 的一个子空间：<br>$$<br>\left[<br> \begin{matrix}<br>   1 &amp; 2 &amp; 3 \<br>   4 &amp; 5 &amp; 6 \<br>  \end{matrix}<br>  \right]<br>$$</p>
+<p>2.如果 v 和 w在向量空间 S 中， 那么 v和 w 的线性组合 $cv+dw$必定在 S 中</p>
+<p>3.空间 S 中的 “向量”可以是 矩阵 或 x 的函数。</p>
+<p>4.$R^n$ 的一个子空间是 $R^n$内的一个向量空间，如：$R^2$中的  $y&#x3D;3x$</p>
+<p>5.A（矩阵） 的列空间 A 中列的所有线性组合，即：$R^m$的一个列空间</p>
+<p>6.<strong>当  b 在列向量空间 $C(A)$中时，$Ax &#x3D; b$ 有解，因为列空间（column space）包含了$Ax$的所有向量（Ax本质是对A的列向量进行线性组合，Ax就是A的列空间）。</strong>即当 b 是 A 的各列的线性组合，才存在对应的 x ， 使得 $Ax &#x3D; b$</p>
+</blockquote>
+<h2 id="向量空间（Vector-space）"><a href="#向量空间（Vector-space）" class="headerlink" title="向量空间（Vector space）"></a>向量空间（Vector space）</h2><p>一个向量空间是一系列向量的集合，向量空间必须满足规则</p>
+<blockquote>
+<p><strong>该空间对空间内向量的线性组合（相加，数乘）封闭</strong>.也就是说如果一个向量集合所组成的空间满足两种操作（数乘、相加）且通过这两种操作及他们之间的线性组合后的向量仍然在这个集合所形成的空间中。那么我们就称它为向量空间。</p>
+</blockquote>
+<p>例如,对于 $R^2$, 是一个 x, y 轴组成的平面,平面内的任意向量,如a&#x3D;[1,2],b&#x3D;[3,4],c&#x3D;[9,10],它们的线性组合仍然在 $R^2$ 组成的二维平面中, 因此$R^2$ 构成一个向量空间. </p>
+<h2 id="子空间（Subspace）"><a href="#子空间（Subspace）" class="headerlink" title="子空间（Subspace）"></a>子空间（Subspace）</h2><p>一个向量空间的子空间,是向量空间中一系列的向量口称的满足下列两个条件的向量空间:</p>
+<blockquote>
+<p><strong>如果 v 和 w 是子空间中的向量，c是任意标量，那么：（1） $v+w$在子空间内 。（2）$cv$也在子空间内</strong></p>
+</blockquote>
+<p>即所有的向量的线性组合都在子空间内; </p>
+<p>例如，在向量空间 $R^2$中，过[0,0]的直线是一个子空间，因为，该直线中的向量乘以任意一个数C得到的向量任然在该直线上，该直线中的向量的任意线性组合也仍在该直线上。相反，$R^2$的第一象限不是一个子空间，因为在第一象限内的向量乘以一个负数之后得到的向量便不在第一象限内。</p>
+<p>根据上述定义，$R^2$的子空间有：</p>
+<p>​	$R^2$本身</p>
+<p>​	过原点[0,0]的直线</p>
+<p>​	零向量</p>
+<p>$R^3$的子空间有：</p>
+<p>​	$R^3$本身</p>
+<p>​	过原点[0,0,0]的直线</p>
+<p>​	过原点[0,0,0]的平面</p>
+<p>​	零向量</p>
+<p>n维向量空间的子空间可以由此类推。</p>
+<h2 id="列空间（Column-space"><a href="#列空间（Column-space" class="headerlink" title="列空间（Column space)"></a>列空间（Column space)</h2><p>对于方程组 $Ax &#x3D; b$，解该方程即找到 x 使得对 A 的线性组合等于 b（也可以说是对A进行变换得到b）。为了找到所有可能的 b，使用所有可能的 x 对 A 进行线性组合，这样就产生了 A 的列空间。</p>
+<p>对于 b 来说，要找到相应的 b 使得其可以表示为 $Ax &#x3D; b$ ，这些 b 就是来自 A 的 列空间 C(A)。换句话说就是，只有当b落在A的向量空间中，该方程组才有解。</p>
+<p>列空间的定义：</p>
+<blockquote>
+<p>列空间包含了列的所有线性组合，这些组合就是所有可能的向量 Ax，它们组成了向量空间 C(A)</p>
+</blockquote>
+<p>对于一个 $m*n$ 的矩阵A，每一个向量都属于$R^m$中的一个向量，具有m个元素。<strong>A的列向量空间是 $R^m$ 的一个子空间</strong>，列如：</p>
+<p>对于一个 $3*2$ 的矩阵 A<br>$$<br>\left[ \begin{matrix}   1 &amp; 0 \   4 &amp; 3 \ 2 &amp; 3  \end{matrix}  \right]<br>$$</p>
+<p>Ax &#x3D;<br>$$<br>Ax &#x3D; \left[ \begin{matrix}   1 &amp; 0 \   4 &amp; 3 \ 2 &amp; 3  \end{matrix}  \right]<br>\left[ \begin{matrix}   x1 \ x2 \end{matrix}  \right]<br>&#x3D;<br>$$</p>
+<h2 id="零空间（Null-space）"><a href="#零空间（Null-space）" class="headerlink" title="零空间（Null space）"></a>零空间（Null space）</h2><p>$Ax &#x3D; 0$ 的所有解</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/linear-algebra//" class="article-tag-list-link color5">linear algebra</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Graph-Neural-Network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/15/Graph-Neural-Network/">Graph Neural Network</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/15/Graph-Neural-Network/" class="archive-article-date">
+  	<time datetime="2023-08-15T08:52:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/08/15/Graph-Neural-Network/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-GEE-Timeseries-Interpolation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -421,8 +607,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>是</p>
-<p><strong>Tools for Research Purpose</strong></p>
+        <p><strong>Tools for Research Purpose</strong></p>
 <p>一、GMTR 地学绘图软件</p>
 <p>二、R&#x2F;Matlab&#x2F;Python&#x2F;QGIS 科研制图</p>
 <p>三、GEE 遥感云计算平台</p>
@@ -806,270 +991,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/09/24/Self-Attention-in-CNNs/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux-档案与目录管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">Linux-档案与目录管理</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" class="archive-article-date">
-  	<time datetime="2022-08-25T03:27:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="目录与路径"><a href="#目录与路径" class="headerlink" title="目录与路径"></a>目录与路径</h1><h2 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h2><p>绝对路径是由<strong>根目录</strong>写起的</p>
-<p>相对路径是指<strong>相对于当前工作目录的路径</strong></p>
-<h2 id="与目录相关的操作"><a href="#与目录相关的操作" class="headerlink" title="与目录相关的操作"></a>与目录相关的操作</h2><blockquote>
-<p><code>.</code> 代表此层目录</p>
-<p><code>..</code> 代表上一层目录</p>
-<p><code>-</code> 代表前一个工作目录</p>
-<p><code>~</code> 代表 当前使用者身份 所在的家目录</p>
-<p><code>~account</code> 代表 account 这个使用者的家目录</p>
-</blockquote>
-<p>常见的出路目录的指令</p>
-<ul>
-<li><p><code>cd</code> : 变换目录</p>
-</li>
-<li><p><code>pwd</code>: 显示当前的目录</p>
-<p><code>pwd -P</code> : 取得正确的目录名称，而不是以连结档的路径来显示</p>
-</li>
-<li><p><code>mkdir</code>: 建立一个新的目录</p>
-<p><code>mkdir -[mp]</code></p>
-<p>m: 设定档案权限</p>
-<p>p: 帮助直接江所需的目录（包含上层目录）递归建立起来</p>
-<p>建立权限为 rwx–x–x 的目录： <code>mkdir -m 711 test2</code></p>
-</li>
-<li><p><code>rmdir</code>: 删除一个空的目录</p>
-</li>
-<li><p><code>rmdir [-p]</code></p>
-<p><code>-p</code>: 连同上层空的目录也一起删除</p>
-</li>
-</ul>
-<h2 id="关于执行档案路径的变量：-PATH"><a href="#关于执行档案路径的变量：-PATH" class="headerlink" title="关于执行档案路径的变量：$PATH"></a>关于执行档案路径的变量：$PATH</h2><p>查阅档案属性的指令 <code>ls</code> 完整档案名为 <code>/bin/ls</code>，我们可以在任何地方执行 <code>/bin/ls</code> 这个指令是因为有环境变量 PATH的帮助。当我们执行 一个指令如<code>ls</code>时，系统会依照 PATH 的设定区每个 PATH 定义的目录下搜寻档案名为 <code>ls</code> 的可执行档，如果在 PATH 顶一下有多个名为 <code>ls</code> 的可执行档，那么先被搜索到的同名指令先被执行</p>
-<p><code>echo $PATH</code> 列出有哪些目录被定义为变量</p>
-<blockquote>
-<p>chenximing@chenximing-virtual-machine:~$ echo $PATH<br>&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;bin:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;local&#x2F;games:&#x2F;snap&#x2F;bin</p>
-</blockquote>
-<h2 id="档案与目录管理"><a href="#档案与目录管理" class="headerlink" title="档案与目录管理"></a>档案与目录管理</h2><p><code>ls</code>： 档案目录的检查</p>
-<ul>
-<li><p><code>ls [-aAdfFhilnrRSt] 档名或目录名称</code></p>
-<p>-a: 全部的档案，连同隐藏档（开头为 <code>.</code> 的档案）一起列出来</p>
-<p>-A: 全部的档案，连同隐藏档，但不包括 <code>.</code> 与 <code>..</code> 这两个目录</p>
-<p>-d: 仅列出目录本身，而不是列出目录内的档案资料</p>
-<p>-f: 直接列出结果，而不进行排序（ls 预设会以档案名排序）</p>
-<p>-F: 根据档案、目录等咨询，给予附加资料结构，例如：<code>*</code> 代表可执行档；<code>/:</code> 代表目录；<code>=:</code> 代表 <code>socket</code> 档案； <code>|:</code> 代表 <code>FIFO</code> 档案；</p>
-<p>-h: 将档案容量以人类较易读的方式 （例如 GB, KB 等）列出来</p>
-<p>-i: 列出 inode 号码</p>
-<p>-l: 长资料串列出，包含档案的属性与权限等资料</p>
-<p>-n: 列出 UID 与 GID 而非使用者与群组的名称</p>
-<p>-r: 将排序结果反向输出，例如：原本档名由小到大，反向则由大到小</p>
-<p>-R: 连同子目录与内容一起列出来，等于该目录下的所有档案都会显示出来</p>
-<p>-S: 以档案容量大小排序，而不是档名排序</p>
-<p>-t: 依时间排序，而不是档名</p>
-</li>
-<li><p><code>ls [--color=&#123;nerver, auto, always&#125;] 档名或目录名称</code></p>
-<p>–color&#x3D;nerver: 不要依据档案特性给予颜色显示；</p>
-<p>–color&#x3D;always: 显示颜色</p>
-<p>–color&#x3D;auto: 让系统自行依据设定来判断是否给予颜色</p>
-</li>
-<li><p><code>ls[--full-time] 档名或目录名称</code></p>
-<p>–full-time: 以完整时间模式（包含年、月、日、时、分）输出</p>
-<p>–time{atime, ctime}: 输出 access 时间或改变权限属性时间(ctime), 而非内容变更时间（modification time)</p>
-</li>
-</ul>
-<p><code>cp</code> <code>rm</code> <code>mv</code> : 复制、删除与移动(或更名)</p>
-<ul>
-<li><p><code>cp [-adfilprsu] 来源档（source) 目标档（destination)</code></p>
-</li>
-<li><p><code>cp [options] source1 source2 source3 ... directory</code></p>
-<p>-a: 相当于 -dr –preserve&#x3D;all 的意思</p>
-<p>-d: 若来源档为连接档的属性（link file)，则复制连结档属性而非档案本身</p>
-<p>-f: 为强制(force)的意思，若目标档案已经存在且无法开启，则移除再尝试一次；</p>
-<p>-i: 若目标档（destination) 已经存在时，在覆盖时会先询问动作的进行</p>
-<p>-l: 进行硬式连结（hard link)的连结档建立，而非复制档案本身</p>
-<p>-p: 连同档案的属性（权限，用户，时间）一起复制过去，而非使用预设属性（备份常用）</p>
-<p>-r: 递归持续复制，用于目录的复制行为（常用）</p>
-<p>-s: 复制成为符号连结档（symbolic link)，即快捷路径档案</p>
-<p>-u: destination 比 source 旧才更新 destination, 或 destination 不存在的情况下 </p>
-<p>–preserve&#x3D;all: 除了 -p 的权限相关参数外，还加入 SELinux的属性，links, xattr 最后需要主义的，如果来源档有两个以上，则最后一个目的当<strong>一定要是目录才行</strong></p>
-</li>
-<li><p><code>rm [-fir] 档案或目录</code></p>
-<p>-f: 就是 force 的意思，忽略不存在的档案，不会出现警告讯息</p>
-<p>-i: 互动模式，在删除前会询问使用者是否动作</p>
-<p>-r: 递归删除！最常用在目录的删除！这是一个非常危险的选项</p>
-</li>
-<li><p><code>mv [-fiu] source destination1</code></p>
-</li>
-<li><p><code>mv [options] source1 source2 sources3 ... directory</code></p>
-<p>-f : force, 如果目标档案已经存在，不会询问而直接覆盖</p>
-<p>-i: 若目标档案（destination）已经存在时，会询问是否覆盖</p>
-<p>-u: 如目标档案已经存在，且 source 比较新，才会更新（update)</p>
-</li>
-</ul>
-<h2 id="档案内容查阅"><a href="#档案内容查阅" class="headerlink" title="档案内容查阅"></a>档案内容查阅</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Deformable-Convolution" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/08/12/Deformable-Convolution/">Deformable Convolution</a>
-    </h1>
-  
-
-        
-        <a href="/2022/08/12/Deformable-Convolution/" class="archive-article-date">
-  	<time datetime="2022-08-12T13:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="可变形卷积"><a href="#可变形卷积" class="headerlink" title="可变形卷积"></a>可变形卷积</h1><p>视觉识别中的一个关键难点是如何建模目标的尺度，视角和部分变形等几何变换（如何适应几何变换）。通常有两种实现方法：1.使用数据增强，如仿射变换（affine transformation)，这样可以从数据上学到鲁棒的表达，但是代价是昂贵的训练代价和复杂的模型参数。2. 使用形变不变性的特征和算法，如 SIFT。这两种方法都有很大的局限性：几何形变被假设是固定和已知的，这是一种先验信息，用这些已知的形变去处理未知的形变是不合理的，二是手工设计不变性特征和算法是困难的甚至是不可能的。</p>
-<p>CNNs 固有的几何结构：卷积单元对输入特征图的固定位置进行采样；池化层以固定的比例进行池化；这些特性是有影响的，例如，在 CNN 的同一层中的所有激活单元的感受野都是相同的，这对用于从空间位置编码语义的 CNN 的高层是不可取的。<strong>因为不同的位置可能对应不同尺度和变形的对象，因此对尺度和感受野的自适应是进行高精度定位所需要的</strong></p>
-<p><strong>deformable convolution</strong></p>
-<p><u><strong>可变形卷积在标准卷积中引入了二维偏移，这个偏移量是可以学习的，这使得采样上个可以自由变形。</strong></u></p>
-<p><img src="/../assets/BlogImg/deform_conv1.png"></p>
-<p>2 维的卷积包含两个步骤：1）对输入的特征图 x 使用一个常规的栅格 R 进行采样；2）对采样值求和并赋予权重 w</p>
-<p>栅格（即卷积核） R 决定了感受野大小核空洞，例如</p>
-<p>R &#x3D; { (-1，-1), (-1，0),…,(0,1), (1,1) } 定义了一个 3x3 的空洞为 1 的卷积核</p>
-<p>对于输出特征图中的每一个位置 P0：</p>
-<p><img src="/../assets/BlogImg/deform_conv2.png"></p>
-<p><strong>在可变形卷积中，规则的卷积核 R 通过偏移 {∆Pn|n &#x3D; 1, …, N }，其中 N &#x3D; |R|，进行增强</strong></p>
-<p><img src="/../assets/BlogImg/deform_conv3.png"></p>
-<p>现在，采样是在不规则并且带有偏移的位置 Pn +∆Pn 上进行的。因为偏移 ∆Pn 通常是分数，并不对应 feature map 上实际存在的像素点，因此 2 式 可以 通过线性插值实现的</p>
-<p><img src="/../assets/BlogImg/deform_conv4.png"></p>
-<p>P 代表一个任意的（小数）位置（式 2 中，P &#x3D; P0 + Pn + ∆Pn）；q 为输入 feature map x 中所有的整数位置，G(·，·) 为 双线性插值核。</p>
-<p><strong>G 是二维的，被分解成两个一维的核：</strong></p>
-<p><img src="/../assets/BlogImg/deform_conv5.png"></p>
-<p>g(a, b) &#x3D; max(0, 1 − |a − b|)</p>
-<p>综上，输出 feature map 的偏移后的像素值，通过双线性插值可以表示为：</p>
-<p><img src="/../assets/BlogImg/deform_conv6.png"></p>
-<p><strong>上述公式的意义是，插值点位置的像素值设置为其 4领域 像素点的加权和，领域 4 个点是离其最近的特征图上实际存在的像素点，每个点的权重则根据它与插值点横、纵坐标的距离来设置，公式最后一行的max(0, 1-…)就是限制了插值点与领域点不会超过1个像素的距离。</strong></p>
-<p>可变形卷积操作的示意图如下所示</p>
-<p><img src="/../assets/BlogImg/deform_conv7.png"></p>
-<p><strong>可变形卷积中的偏移是通过一个额外的卷积层来获取的，这个额外的卷积核大小与空洞大小，和当前卷积层最终卷积操作的卷积核是一样的。 得到的偏移 offsets 与输入 feature map 的空间分辨率相同； 通道数 2N 对应 N 个 2D offsets</strong> </p>
-<h1 id="代码及实现过程"><a href="#代码及实现过程" class="headerlink" title="代码及实现过程"></a>代码及实现过程</h1><p>经过偏移量卷积层学习出的 offset， <strong>学习得到的 feature map 的每个元素恰好与卷积核中心是一一对应的。</strong></p>
-<p><img src="/../assets/BlogImg/deform_conv8.png"></p>
-<p>图片通过 p_conv 后的 feature map (上图全红矩阵)，每个元素恰好与卷积核中心是一一对应的，也就是通过该 feature map 的尺寸，卷积核的尺寸， 步长可以推算出卷积过程中卷积核的中心坐标</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335147713">https://zhuanlan.zhihu.com/p/335147713</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102707081">https://zhuanlan.zhihu.com/p/102707081</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/08/12/Deformable-Convolution/">展开全文 >></a>
         </p>
       
 

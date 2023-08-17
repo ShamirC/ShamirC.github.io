@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 41
+			总文章数 43
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -160,6 +160,270 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Linux-档案与目录管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">Linux-档案与目录管理</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" class="archive-article-date">
+  	<time datetime="2022-08-25T03:27:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="目录与路径"><a href="#目录与路径" class="headerlink" title="目录与路径"></a>目录与路径</h1><h2 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h2><p>绝对路径是由<strong>根目录</strong>写起的</p>
+<p>相对路径是指<strong>相对于当前工作目录的路径</strong></p>
+<h2 id="与目录相关的操作"><a href="#与目录相关的操作" class="headerlink" title="与目录相关的操作"></a>与目录相关的操作</h2><blockquote>
+<p><code>.</code> 代表此层目录</p>
+<p><code>..</code> 代表上一层目录</p>
+<p><code>-</code> 代表前一个工作目录</p>
+<p><code>~</code> 代表 当前使用者身份 所在的家目录</p>
+<p><code>~account</code> 代表 account 这个使用者的家目录</p>
+</blockquote>
+<p>常见的出路目录的指令</p>
+<ul>
+<li><p><code>cd</code> : 变换目录</p>
+</li>
+<li><p><code>pwd</code>: 显示当前的目录</p>
+<p><code>pwd -P</code> : 取得正确的目录名称，而不是以连结档的路径来显示</p>
+</li>
+<li><p><code>mkdir</code>: 建立一个新的目录</p>
+<p><code>mkdir -[mp]</code></p>
+<p>m: 设定档案权限</p>
+<p>p: 帮助直接江所需的目录（包含上层目录）递归建立起来</p>
+<p>建立权限为 rwx–x–x 的目录： <code>mkdir -m 711 test2</code></p>
+</li>
+<li><p><code>rmdir</code>: 删除一个空的目录</p>
+</li>
+<li><p><code>rmdir [-p]</code></p>
+<p><code>-p</code>: 连同上层空的目录也一起删除</p>
+</li>
+</ul>
+<h2 id="关于执行档案路径的变量：-PATH"><a href="#关于执行档案路径的变量：-PATH" class="headerlink" title="关于执行档案路径的变量：$PATH"></a>关于执行档案路径的变量：$PATH</h2><p>查阅档案属性的指令 <code>ls</code> 完整档案名为 <code>/bin/ls</code>，我们可以在任何地方执行 <code>/bin/ls</code> 这个指令是因为有环境变量 PATH的帮助。当我们执行 一个指令如<code>ls</code>时，系统会依照 PATH 的设定区每个 PATH 定义的目录下搜寻档案名为 <code>ls</code> 的可执行档，如果在 PATH 顶一下有多个名为 <code>ls</code> 的可执行档，那么先被搜索到的同名指令先被执行</p>
+<p><code>echo $PATH</code> 列出有哪些目录被定义为变量</p>
+<blockquote>
+<p>chenximing@chenximing-virtual-machine:~$ echo $PATH<br>&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;bin:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;local&#x2F;games:&#x2F;snap&#x2F;bin</p>
+</blockquote>
+<h2 id="档案与目录管理"><a href="#档案与目录管理" class="headerlink" title="档案与目录管理"></a>档案与目录管理</h2><p><code>ls</code>： 档案目录的检查</p>
+<ul>
+<li><p><code>ls [-aAdfFhilnrRSt] 档名或目录名称</code></p>
+<p>-a: 全部的档案，连同隐藏档（开头为 <code>.</code> 的档案）一起列出来</p>
+<p>-A: 全部的档案，连同隐藏档，但不包括 <code>.</code> 与 <code>..</code> 这两个目录</p>
+<p>-d: 仅列出目录本身，而不是列出目录内的档案资料</p>
+<p>-f: 直接列出结果，而不进行排序（ls 预设会以档案名排序）</p>
+<p>-F: 根据档案、目录等咨询，给予附加资料结构，例如：<code>*</code> 代表可执行档；<code>/:</code> 代表目录；<code>=:</code> 代表 <code>socket</code> 档案； <code>|:</code> 代表 <code>FIFO</code> 档案；</p>
+<p>-h: 将档案容量以人类较易读的方式 （例如 GB, KB 等）列出来</p>
+<p>-i: 列出 inode 号码</p>
+<p>-l: 长资料串列出，包含档案的属性与权限等资料</p>
+<p>-n: 列出 UID 与 GID 而非使用者与群组的名称</p>
+<p>-r: 将排序结果反向输出，例如：原本档名由小到大，反向则由大到小</p>
+<p>-R: 连同子目录与内容一起列出来，等于该目录下的所有档案都会显示出来</p>
+<p>-S: 以档案容量大小排序，而不是档名排序</p>
+<p>-t: 依时间排序，而不是档名</p>
+</li>
+<li><p><code>ls [--color=&#123;nerver, auto, always&#125;] 档名或目录名称</code></p>
+<p>–color&#x3D;nerver: 不要依据档案特性给予颜色显示；</p>
+<p>–color&#x3D;always: 显示颜色</p>
+<p>–color&#x3D;auto: 让系统自行依据设定来判断是否给予颜色</p>
+</li>
+<li><p><code>ls[--full-time] 档名或目录名称</code></p>
+<p>–full-time: 以完整时间模式（包含年、月、日、时、分）输出</p>
+<p>–time{atime, ctime}: 输出 access 时间或改变权限属性时间(ctime), 而非内容变更时间（modification time)</p>
+</li>
+</ul>
+<p><code>cp</code> <code>rm</code> <code>mv</code> : 复制、删除与移动(或更名)</p>
+<ul>
+<li><p><code>cp [-adfilprsu] 来源档（source) 目标档（destination)</code></p>
+</li>
+<li><p><code>cp [options] source1 source2 source3 ... directory</code></p>
+<p>-a: 相当于 -dr –preserve&#x3D;all 的意思</p>
+<p>-d: 若来源档为连接档的属性（link file)，则复制连结档属性而非档案本身</p>
+<p>-f: 为强制(force)的意思，若目标档案已经存在且无法开启，则移除再尝试一次；</p>
+<p>-i: 若目标档（destination) 已经存在时，在覆盖时会先询问动作的进行</p>
+<p>-l: 进行硬式连结（hard link)的连结档建立，而非复制档案本身</p>
+<p>-p: 连同档案的属性（权限，用户，时间）一起复制过去，而非使用预设属性（备份常用）</p>
+<p>-r: 递归持续复制，用于目录的复制行为（常用）</p>
+<p>-s: 复制成为符号连结档（symbolic link)，即快捷路径档案</p>
+<p>-u: destination 比 source 旧才更新 destination, 或 destination 不存在的情况下 </p>
+<p>–preserve&#x3D;all: 除了 -p 的权限相关参数外，还加入 SELinux的属性，links, xattr 最后需要主义的，如果来源档有两个以上，则最后一个目的当<strong>一定要是目录才行</strong></p>
+</li>
+<li><p><code>rm [-fir] 档案或目录</code></p>
+<p>-f: 就是 force 的意思，忽略不存在的档案，不会出现警告讯息</p>
+<p>-i: 互动模式，在删除前会询问使用者是否动作</p>
+<p>-r: 递归删除！最常用在目录的删除！这是一个非常危险的选项</p>
+</li>
+<li><p><code>mv [-fiu] source destination1</code></p>
+</li>
+<li><p><code>mv [options] source1 source2 sources3 ... directory</code></p>
+<p>-f : force, 如果目标档案已经存在，不会询问而直接覆盖</p>
+<p>-i: 若目标档案（destination）已经存在时，会询问是否覆盖</p>
+<p>-u: 如目标档案已经存在，且 source 比较新，才会更新（update)</p>
+</li>
+</ul>
+<h2 id="档案内容查阅"><a href="#档案内容查阅" class="headerlink" title="档案内容查阅"></a>档案内容查阅</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/25/Linux-%E6%A1%A3%E6%A1%88%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Deformable-Convolution" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/08/12/Deformable-Convolution/">Deformable Convolution</a>
+    </h1>
+  
+
+        
+        <a href="/2022/08/12/Deformable-Convolution/" class="archive-article-date">
+  	<time datetime="2022-08-12T13:04:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-08-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="可变形卷积"><a href="#可变形卷积" class="headerlink" title="可变形卷积"></a>可变形卷积</h1><p>视觉识别中的一个关键难点是如何建模目标的尺度，视角和部分变形等几何变换（如何适应几何变换）。通常有两种实现方法：1.使用数据增强，如仿射变换（affine transformation)，这样可以从数据上学到鲁棒的表达，但是代价是昂贵的训练代价和复杂的模型参数。2. 使用形变不变性的特征和算法，如 SIFT。这两种方法都有很大的局限性：几何形变被假设是固定和已知的，这是一种先验信息，用这些已知的形变去处理未知的形变是不合理的，二是手工设计不变性特征和算法是困难的甚至是不可能的。</p>
+<p>CNNs 固有的几何结构：卷积单元对输入特征图的固定位置进行采样；池化层以固定的比例进行池化；这些特性是有影响的，例如，在 CNN 的同一层中的所有激活单元的感受野都是相同的，这对用于从空间位置编码语义的 CNN 的高层是不可取的。<strong>因为不同的位置可能对应不同尺度和变形的对象，因此对尺度和感受野的自适应是进行高精度定位所需要的</strong></p>
+<p><strong>deformable convolution</strong></p>
+<p><u><strong>可变形卷积在标准卷积中引入了二维偏移，这个偏移量是可以学习的，这使得采样上个可以自由变形。</strong></u></p>
+<p><img src="/../assets/BlogImg/deform_conv1.png"></p>
+<p>2 维的卷积包含两个步骤：1）对输入的特征图 x 使用一个常规的栅格 R 进行采样；2）对采样值求和并赋予权重 w</p>
+<p>栅格（即卷积核） R 决定了感受野大小核空洞，例如</p>
+<p>R &#x3D; { (-1，-1), (-1，0),…,(0,1), (1,1) } 定义了一个 3x3 的空洞为 1 的卷积核</p>
+<p>对于输出特征图中的每一个位置 P0：</p>
+<p><img src="/../assets/BlogImg/deform_conv2.png"></p>
+<p><strong>在可变形卷积中，规则的卷积核 R 通过偏移 {∆Pn|n &#x3D; 1, …, N }，其中 N &#x3D; |R|，进行增强</strong></p>
+<p><img src="/../assets/BlogImg/deform_conv3.png"></p>
+<p>现在，采样是在不规则并且带有偏移的位置 Pn +∆Pn 上进行的。因为偏移 ∆Pn 通常是分数，并不对应 feature map 上实际存在的像素点，因此 2 式 可以 通过线性插值实现的</p>
+<p><img src="/../assets/BlogImg/deform_conv4.png"></p>
+<p>P 代表一个任意的（小数）位置（式 2 中，P &#x3D; P0 + Pn + ∆Pn）；q 为输入 feature map x 中所有的整数位置，G(·，·) 为 双线性插值核。</p>
+<p><strong>G 是二维的，被分解成两个一维的核：</strong></p>
+<p><img src="/../assets/BlogImg/deform_conv5.png"></p>
+<p>g(a, b) &#x3D; max(0, 1 − |a − b|)</p>
+<p>综上，输出 feature map 的偏移后的像素值，通过双线性插值可以表示为：</p>
+<p><img src="/../assets/BlogImg/deform_conv6.png"></p>
+<p><strong>上述公式的意义是，插值点位置的像素值设置为其 4领域 像素点的加权和，领域 4 个点是离其最近的特征图上实际存在的像素点，每个点的权重则根据它与插值点横、纵坐标的距离来设置，公式最后一行的max(0, 1-…)就是限制了插值点与领域点不会超过1个像素的距离。</strong></p>
+<p>可变形卷积操作的示意图如下所示</p>
+<p><img src="/../assets/BlogImg/deform_conv7.png"></p>
+<p><strong>可变形卷积中的偏移是通过一个额外的卷积层来获取的，这个额外的卷积核大小与空洞大小，和当前卷积层最终卷积操作的卷积核是一样的。 得到的偏移 offsets 与输入 feature map 的空间分辨率相同； 通道数 2N 对应 N 个 2D offsets</strong> </p>
+<h1 id="代码及实现过程"><a href="#代码及实现过程" class="headerlink" title="代码及实现过程"></a>代码及实现过程</h1><p>经过偏移量卷积层学习出的 offset， <strong>学习得到的 feature map 的每个元素恰好与卷积核中心是一一对应的。</strong></p>
+<p><img src="/../assets/BlogImg/deform_conv8.png"></p>
+<p>图片通过 p_conv 后的 feature map (上图全红矩阵)，每个元素恰好与卷积核中心是一一对应的，也就是通过该 feature map 的尺寸，卷积核的尺寸， 步长可以推算出卷积过程中卷积核的中心坐标</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/335147713">https://zhuanlan.zhihu.com/p/335147713</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102707081">https://zhuanlan.zhihu.com/p/102707081</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/08/12/Deformable-Convolution/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Linux-档案权限与目录配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1023,10 +1287,10 @@
 <li><p><strong>然而，在实验中除了模型参数，往往需要保存更多信息，如 Epoch, Optimizer, Learning Rate, Loss 等, 这样可以在训练中断后 resume train.</strong></p>
 </li>
 </ol>
-   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">checkpoint = &#123;</span><br><span class="line">    <span class="string">&quot;epoch&quot;</span>: epoch,	<span class="comment"># epoch</span></span><br><span class="line">    <span class="string">&quot;state_dict&quot;</span>: net.state_dict(),	<span class="comment"># 模型参数</span></span><br><span class="line">    <span class="string">&quot;optimizer&quot;</span>: optimizer.state_dict(),	<span class="comment"># 优化器参数</span></span><br><span class="line">    <span class="string">&quot;best_loss&quot;</span>: loss	<span class="comment"># 到保存时最低的loss</span></span><br><span class="line">&#125;</span><br><span class="line">torch.save(checkpoint, PATH)</span><br><span class="line">            </span><br><span class="line"><span class="comment"># 加载（断点继续训练）</span></span><br><span class="line"><span class="keyword">if</span> RESUME:</span><br><span class="line">    PATH = <span class="string">&quot;path/to/checkpoint.pth&quot;</span></span><br><span class="line">    <span class="comment"># 加载断点</span></span><br><span class="line">    checkpoint = torch.load(PATH)</span><br><span class="line">	<span class="comment"># 加载模型的可学习参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;state_dict&#x27;</span>])</span><br><span class="line">    <span class="comment"># 加载优化器参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])\</span><br><span class="line">    <span class="comment"># 加载epoch，设置为继续训练的启示 epoch</span></span><br><span class="line">    start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>]</span><br><span class="line">                </span><br><span class="line"><span class="comment"># 继续训练</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(start_epoch + <span class="number">1</span>, EPOCH):</span><br><span class="line">    <span class="keyword">for</span> idx, (img, lab) <span class="keyword">in</span>  <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        train_output = net(img)</span><br><span class="line">        loss = loss_func(train_output, lab)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">checkpoint = &#123;</span><br><span class="line">    <span class="string">&quot;epoch&quot;</span>: epoch,	<span class="comment"># epoch</span></span><br><span class="line">    <span class="string">&quot;state_dict&quot;</span>: net.state_dict(),	<span class="comment"># 模型参数</span></span><br><span class="line">    <span class="string">&quot;optimizer&quot;</span>: optimizer.state_dict(),	<span class="comment"># 优化器参数</span></span><br><span class="line">    <span class="string">&quot;best_loss&quot;</span>: loss	<span class="comment"># 到保存时最低的loss</span></span><br><span class="line">&#125;</span><br><span class="line">torch.save(checkpoint, PATH)</span><br><span class="line">               </span><br><span class="line"><span class="comment"># 加载（断点继续训练）</span></span><br><span class="line"><span class="keyword">if</span> RESUME:</span><br><span class="line">    PATH = <span class="string">&quot;path/to/checkpoint.pth&quot;</span></span><br><span class="line">    <span class="comment"># 加载断点</span></span><br><span class="line">    checkpoint = torch.load(PATH)</span><br><span class="line">	<span class="comment"># 加载模型的可学习参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;state_dict&#x27;</span>])</span><br><span class="line">    <span class="comment"># 加载优化器参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])\</span><br><span class="line">    <span class="comment"># 加载epoch，设置为继续训练的启示 epoch</span></span><br><span class="line">    start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>]</span><br><span class="line">                   </span><br><span class="line"><span class="comment"># 继续训练</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(start_epoch + <span class="number">1</span>, EPOCH):</span><br><span class="line">    <span class="keyword">for</span> idx, (img, lab) <span class="keyword">in</span>  <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        train_output = net(img)</span><br><span class="line">        loss = loss_func(train_output, lab)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure>
 
 <p>   <strong>然而，<u>如果我们修改了模型结构，那么加载时需要过滤掉修改过的参数</u>，可以通过以下方式加载</strong></p>
-   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_checkpoint</span>(<span class="params">model, checkpoint, optimizer, loadOptimizer</span>):</span><br><span class="line">    <span class="keyword">if</span> checkpoint != <span class="literal">None</span>:</span><br><span class="line">        model_dict = model.state_dict()	<span class="comment">#修改后模型的参数</span></span><br><span class="line">        modelCheckpoint = torch.load(checkpoint)</span><br><span class="line">        <span class="comment"># 加载保存的（预训练）模型参数</span></span><br><span class="line">        pretrained_dict = modelCheckpoint[<span class="string">&#x27;state_dict&#x27;</span>]</span><br><span class="line">        <span class="comment"># 过滤操作</span></span><br><span class="line">        new_dict = &#123;k:v <span class="keyword">for</span> k,v <span class="keyword">in</span> pretrained_dict.items() <span class="keyword">if</span> k <span class="keyword">in</span> model_dict.keys()&#125;</span><br><span class="line">        <span class="comment"># 更新（重写）key-value对</span></span><br><span class="line">        model_dict.update(new_dict)</span><br><span class="line">        <span class="comment"># 打印出来，更新了多少参数</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Total: &#123;&#125;, update:&#123; &#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">len</span>(pretrained_dict),<span class="built_in">len</span>(new_dict)))</span><br><span class="line">        <span class="comment"># 加载更新后的参数</span></span><br><span class="line">        model.load_state_dict(model_dict)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;loaded finished&#x27;</span>)</span><br><span class="line">                    </span><br><span class="line">        <span class="comment"># 如果不需要更新优化器，那么设置为false</span></span><br><span class="line">        <span class="keyword">if</span> loadOptimizer == <span class="literal">True</span>:</span><br><span class="line">            optimizer.load_state_dict(modelCheckpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;loaded! optimizer&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;not loaded optimizer&quot;</span>)</span><br><span class="line">                </span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">&quot;No checkpoint is included&quot;</span>)</span><br><span class="line">                    </span><br><span class="line">	<span class="keyword">return</span> model, optimizer</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_checkpoint</span>(<span class="params">model, checkpoint, optimizer, loadOptimizer</span>):</span><br><span class="line">    <span class="keyword">if</span> checkpoint != <span class="literal">None</span>:</span><br><span class="line">        model_dict = model.state_dict()	<span class="comment">#修改后模型的参数</span></span><br><span class="line">        modelCheckpoint = torch.load(checkpoint)</span><br><span class="line">        <span class="comment"># 加载保存的（预训练）模型参数</span></span><br><span class="line">        pretrained_dict = modelCheckpoint[<span class="string">&#x27;state_dict&#x27;</span>]</span><br><span class="line">        <span class="comment"># 过滤操作</span></span><br><span class="line">        new_dict = &#123;k:v <span class="keyword">for</span> k,v <span class="keyword">in</span> pretrained_dict.items() <span class="keyword">if</span> k <span class="keyword">in</span> model_dict.keys()&#125;</span><br><span class="line">        <span class="comment"># 更新（重写）key-value对</span></span><br><span class="line">        model_dict.update(new_dict)</span><br><span class="line">        <span class="comment"># 打印出来，更新了多少参数</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Total: &#123;&#125;, update:&#123; &#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">len</span>(pretrained_dict),<span class="built_in">len</span>(new_dict)))</span><br><span class="line">        <span class="comment"># 加载更新后的参数</span></span><br><span class="line">        model.load_state_dict(model_dict)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;loaded finished&#x27;</span>)</span><br><span class="line">                       </span><br><span class="line">        <span class="comment"># 如果不需要更新优化器，那么设置为false</span></span><br><span class="line">        <span class="keyword">if</span> loadOptimizer == <span class="literal">True</span>:</span><br><span class="line">            optimizer.load_state_dict(modelCheckpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;loaded! optimizer&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;not loaded optimizer&quot;</span>)</span><br><span class="line">                   </span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">&quot;No checkpoint is included&quot;</span>)</span><br><span class="line">                       </span><br><span class="line">	<span class="keyword">return</span> model, optimizer</span><br><span class="line">               </span><br></pre></td></tr></table></figure>
 
 </blockquote>
 <p>有时候，我们需要冻结（不进行更新）部分参数。</p>
@@ -1074,276 +1338,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/04/Pytorch-Load-and-Save-State-dict/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux与硬件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/">Linux与硬件</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2022-07-03T15:14:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>与 widows 不同， <u><strong>Linux 中硬件是一个个 文档</strong></u></p>
-<h1 id="硬件装置在-Linux-的档案名"><a href="#硬件装置在-Linux-的档案名" class="headerlink" title="硬件装置在 Linux 的档案名"></a>硬件装置在 Linux 的档案名</h1><p>Linux 中几乎所有的硬件装置文件都在 <code>/dev</code> 目录下</p>
-<p>常见的硬件在 Linux 中的文件名</p>
-<table>
-<thead>
-<tr>
-<th>裝置</th>
-<th>裝置在Linux內的檔名</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>SCSI&#x2F;SATA&#x2F;USB硬碟機</td>
-<td>&#x2F;dev&#x2F;sd[a-p]</td>
-</tr>
-<tr>
-<td>USB快閃碟</td>
-<td>&#x2F;dev&#x2F;sd[a-p] (與SATA相同)</td>
-</tr>
-<tr>
-<td>VirtI&#x2F;O界面</td>
-<td>&#x2F;dev&#x2F;vd[a-p] (用於虛擬機器內)</td>
-</tr>
-<tr>
-<td>軟碟機</td>
-<td>&#x2F;dev&#x2F;fd[0-1]</td>
-</tr>
-<tr>
-<td>印表機</td>
-<td>&#x2F;dev&#x2F;lp[0-2] (25針印表機) &#x2F;dev&#x2F;usb&#x2F;lp[0-15] (USB 介面)</td>
-</tr>
-<tr>
-<td>滑鼠</td>
-<td>&#x2F;dev&#x2F;input&#x2F;mouse[0-15] (通用) &#x2F;dev&#x2F;psaux (PS&#x2F;2界面) &#x2F;dev&#x2F;mouse (當前滑鼠)</td>
-</tr>
-<tr>
-<td>CDROM&#x2F;DVDROM</td>
-<td>&#x2F;dev&#x2F;scd[0-1] (通用) &#x2F;dev&#x2F;sr[0-1] (通用，CentOS 較常見) &#x2F;dev&#x2F;cdrom (當前 CDROM)</td>
-</tr>
-<tr>
-<td>磁帶機</td>
-<td>&#x2F;dev&#x2F;ht0 (IDE 界面) &#x2F;dev&#x2F;st0 (SATA&#x2F;SCSI界面) &#x2F;dev&#x2F;tape (當前磁帶)</td>
-</tr>
-<tr>
-<td>IDE硬碟機</td>
-<td>&#x2F;dev&#x2F;hd[a-d] (舊式系統才有)</td>
-</tr>
-</tbody></table>
-<h1 id="磁盘的（物理）分区"><a href="#磁盘的（物理）分区" class="headerlink" title="磁盘的（物理）分区"></a>磁盘的（物理）分区</h1><p>磁盘由 <strong>磁碟盘</strong>，<strong>机械手臂</strong>，<strong>磁碟读取头</strong> 与 <strong>主马达</strong></p>
-<p>磁碟盘上又可使用两种单位进行细分：</p>
-<ul>
-<li>磁区</li>
-<li>磁轨</li>
-</ul>
-<p><img src="/../assets/BlogImg/Linux_cipanfenqu.png"></p>
-<p>早期磁碟分割中，第一个磁区包含了重要的信息（称为<strong>MBR,Master Boot Record</strong>格式)。此外，随着磁碟的容量越来越大，出现了一种新的磁区分割格式，<strong>GPT (GUID partition table)</strong></p>
-<h2 id="MSDOS-MBR-与-GPT-磁碟分割表"><a href="#MSDOS-MBR-与-GPT-磁碟分割表" class="headerlink" title="MSDOS(MBR) 与 GPT 磁碟分割表"></a>MSDOS(MBR) 与 GPT 磁碟分割表</h2><p>如上图所示，所有磁盘的同一磁轨称为磁柱（Cylinder)，通常是存储的最小单元。也有使用磁区作为最小分割单位的。</p>
-<h3 id="MSDOS"><a href="#MSDOS" class="headerlink" title="MSDOS"></a>MSDOS</h3><p>早期 Linux 为了兼容 Windows, 采用了 MBR（Master Boot Record) 的方式处理<strong>开机管理软件</strong>与<strong>分割表</strong>，这些放在磁碟的第一个磁区，这个磁区通常是 <strong>512 bytes</strong> ：</p>
-<ul>
-<li>MBR，占 446 bytes，安装开机管理软件的地方</li>
-<li>分割（区）表，记录整个硬盘碟分割的状态，占 64 bytes</li>
-</ul>
-<p><img src="/../assets/BlogImg/Linux_cipanfengebiao.png"></p>
-<p>上图所示为一个分区的展开（假设有400个磁柱），**分割（区）表所在区域仅有 64 bytes 容量， 因此最多仅能有 4 组记录区，每组记录区记录了<u>该区段的起始与结束的磁柱号码</u>**。</p>
-<p>假设上面的硬盘装置文件名为 &#x2F;dev&#x2F;sda 时，那么上图中（p1-p4)  4 个 分割槽在 Linux  系统中的文件目录如下：</p>
-<ul>
-<li>P1:&#x2F;dev&#x2F;sda1</li>
-<li>P2:&#x2F;dev&#x2F;sda2</li>
-<li>P3:&#x2F;dev&#x2F;sda3</li>
-<li>P4:&#x2F;dev&#x2F;sda4</li>
-</ul>
-<p>在 windows 中, p1-p4 这 4 个分割槽的代号应该是 C,D,E,F。当你有资料要写入F 盘时，实际上是指你的资料被写入这个硬盘的 301-400 号磁柱之间。<strong>其实所谓的分区，只是对 64 bytes 的分割 表进行设定</strong></p>
-<p>虽然分割表只有记录 4 组资料的空间，但是一个硬盘甚至可以被分割成 10 个以上的分区。<strong>方法是利用额外的磁区来记录更多的分区信息</strong></p>
-<p><img src="/../assets/BlogImg/Linux_cipanfengebiao2.png"></p>
-<h3 id="延伸分割（Extented"><a href="#延伸分割（Extented" class="headerlink" title="延伸分割（Extented )"></a>延伸分割（Extented )</h3><p>上图记录中的 P2 为 延伸分割，<strong>延伸分割的主要目的是使用额外的磁区记录分割信息，延伸分割本省并不能被格式化</strong>，我们可以通过延伸分割所指向的磁区继续进行分割的记录。如上图所示，<u>L1-L5 是由延伸分割继续切出来的分割槽，被称为 <strong>逻辑分割</strong></u></p>
-<blockquote>
-<ul>
-<li>主要分割 (primary) 与延伸 (extented) 分割最多可以由 4 个</li>
-<li>Extented 只能有一个（操作系统限制）</li>
-<li>逻辑分割是由延伸分割持续切出来的分割槽</li>
-</ul>
-</blockquote>
-<h3 id="GUID-partition-table-GPT-磁碟分割表"><a href="#GUID-partition-table-GPT-磁碟分割表" class="headerlink" title="GUID partition table, GPT 磁碟分割表"></a>GUID partition table, GPT 磁碟分割表</h3><p>GPT 以 逻辑区块位址（Logical Block Address, LBA)，来规划磁碟（预设位 512 bytes), 与 MBR 仅使用第一个 512 bytes 区块来记录不同，GPT 使用了 <strong>34 个</strong> LBA 来记录，整个磁碟最后 33 个 LBA，下图LBA-34~LBA-1 也拿来做备份。</p>
-<p><img src="/../assets/BlogImg/Linux_gpt1.png"></p>
-<p>LBA 0:  储存第一阶段的开机程序，以及一个表示 GPT 分割表的标志</p>
-<p>LBA 1:  表头记录区，记录了分割表本身的位置与大小，同时记录了备份用的 GPT 分割（LBA-1~LBA-34) 的位置，分割表的检验机制码（CRC32), 操作系统可以根据检验码来判断 GTP 是否正确</p>
-<p>LBA 2 ~ LBA 33 (实际记录分割信息）:从 LBA2 开始，每个 LBA 都可以记录 4 笔分割记录，所以在预设的 情况下，总共有 32*4 &#x3D; 128 笔分割记录，每个 LBA 有 512 bytes，因此每笔记录用到了 128 bytes，每笔记录中提供了 **64 bits **来记载 开始&#x2F;结束 的磁区号码。 <strong>因此，GPT 分割表对于单一分割槽来说，最大容量限制为 [ 2^64 * 512 bytes &#x3D; 2^63 * 1 Kbytes &#x3D; 2^33 * TB &#x3D; 8 ZB ]</strong> ，</p>
-<h2 id="开机流程中的-BIOS-与-UEFI-开机检测程序"><a href="#开机流程中的-BIOS-与-UEFI-开机检测程序" class="headerlink" title="开机流程中的 BIOS 与 UEFI 开机检测程序"></a>开机流程中的 BIOS 与 UEFI 开机检测程序</h2><p>操作系统控制所有硬件，并且提供核心功能，这样电脑就能够识别硬盘内的文档系统，并进一步读取硬盘内的软件文档并执行该软件来完成软件的执行目的。</p>
-<p>既然 操作系统 也是一个软件，那么电脑是如何识别并执行它的呢？</p>
-<p>目前的主机系统在载入硬件驱动的程序，主要有早期的 <strong>BIOS</strong> 与 <strong>UEFI</strong> 两种机制</p>
-<h3 id="BIOS-搭配-MBR-x2F-GPT-的开机流程"><a href="#BIOS-搭配-MBR-x2F-GPT-的开机流程" class="headerlink" title="BIOS 搭配 MBR&#x2F;GPT 的开机流程"></a>BIOS 搭配 MBR&#x2F;GPT 的开机流程</h3><blockquote>
-<p>CMOS:</p>
-<p>​	记录各项硬件参数且嵌入在主板上的储存器</p>
-<p>BIOS：</p>
-<p>​	嵌入主板上的固体。电脑系统会在开机时主动执行这一程序</p>
-<ol>
-<li>执行 BIOS，BIOS 依据使用者的设定获得能够开机的硬盘</li>
-<li>读取可开机硬盘的第一个磁区的 MBR 的位置，MBR 这个仅有 446 bytes 的硬盘容量里面会放置最基本的<strong>开机管理程序</strong></li>
-<li>开机管理程序 （Boot loader）是安装操作系统时提供的，一个可读取<strong>核心档案</strong>来执行的软件</li>
-<li>核心档案：开始操作系统的功能</li>
-</ol>
-</blockquote>
-<h3 id="UEFI-BIOS-搭配-GPT-的-开机流程"><a href="#UEFI-BIOS-搭配-GPT-的-开机流程" class="headerlink" title="UEFI BIOS 搭配 GPT 的 开机流程"></a>UEFI BIOS 搭配 GPT 的 开机流程</h3><p>传统 BIOS 与 UEFI BIOS 的区别</p>
-<p><img src="/../assets/BlogImg/Linux_uefibios.png"></p>
-<h2 id="Linux-安装模式下，磁盘分割的选择"><a href="#Linux-安装模式下，磁盘分割的选择" class="headerlink" title="Linux 安装模式下，磁盘分割的选择"></a>Linux 安装模式下，磁盘分割的选择</h2><h3 id="目录树架构（directory-tree"><a href="#目录树架构（directory-tree" class="headerlink" title="目录树架构（directory tree)"></a>目录树架构（directory tree)</h3><p>目录树架构中最重要的就是 <strong>根目录</strong>，用 <code>/ </code>表示</p>
-<p><img src="/../assets/BlogImg/Linux_dictree.png"></p>
-<h3 id="档案系统与目录树的关系（挂载）"><a href="#档案系统与目录树的关系（挂载）" class="headerlink" title="档案系统与目录树的关系（挂载）"></a>档案系统与目录树的关系（挂载）</h3><p><strong>挂载</strong>是指利用一个目录当成进入点，将磁盘槽的资料放置在该目录下，进入该目录就可以读取该分区槽，这个动作就叫 挂载，进入点的目录称为 <code>挂载点</code></p>
-<p><img src="/../assets/BlogImg/Linux_guazai.png"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Model-Initialization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/03/Model-Initialization/">Model Initialization</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/03/Model-Initialization/" class="archive-article-date">
-  	<time datetime="2022-07-03T13:01:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Pytorch模型参数初始化方法"><a href="#Pytorch模型参数初始化方法" class="headerlink" title="Pytorch模型参数初始化方法"></a>Pytorch模型参数初始化方法</h1><h2 id="self-modules-torch-nn-Module-modules"><a href="#self-modules-torch-nn-Module-modules" class="headerlink" title="self.modules() (torch.nn.Module.modules)"></a>self.modules() (torch.nn.Module.modules)</h2><p><code>self.children()</code> 存储网络结构的子层模块</p>
-<h2 id="self-children-torch-nn-Module-children"><a href="#self-children-torch-nn-Module-children" class="headerlink" title="self.children() (torch.nn.Module.children)"></a>self.children() (torch.nn.Module.children)</h2><p>self.modules()采用<strong>深度优先遍历</strong>的方式，存储了net的所有模块。还包含了整个网络结构，这个网络结构的子结构等等</p>
-<h2 id="1-使用-apply-torch-nn-Module-apply"><a href="#1-使用-apply-torch-nn-Module-apply" class="headerlink" title="1. 使用 apply (torch.nn.Module.apply)"></a>1. 使用 apply (torch.nn.Module.apply)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># hyper parameters</span></span><br><span class="line">in_dim=<span class="number">1</span></span><br><span class="line">n_hidden_1=<span class="number">1</span></span><br><span class="line">n_hidden_2=<span class="number">1</span></span><br><span class="line">out_dim=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_dim, n_hidden_1, n_hidden_2, out_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.layer = nn.Sequential(</span><br><span class="line">            nn.Linear(in_dim, n_hidden_1), </span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_1, n_hidden_2),</span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_2, out_dim)</span><br><span class="line">            </span><br><span class="line">             )    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.layer1(x)</span><br><span class="line">        x = self.layer2(x)</span><br><span class="line">        x = self.layer3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"> </span><br><span class="line"> <span class="comment"># 1. 根据网络层的不同定义不同的初始化方式     </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">weight_init</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">        nn.init.xavier_normal_(m.weight)</span><br><span class="line">        nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line">    <span class="comment"># 也可以判断是否为conv2d，使用相应的初始化方式 </span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.Conv2d):</span><br><span class="line">        nn.init.kaiming_normal_(m.weight, mode=<span class="string">&#x27;fan_out&#x27;</span>, nonlinearity=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">     <span class="comment"># 是否为批归一化层</span></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.BatchNorm2d):</span><br><span class="line">        nn.init.constant_(m.weight, <span class="number">1</span>)</span><br><span class="line">        nn.init.constant_(m.bias, <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 2. 初始化网络结构        </span></span><br><span class="line">model = Net(in_dim, n_hidden_1, n_hidden_2, out_dim)</span><br><span class="line"><span class="comment"># 3. 将weight_init应用在子模块上</span></span><br><span class="line">model.apply(weight_init)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="2-在-init-中迭代循环self-modules-来初始化网络参数"><a href="#2-在-init-中迭代循环self-modules-来初始化网络参数" class="headerlink" title="2. 在__init__中迭代循环self.modules()来初始化网络参数"></a>2. 在<code>__init__</code>中迭代循环<code>self.modules()</code>来初始化网络参数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line"><span class="comment"># hyper parameters</span></span><br><span class="line">in_dim=<span class="number">1</span></span><br><span class="line">n_hidden_1=<span class="number">1</span></span><br><span class="line">n_hidden_2=<span class="number">1</span></span><br><span class="line">out_dim=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, in_dim, n_hidden_1, n_hidden_2, out_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line"></span><br><span class="line">        self.layer = nn.Sequential(</span><br><span class="line">            nn.Linear(in_dim, n_hidden_1), </span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_1, n_hidden_2),</span><br><span class="line">            nn.ReLU(<span class="literal">True</span>),</span><br><span class="line">            nn.Linear(n_hidden_2, out_dim)</span><br><span class="line">            </span><br><span class="line">             )</span><br><span class="line">        <span class="comment"># 迭代循环初始化参数</span></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> self.modules():</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">                nn.init.constant_(m.weight, <span class="number">1</span>)</span><br><span class="line">                nn.init.constant_(m.bias, -<span class="number">100</span>)</span><br><span class="line">            <span class="comment"># 也可以判断是否为conv2d，使用相应的初始化方式 </span></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.Conv2d):</span><br><span class="line">                nn.init.kaiming_normal_(m.weight, mode=<span class="string">&#x27;fan_out&#x27;</span>, nonlinearity=<span class="string">&#x27;relu&#x27;</span>)</span><br><span class="line">             </span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(m, nn.BatchNorm2d):</span><br><span class="line">                nn.init.constant_(m.weight.item(), <span class="number">1</span>)</span><br><span class="line">                nn.init.constant_(m.bias.item(), <span class="number">0</span>)    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.layer(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x      </span><br><span class="line">model = Net(in_dim, n_hidden_1, n_hidden_2, out_dim)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印参数信息</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">print_weight</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, nn.Linear):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;weight&quot;</span>, m.weight.item())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bias:&quot;</span>, m.bias.item())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;next...&quot;</span>)</span><br><span class="line">model.apply(print_weight)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83958518">https://blog.csdn.net/dss_dssssd/article/details/83958518</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dss_dssssd/article/details/83990511">https://blog.csdn.net/dss_dssssd/article/details/83990511</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/97651850">https://zhuanlan.zhihu.com/p/97651850</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pytorch//" class="article-tag-list-link color3">Pytorch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/03/Model-Initialization/">展开全文 >></a>
         </p>
       
 

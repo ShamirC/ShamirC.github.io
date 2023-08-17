@@ -341,29 +341,29 @@
 <p>CNNs 固有的几何结构：卷积单元对输入特征图的固定位置进行采样；池化层以固定的比例进行池化；这些特性是有影响的，例如，在 CNN 的同一层中的所有激活单元的感受野都是相同的，这对用于从空间位置编码语义的 CNN 的高层是不可取的。<strong>因为不同的位置可能对应不同尺度和变形的对象，因此对尺度和感受野的自适应是进行高精度定位所需要的</strong></p>
 <p><strong>deformable convolution</strong></p>
 <p><u><strong>可变形卷积在标准卷积中引入了二维偏移，这个偏移量是可以学习的，这使得采样上个可以自由变形。</strong></u></p>
-<p><img src="../assets/BlogImg/deform_conv1.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv1.png"></p>
 <p>2 维的卷积包含两个步骤：1）对输入的特征图 x 使用一个常规的栅格 R 进行采样；2）对采样值求和并赋予权重 w</p>
 <p>栅格（即卷积核） R 决定了感受野大小核空洞，例如</p>
 <p>R = { (-1，-1), (-1，0),...,(0,1), (1,1) } 定义了一个 3x3 的空洞为 1 的卷积核</p>
 <p>对于输出特征图中的每一个位置 P0：</p>
-<p><img src="../assets/BlogImg/deform_conv2.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv2.png"></p>
 <p><strong>在可变形卷积中，规则的卷积核 R 通过偏移 {∆Pn|n = 1, ..., N }，其中 N = |R|，进行增强</strong></p>
-<p><img src="../assets/BlogImg/deform_conv3.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv3.png"></p>
 <p>现在，采样是在不规则并且带有偏移的位置 Pn +∆Pn 上进行的。因为偏移 ∆Pn 通常是分数，并不对应 feature map 上实际存在的像素点，因此 2 式 可以 通过线性插值实现的</p>
-<p><img src="../assets/BlogImg/deform_conv4.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv4.png"></p>
 <p>P 代表一个任意的（小数）位置（式 2 中，P = P0 + Pn + ∆Pn）；q 为输入 feature map x 中所有的整数位置，G(·，·) 为 双线性插值核。</p>
 <p><strong>G 是二维的，被分解成两个一维的核：</strong></p>
-<p><img src="../assets/BlogImg/deform_conv5.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv5.png"></p>
 <p>g(a, b) = max(0, 1 − |a − b|)</p>
 <p>综上，输出 feature map 的偏移后的像素值，通过双线性插值可以表示为：</p>
-<p><img src="../assets/BlogImg/deform_conv6.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv6.png"></p>
 <p><strong>上述公式的意义是，插值点位置的像素值设置为其 4领域 像素点的加权和，领域 4 个点是离其最近的特征图上实际存在的像素点，每个点的权重则根据它与插值点横、纵坐标的距离来设置，公式最后一行的max(0, 1-...)就是限制了插值点与领域点不会超过1个像素的距离。</strong></p>
 <p>可变形卷积操作的示意图如下所示</p>
-<p><img src="../assets/BlogImg/deform_conv7.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv7.png"></p>
 <p><strong>可变形卷积中的偏移是通过一个额外的卷积层来获取的，这个额外的卷积核大小与空洞大小，和当前卷积层最终卷积操作的卷积核是一样的。 得到的偏移 offsets 与输入 feature map 的空间分辨率相同； 通道数 2N 对应 N 个 2D offsets</strong></p>
 <h1 id="代码及实现过程">代码及实现过程</h1>
 <p>经过偏移量卷积层学习出的 offset， <strong>学习得到的 feature map 的每个元素恰好与卷积核中心是一一对应的。</strong></p>
-<p><img src="../assets/BlogImg/deform_conv8.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv8.png"></p>
 <p>图片通过 p_conv 后的 feature map (上图全红矩阵)，每个元素恰好与卷积核中心是一一对应的，也就是通过该 feature map 的尺寸，卷积核的尺寸， 步长可以推算出卷积过程中卷积核的中心坐标</p>
 <h1 id="参考">参考</h1>
 <p>https://zhuanlan.zhihu.com/p/335147713</p>
@@ -457,7 +457,7 @@
 <h1 id="linux-档案权限">Linux 档案权限</h1>
 <h2 id="档案属性">档案属性</h2>
 <p><code>ls -al</code> 指令查看档案</p>
-<p><img src="../assets/BlogImg/Linux_dangan.png" /></p>
+<p><img src="/2022/07/29/Linux-%E6%A1%A3%E6%A1%88%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/assets/BlogImg/Linux_dangan.png"></p>
 <p>上面 7 栏分别为：档案类型权限，连结数，档案拥有者，档案所属群组，档案容量(默认为bytes)，档案最后被修改时间，档案名</p>
 <blockquote>
 <p>第 一 栏 第一个字符为档案类型权限：</p>
@@ -716,13 +716,13 @@
 </ul>
 </blockquote>
 <h2 id="confusion-matrix">Confusion Matrix</h2>
-<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/confusion_matrix.png" class="">
+<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/confusion_matrix.png" class>
 <p>Precision, Recall, F1, Ovarll accuracy 等都可以基于该矩阵(表格) 进行计算</p>
 <table>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 28%" />
-<col style="width: 37%" />
+<col style="width: 33%">
+<col style="width: 28%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -754,7 +754,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Matthew correlation coefficient (MCC)(马修斯相关系数)</td>
-<td style="text-align: center;"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/mcc.png" class=""></td>
+<td style="text-align: center;"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/mcc.png" class></td>
 <td style="text-align: center;">二分类模型结果的评估指标之一，值在[-1，+1], 由于Precision,recall只考虑了正类，而忽略了负类的表现，为了解决这个问题，可以将prediction与真实结果看为两个0-1分布，然后用马修斯相关系数衡量两个分布的相似性。当<strong>FP=FN=0 </strong>即完全预测正确时 <strong>MCC=1</strong>，当完全预测错误时<strong>MCC=-1</strong>，此时将标签逆转即可。</td>
 </tr>
 <tr class="even">
@@ -786,9 +786,9 @@
 <h2 id="针对线性目标提取的指标">针对线性目标提取的指标</h2>
 <table>
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 33%" />
-<col style="width: 43%" />
+<col style="width: 22%">
+<col style="width: 33%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -800,12 +800,12 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">OIS (<strong>Optimal Image Scale</strong>)</td>
-<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/OIS.png" class=""></td>
+<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/OIS.png" class></td>
 <td style="text-align: left;">针对数据集的一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到 OIS</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ODS (<strong>Optimal Dataset Scale</strong>)</td>
-<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ODS.png" class=""></td>
+<td><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/ODS.png" class></td>
 <td style="text-align: left;">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 ODS。</td>
 </tr>
 <tr class="odd">
@@ -823,19 +823,19 @@
 <h1 id="p-r-曲线">P-R 曲线</h1>
 <blockquote>
 <p>选取不同的阈值对预测样本进行划分，可以计算出不同的 precision 和 recall, P-R曲线就是以不同阈值下取得的 precision(纵坐标）, recall（横坐标） 绘制曲线。平衡点（BEP）是P=R时的取值，如果这个值较大，则说明学习器的性能较好。。</p>
-<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/PR_curve.png" class="">
+<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/PR_curve.png" class>
 </blockquote>
 <h1 id="roc曲线"><strong>ROC曲线</strong></h1>
 <blockquote>
 <p>ROC 曲线最早应用于雷达信号检测区域，用于区分信号与噪声。<strong>很多分类器是为测试样本产生一个实值或概率预测，然后根据一个阈值对样本进行分类。若想得到更好的 precision, 则可以提高阈值，尽可能得使得对每一个预测值都有充分的自信。在不同阈值下得到的 FPR, TPR. 然后以 FPR 为横坐标，TPR 为纵坐标绘制 ROC 曲线。TPR, FPR 都是从实际样本出发，因此不受样本不平衡的影响</strong></p>
-<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/ROC.png" class="">
+<img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/ROC.png" class>
 <p><strong>AUC（曲线下面积，the area under the ROC curve)</strong> 是指 ROC曲线下与横坐标轴构成的区域面积， AUC表示了可分离的程度或测度。ROC 曲线纵坐标轴是 TPR，TPR 越高表示模型正确预测正例的概率越大，因此理想情况就是，曲线离 (0,1) 点越近，AUC面积越接近 1，模型性能越好。<strong>若连接对角线，AUC面积正好是 0.5 对角线的实际含义是：随机判断响应与不响应，正负样本覆盖率应该都是 50%，表示随机效果</strong></p>
 </blockquote>
 <table>
 <colgroup>
-<col style="width: 34%" />
-<col style="width: 27%" />
-<col style="width: 37%" />
+<col style="width: 34%">
+<col style="width: 27%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -847,7 +847,7 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>Average Precision (AP)</strong></td>
-<td style="text-align: center;"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/AP.png" class=""></td>
+<td style="text-align: center;"><img src="/2022/07/12/Metrics-Criterias-in-Segmentation/07/12/Metrics-Criterias-in-Segmentation/AP.png" class></td>
 <td style="text-align: center;"><strong>等于P-R曲线下面积</strong>，一般通过逼近的方法求曲线下面积吗</td>
 </tr>
 <tr class="even">
@@ -1019,12 +1019,12 @@
 <li>Value（明度）</li>
 </ul>
 <figure>
-<img src="../assets/blogImg/hsv.png" alt="HSV model" /><figcaption aria-hidden="true">HSV model</figcaption>
+<img src="/2022/07/06/Data-augmentation/assets/blogImg/hsv.png" alt="HSV model"><figcaption aria-hidden="true">HSV model</figcaption>
 </figure>
 <p><strong>Hue: 用角度度量，取值范围未为0~360°，颜色圆环上所有的颜色都是光谱上的颜色，hue=0 表示红色，hue=120 表示绿色，hue=240 表示蓝色等。</strong></p>
 <p>hsv 圆柱体的竖切剖面（ Hue=60 )</p>
 <figure>
-<img src="../assets/blogImg/hsv2.png" alt="HSV model" /><figcaption aria-hidden="true">HSV model</figcaption>
+<img src="/2022/07/06/Data-augmentation/assets/blogImg/hsv2.png" alt="HSV model"><figcaption aria-hidden="true">HSV model</figcaption>
 </figure>
 <p><strong>S (saturation)表示接近光谱色的程度，值越高颜色越深，饱和度越低越接近白色</strong></p>
 <p><strong>V（Value) 表示明度，决定颜色空间中颜色的明暗程度，值越高表示越亮，0表示纯黑色</strong></p>
@@ -1036,7 +1036,7 @@
 <li>Saturation，饱和度，</li>
 </ul>
 <figure>
-<img src="../assets/blogImg/hls.png" alt="HSV model" /><figcaption aria-hidden="true">HSV model</figcaption>
+<img src="/2022/07/06/Data-augmentation/assets/blogImg/hls.png" alt="HSV model"><figcaption aria-hidden="true">HSV model</figcaption>
 </figure>
 <h2 id="rgb----hsv">RGB --&gt; HSV</h2>
 <p><span class="math display">\[
@@ -1066,7 +1066,7 @@ S = \begin{cases}
 \\
 \]</span> 计算 Value (明度) <span class="math display">\[
 V = C_{max}
-\]</span> <img src="../assets/BlogImg/rgb_hsv.png" /></p>
+\]</span> <img src="/2022/07/06/Data-augmentation/assets/BlogImg/rgb_hsv.png"></p>
 <h2 id="hsv----rgb">HSV --&gt; RGB</h2>
 <p><span class="math display">\[
 C = S\\
@@ -1082,7 +1082,7 @@ X = C(1-|H&#39;mod2-1)\\
 (C,0,X)\quad (5 &lt;= H&#39; &lt; 6)\\
 \end{cases}
 \]</span></p>
-<p><img src="../assets/BlogImg/hsv_rgb.png" /></p>
+<p><img src="/2022/07/06/Data-augmentation/assets/BlogImg/hsv_rgb.png"></p>
 <h2 id="亮度变换">亮度变换</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 亮度变换，标签不需要变换</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_Brightness</span>(<span class="params">img,delta=<span class="number">32</span></span>):</span><br><span class="line">    <span class="comment"># 图像的像素值 增加或减少 [-delta, detla] 内的随机值</span></span><br><span class="line">    img = img.astype(np.float32) + t_random(-delta,delta)</span><br><span class="line">    img = np.clip(img,<span class="number">0</span>,<span class="number">255</span>)	<span class="comment"># 小于0的像素置为0，大于255的像素值置为255</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> img.astype(np.uint8)</span><br></pre></td></tr></table></figure>
 <h2 id="对比度变换">对比度变换</h2>

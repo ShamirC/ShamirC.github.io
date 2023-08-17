@@ -187,8 +187,8 @@
 <p>常见的硬件在 Linux 中的文件名</p>
 <table>
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 75%" />
+<col style="width: 24%">
+<col style="width: 75%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -242,7 +242,7 @@
 <li>磁区</li>
 <li>磁轨</li>
 </ul>
-<p><img src="../assets/BlogImg/Linux_cipanfenqu.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_cipanfenqu.png"></p>
 <p>早期磁碟分割中，第一个磁区包含了重要的信息（称为<strong>MBR,Master Boot Record</strong>格式)。此外，随着磁碟的容量越来越大，出现了一种新的磁区分割格式，<strong>GPT (GUID partition table)</strong></p>
 <h2 id="msdosmbr-与-gpt-磁碟分割表">MSDOS(MBR) 与 GPT 磁碟分割表</h2>
 <p>如上图所示，所有磁盘的同一磁轨称为磁柱（Cylinder)，通常是存储的最小单元。也有使用磁区作为最小分割单位的。</p>
@@ -252,7 +252,7 @@
 <li>MBR，占 446 bytes，安装开机管理软件的地方</li>
 <li>分割（区）表，记录整个硬盘碟分割的状态，占 64 bytes</li>
 </ul>
-<p><img src="../assets/BlogImg/Linux_cipanfengebiao.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_cipanfengebiao.png"></p>
 <p>上图所示为一个分区的展开（假设有400个磁柱），<strong>分割（区）表所在区域仅有 64 bytes 容量， 因此最多仅能有 4 组记录区，每组记录区记录了<u>该区段的起始与结束的磁柱号码</u></strong>。</p>
 <p>假设上面的硬盘装置文件名为 /dev/sda 时，那么上图中（p1-p4) 4 个 分割槽在 Linux 系统中的文件目录如下：</p>
 <ul>
@@ -263,7 +263,7 @@
 </ul>
 <p>在 windows 中, p1-p4 这 4 个分割槽的代号应该是 C,D,E,F。当你有资料要写入F 盘时，实际上是指你的资料被写入这个硬盘的 301-400 号磁柱之间。<strong>其实所谓的分区，只是对 64 bytes 的分割 表进行设定</strong></p>
 <p>虽然分割表只有记录 4 组资料的空间，但是一个硬盘甚至可以被分割成 10 个以上的分区。<strong>方法是利用额外的磁区来记录更多的分区信息</strong></p>
-<p><img src="../assets/BlogImg/Linux_cipanfengebiao2.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_cipanfengebiao2.png"></p>
 <h3 id="延伸分割extented">延伸分割（Extented )</h3>
 <p>上图记录中的 P2 为 延伸分割，<strong>延伸分割的主要目的是使用额外的磁区记录分割信息，延伸分割本省并不能被格式化</strong>，我们可以通过延伸分割所指向的磁区继续进行分割的记录。如上图所示，<u>L1-L5 是由延伸分割继续切出来的分割槽，被称为 <strong>逻辑分割</strong></u></p>
 <blockquote>
@@ -275,7 +275,7 @@
 </blockquote>
 <h3 id="guid-partition-table-gpt-磁碟分割表">GUID partition table, GPT 磁碟分割表</h3>
 <p>GPT 以 逻辑区块位址（Logical Block Address, LBA)，来规划磁碟（预设位 512 bytes), 与 MBR 仅使用第一个 512 bytes 区块来记录不同，GPT 使用了 <strong>34 个</strong> LBA 来记录，整个磁碟最后 33 个 LBA，下图LBA-34~LBA-1 也拿来做备份。</p>
-<p><img src="../assets/BlogImg/Linux_gpt1.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_gpt1.png"></p>
 <p>LBA 0: 储存第一阶段的开机程序，以及一个表示 GPT 分割表的标志</p>
 <p>LBA 1: 表头记录区，记录了分割表本身的位置与大小，同时记录了备份用的 GPT 分割（LBA-1~LBA-34) 的位置，分割表的检验机制码（CRC32), 操作系统可以根据检验码来判断 GTP 是否正确</p>
 <p>LBA 2 ~ LBA 33 (实际记录分割信息）:从 LBA2 开始，每个 LBA 都可以记录 4 笔分割记录，所以在预设的 情况下，总共有 32*4 = 128 笔分割记录，每个 LBA 有 512 bytes，因此每笔记录用到了 128 bytes，每笔记录中提供了 <strong>64 bits </strong>来记载 开始/结束 的磁区号码。 <strong>因此，GPT 分割表对于单一分割槽来说，最大容量限制为 [ 2^64 * 512 bytes = 2^63 * 1 Kbytes = 2^33 * TB = 8 ZB ]</strong> ，</p>
@@ -298,14 +298,14 @@
 </blockquote>
 <h3 id="uefi-bios-搭配-gpt-的-开机流程">UEFI BIOS 搭配 GPT 的 开机流程</h3>
 <p>传统 BIOS 与 UEFI BIOS 的区别</p>
-<p><img src="../assets/BlogImg/Linux_uefibios.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_uefibios.png"></p>
 <h2 id="linux-安装模式下磁盘分割的选择">Linux 安装模式下，磁盘分割的选择</h2>
 <h3 id="目录树架构directory-tree">目录树架构（directory tree)</h3>
 <p>目录树架构中最重要的就是 <strong>根目录</strong>，用 <code>/</code>表示</p>
-<p><img src="../assets/BlogImg/Linux_dictree.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_dictree.png"></p>
 <h3 id="档案系统与目录树的关系挂载">档案系统与目录树的关系（挂载）</h3>
 <p><strong>挂载</strong>是指利用一个目录当成进入点，将磁盘槽的资料放置在该目录下，进入该目录就可以读取该分区槽，这个动作就叫 挂载，进入点的目录称为 <code>挂载点</code></p>
-<p><img src="../assets/BlogImg/Linux_guazai.png" /></p>
+<p><img src="/2022/07/03/Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6/assets/BlogImg/Linux_guazai.png"></p>
 
       
 
@@ -485,13 +485,13 @@
 <p>语义分割研究中，学习具有丰富语义信息和空间信息的特征是非常重要的，围绕这一问题开展的研究有两个主要方向，即<strong>特征整合（feature aggregation）</strong>和 <strong>上下文建模（context modeling)</strong></p>
 <h1 id="网络结构">网络结构</h1>
 <p>AlignSeg 的结构如下图所示，使用了 bottom-up 的结构，Backbone 为 ResNet</p>
-<p><img src="../assets/blogImg/Fig1_AlignSeg.png" /></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig1_AlignSeg.png"></p>
 <p>FAM特征对齐模块可以表示如下：</p>
 <blockquote>
-<p><img src="../assets/blogImg/Fig2_AlignSeg.png" /></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig2_AlignSeg.png"></p>
 <p>u 为 配准函数，F为需要配准的特征图，假设 F 中每个点的空间位置为 {(1, 1), (1, 2), ..., (H, W )}，偏移量图为 ∆ ∈ R^2×H×W</p>
 <p>配准方程如下</p>
-<p><img src="../assets/blogImg/Fig3_AlignSeg.png" /></p>
+<p><img src="/2022/06/30/AlignSeg-Feature-Aligned-Segmentation-Networks/assets/blogImg/Fig3_AlignSeg.png"></p>
 </blockquote>
 
       
@@ -571,7 +571,7 @@
 <h1 id="introduction">Introduction</h1>
 <p>Introduction 部分叙述了 Multi-Task Learning（MTL） 任务的应用，基本概念，其在 像素级的dense prediction 中的应用特点，以及已有的相关综述。</p>
 <p>本文的总体框架如下图所示</p>
-<p><img src="../assets/blogImg/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig1_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p><strong>关于 MTL：</strong></p>
 <blockquote>
 <p>MTL 旨在通过相关任务中特定的领域信息（domain-specific information) 来提高 泛化性</p>
@@ -598,7 +598,7 @@
 <p>Note: 对这部分并不能很好的理解 :(</p>
 <h3 id="深度学习中的软参数和硬参数共享soft-and-hard-parameter-sharing-in-deep-learning">深度学习中的软参数和硬参数共享（Soft and Hard Parameter Sharing in Deep Learning)</h3>
 <p>在深度学习的语境下，MTL 从多任务监督信号中学习共享的（特征）表达。<strong>历史上</strong>，深度学习中多任务网络结构被划分为 <strong>soft parameter sharing </strong>（SPS） 和 <strong>hard parameter sharing</strong> (HPS)，分别如下图所示。</p>
-<p><img src="../assets/blogImg/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig2_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <blockquote>
 <p><strong>hard parameter sharing</strong></p>
 <p>在 HPS 中，模型的参数可以划分为 共享参数 和 特定任务 参数。典型的结构如上图中 (a) 所示，不同的任务共享一个 encoder, 这个 enconder 后面特定的任务分支。</p>
@@ -628,19 +628,19 @@
 </blockquote>
 <h2 id="作者提出的新分类方法">作者提出的新分类方法</h2>
 <p>随着多任务模型的发展，最近有不少的研究同时具有 SPS 和 HPS 的特点，因此作者认为 SPS, HPS 不能继续作为划分 MTL 的主要方法。因此作者提出了一个新的分类方法，根据不同任务发生交集的位置划分不同结构，即任务之间发生信息（或特征）交换（分享）的位置。根据这一点，作者将 MTL 网络划分了两种了类型： <strong>Encoder-foucsed Architectures</strong> 和 <strong>Decoder-focused Architectures</strong></p>
-<p><img src="../assets/blogImg/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig3_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h3 id="encoder-focused-architectures">Encoder-focused Architectures</h3>
 <p>Encoder-focused architectures 只在 Encoder 共享参数，在使用单独的特定的任务头（task-specific head) decode 每一个任务之前，使用 HPS 或 SPS 方法共享。</p>
 <h4 id="cross-stitch-networks">Cross-stitch Networks</h4>
 <p>Cross-stitch Networks 在 encoder 中单任务网络之间共享激活（activations)，如下图所示。</p>
-<p><img src="../assets/blogImg/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig4_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p>十字绣网络的共享层可以由以下方程表示</p>
-<p><img src="../assets/blogImg/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig5_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <p>xA, xB 表示某一层的两个任务（网络）的 激活特征图，a 是可以学习权重 ̃xA, ̃ xB 是转换后的结果。</p>
 <p>通过学习到的权重a，网络可以决定任务之间特征共享的程度。十字绣网络的缺点是模型的参数量随着任务数量增加而线性。</p>
 <h4 id="multi-task-attention-networks">Multi-Task Attention Networks</h4>
 <p>Multi-Task Attention Networks (MTAN)，如下图所示，MTAN 使用一个共享参数的 backbone, 在 bakcnbone 的每个 stage 的特征都被不同 任务的分支作为输入，每个特定任务分支都由多个 attention modules （注意力模块）组成，这些attention modules 可以从输入的 feature maps 中筛特征。</p>
-<p><img src="../assets/blogImg/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig6_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h4 id="branched-multi-task-learning-networks">Branched Multi-task Learning Networks</h4>
 <p>上述网络都是在encoding 阶段以 SPS的形式共享参数</p>
 <p>不同的是，Branched Multi-task Learning Networks 使用 HPS 方式共享参数</p>
@@ -651,13 +651,13 @@
 <p>与 Encoder-focused architectures 不同，Decoder-focused Architectures 在 decoding 阶段也会共享参数。</p>
 <h5 id="pad-net">PAD-Net</h5>
 <p>PAD-Net 是 Decoder-focused Architectures 的先驱之一。</p>
-<p><img src="../assets/blogImg/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig7_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="pattern-affinitive-propagation-networks-pap-net">Pattern-Affinitive Propagation Networks (PAP-Net)</h5>
-<p><img src="../assets/blogImg/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig8_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="joint-task-recursive-learning-jtrl">Joint Task-Recursive Learning (JTRL)</h5>
-<p><img src="../assets/blogImg/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig9_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h5 id="multi-scale-task-interaction-networks-mti-net">Multi-Scale Task Interaction Networks (MTI-Net)</h5>
-<p><img src="../assets/blogImg/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png" /></p>
+<p><img src="/2022/06/28/Multi-Task-Learning-for-Dense-Prediction-Tasks-A-Survey/assets/blogImg/Fig10_Multi-Task_Learning_for_Dense_Prediction_Tasks_A_Survey.png"></p>
 <h1 id="optimization-in-mtl">Optimization in MTL</h1>
 <h1 id="参考">参考</h1>
 <p>https://zhuanlan.zhihu.com/p/500647063</p>
@@ -925,13 +925,13 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 </ul>
 </blockquote>
 <h2 id="confusion-matrix">Confusion Matrix</h2>
-<p><img src="../assets/BlogImg/confusion_matrix.png" /></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/confusion_matrix.png"></p>
 <p>Precision, Recall, F1, Ovarll accuracy 等都可以基于该矩阵(表格) 进行计算</p>
 <table>
 <colgroup>
-<col style="width: 37%" />
-<col style="width: 20%" />
-<col style="width: 41%" />
+<col style="width: 37%">
+<col style="width: 20%">
+<col style="width: 41%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -963,7 +963,7 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Matthew correlation coefficient (MCC)(马修斯相关系数)</td>
-<td style="text-align: center;"><img src="../assets/BlogImg/mcc.png" /></td>
+<td style="text-align: center;"><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/mcc.png"></td>
 <td style="text-align: center;">二分类模型结果的评估指标之一，值在[-1，+1], 由于Precision,recall只考虑了正类，而忽略了负类的表现，为了解决这个问题，可以将prediction与真实结果看为两个0-1分布，然后用马修斯相关系数衡量两个分布的相似性。当<strong>FP=FN=0 </strong>即完全预测正确时 <strong>MCC=1</strong>，当完全预测错误时<strong>MCC=-1</strong>，此时将标签逆转即可。</td>
 </tr>
 <tr class="even">
@@ -995,9 +995,9 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 <h2 id="针对线性目标提取的指标">针对线性目标提取的指标</h2>
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 24%" />
-<col style="width: 49%" />
+<col style="width: 25%">
+<col style="width: 24%">
+<col style="width: 49%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1009,12 +1009,12 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">OIS (<strong>Optimal Image Scale</strong>)</td>
-<td><img src="../assets/BlogImg/OIS.png" /></td>
+<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/OIS.png"></td>
 <td style="text-align: left;">针对数据集的每一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到OIS</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ODS (<strong>Optimal Dataset Scale</strong>)</td>
-<td><img src="../assets/BlogImg/ODS.png" /></td>
+<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ODS.png"></td>
 <td style="text-align: left;">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 ODS。</td>
 </tr>
 <tr class="odd">
@@ -1032,19 +1032,19 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 <h1 id="p-r-曲线">P-R 曲线</h1>
 <blockquote>
 <p>选取不同的阈值对预测样本进行划分，可以计算出不同的 precision 和 recall, P-R曲线就是以不同阈值下取得的 precision(纵坐标）, recall（横坐标） 绘制曲线。平衡点（BEP）是P=R时的取值，如果这个值较大，则说明学习器的性能较好。。</p>
-<p><img src="../assets/BlogImg/PR_curve.png" /></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/PR_curve.png"></p>
 </blockquote>
 <h1 id="roc曲线"><strong>ROC曲线</strong></h1>
 <blockquote>
 <p>ROC 曲线最早应用于雷达信号检测区域，用于区分信号与噪声。<strong>很多分类器是为测试样本产生一个实值或概率预测，然后根据一个阈值对样本进行分类。若想得到更好的 precision, 则可以提高阈值，尽可能得使得对每一个预测值都有充分的自信。在不同阈值下得到的 FPR, TPR. 然后以 FPR 为横坐标，TPR 为纵坐标绘制 ROC 曲线。TPR, FPR 都是从实际样本出发，因此不受样本不平衡的影响</strong></p>
-<p><img src="../assets/BlogImg/ROC.png" /></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ROC.png"></p>
 <p><strong>AUC（曲线下面积，the area under the ROC curve)</strong> 是指 ROC曲线下与横坐标轴构成的区域面积， AUC表示了可分离的程度或测度。ROC 曲线纵坐标轴是 TPR，TPR 越高表示模型正确预测正例的概率越大，因此理想情况就是，曲线离 (0,1) 点越近，AUC面积越接近 1，模型性能越好。<strong>若连接对角线，AUC面积正好是 0.5 对角线的实际含义是：随机判断响应与不响应，正负样本覆盖率应该都是 50%，表示随机效果</strong></p>
 </blockquote>
 <table>
 <colgroup>
-<col style="width: 38%" />
-<col style="width: 20%" />
-<col style="width: 41%" />
+<col style="width: 38%">
+<col style="width: 20%">
+<col style="width: 41%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1056,7 +1056,7 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>Average Precision (AP)</strong></td>
-<td style="text-align: center;"><img src="../assets/BlogImg/AP.png" /></td>
+<td style="text-align: center;"><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/AP.png"></td>
 <td style="text-align: center;"><strong>等于P-R曲线下面积</strong>，一般通过逼近的方法求曲线下面积吗</td>
 </tr>
 <tr class="even">
@@ -1200,7 +1200,7 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
       
         <p># Schematic Constitution</p>
 <figure>
-<img src="../assets/blogImg/schematic_constitution_of_a_deep_learning_project.png" alt="schematic constitution of a deep learning project" /><figcaption aria-hidden="true">schematic constitution of a deep learning project</figcaption>
+<img src="/2022/06/24/The-Construction-of-A-Pytorch-Deep-Learning-Project/assets/blogImg/schematic_constitution_of_a_deep_learning_project.png" alt="schematic constitution of a deep learning project"><figcaption aria-hidden="true">schematic constitution of a deep learning project</figcaption>
 </figure>
 <h1 id="layout-of-directories-and-files">Layout of Directories and Files</h1>
 <p>config</p>
@@ -1426,7 +1426,7 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
 <p>切割思路</p>
 <blockquote>
 <figure>
-<img src="../assets/blogImg/pathces_making_exmp.png" alt="pathces_making_exmp" /><figcaption aria-hidden="true">pathces_making_exmp</figcaption>
+<img src="/2022/06/11/%E5%A4%A7%E5%9B%BE%E5%83%8F%E5%88%87%E5%89%B2-Patches/assets/blogImg/pathces_making_exmp.png" alt="pathces_making_exmp"><figcaption aria-hidden="true">pathces_making_exmp</figcaption>
 </figure>
 <p>原图像为 （ H, W, C )</p>
 <p>从原图像左上角开始切割，每个 patches 的左上角索引为 (x, y), (x+step, y), ··· ···</p>

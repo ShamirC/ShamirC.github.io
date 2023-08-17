@@ -15,19 +15,19 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="可变形卷积 视觉识别中的一个关键难点是如何建模目标的尺度，视角和部分变形等几何变换（如何适应几何变换）。通常有两种实现方法：1.使用数据增强，如仿射变换（affine transformation)，这样可以从数据上学到鲁棒的表达，但是代价是昂贵的训练代价和复杂的模型参数。2. 使用形变不变性的特征和算法，如 SIFT。这两种方法都有很大的局限性：几何形变被假设是固定和已知的，这是一种先验信息，">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv1.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv2.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv3.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv4.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv5.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv6.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv7.png">
-<meta property="og:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv8.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv1.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv2.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv3.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv4.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv5.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv6.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv7.png">
+<meta property="og:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv8.png">
 <meta property="article:published_time" content="2022-08-12T13:04:13.000Z">
-<meta property="article:modified_time" content="2022-09-24T02:19:56.375Z">
+<meta property="article:modified_time" content="2023-08-17T14:00:15.147Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/08/12/assets/BlogImg/deform_conv1.png">
+<meta name="twitter:image" content="http://example.com/2022/08/12/Deformable-Convolution/deform_conv1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -197,29 +197,29 @@
 <p>CNNs 固有的几何结构：卷积单元对输入特征图的固定位置进行采样；池化层以固定的比例进行池化；这些特性是有影响的，例如，在 CNN 的同一层中的所有激活单元的感受野都是相同的，这对用于从空间位置编码语义的 CNN 的高层是不可取的。<strong>因为不同的位置可能对应不同尺度和变形的对象，因此对尺度和感受野的自适应是进行高精度定位所需要的</strong></p>
 <p><strong>deformable convolution</strong></p>
 <p><u><strong>可变形卷积在标准卷积中引入了二维偏移，这个偏移量是可以学习的，这使得采样上个可以自由变形。</strong></u></p>
-<p><img src="../assets/BlogImg/deform_conv1.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv1.png"></p>
 <p>2 维的卷积包含两个步骤：1）对输入的特征图 x 使用一个常规的栅格 R 进行采样；2）对采样值求和并赋予权重 w</p>
 <p>栅格（即卷积核） R 决定了感受野大小核空洞，例如</p>
 <p>R = { (-1，-1), (-1，0),...,(0,1), (1,1) } 定义了一个 3x3 的空洞为 1 的卷积核</p>
 <p>对于输出特征图中的每一个位置 P0：</p>
-<p><img src="../assets/BlogImg/deform_conv2.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv2.png"></p>
 <p><strong>在可变形卷积中，规则的卷积核 R 通过偏移 {∆Pn|n = 1, ..., N }，其中 N = |R|，进行增强</strong></p>
-<p><img src="../assets/BlogImg/deform_conv3.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv3.png"></p>
 <p>现在，采样是在不规则并且带有偏移的位置 Pn +∆Pn 上进行的。因为偏移 ∆Pn 通常是分数，并不对应 feature map 上实际存在的像素点，因此 2 式 可以 通过线性插值实现的</p>
-<p><img src="../assets/BlogImg/deform_conv4.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv4.png"></p>
 <p>P 代表一个任意的（小数）位置（式 2 中，P = P0 + Pn + ∆Pn）；q 为输入 feature map x 中所有的整数位置，G(·，·) 为 双线性插值核。</p>
 <p><strong>G 是二维的，被分解成两个一维的核：</strong></p>
-<p><img src="../assets/BlogImg/deform_conv5.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv5.png"></p>
 <p>g(a, b) = max(0, 1 − |a − b|)</p>
 <p>综上，输出 feature map 的偏移后的像素值，通过双线性插值可以表示为：</p>
-<p><img src="../assets/BlogImg/deform_conv6.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv6.png"></p>
 <p><strong>上述公式的意义是，插值点位置的像素值设置为其 4领域 像素点的加权和，领域 4 个点是离其最近的特征图上实际存在的像素点，每个点的权重则根据它与插值点横、纵坐标的距离来设置，公式最后一行的max(0, 1-...)就是限制了插值点与领域点不会超过1个像素的距离。</strong></p>
 <p>可变形卷积操作的示意图如下所示</p>
-<p><img src="../assets/BlogImg/deform_conv7.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv7.png"></p>
 <p><strong>可变形卷积中的偏移是通过一个额外的卷积层来获取的，这个额外的卷积核大小与空洞大小，和当前卷积层最终卷积操作的卷积核是一样的。 得到的偏移 offsets 与输入 feature map 的空间分辨率相同； 通道数 2N 对应 N 个 2D offsets</strong></p>
 <h1 id="代码及实现过程">代码及实现过程</h1>
 <p>经过偏移量卷积层学习出的 offset， <strong>学习得到的 feature map 的每个元素恰好与卷积核中心是一一对应的。</strong></p>
-<p><img src="../assets/BlogImg/deform_conv8.png" /></p>
+<p><img src="/2022/08/12/Deformable-Convolution/deform_conv8.png"></p>
 <p>图片通过 p_conv 后的 feature map (上图全红矩阵)，每个元素恰好与卷积核中心是一一对应的，也就是通过该 feature map 的尺寸，卷积核的尺寸， 步长可以推算出卷积过程中卷积核的中心坐标</p>
 <h1 id="参考">参考</h1>
 <p>https://zhuanlan.zhihu.com/p/335147713</p>

@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Metric criteria 机器学习中评价模型精度的指标有   Precision, Recall, F1 overall accuracy ROC-Curve, PR-Curve Average Precision (AP), mAP Matthew correlation coefficient (MCC) OIS, ODS   Confusion Matrix">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/confusion_matrix.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/mcc.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/OIS.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ODS.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/PR_curve.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ROC.png">
-<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/AP.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/confusion_matrix.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/mcc.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/OIS.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/ODS.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/PR_curve.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/ROC.png">
+<meta property="og:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/Metrics-Criterias-in-Segmentation//AP.png">
 <meta property="article:published_time" content="2022-06-25T02:33:27.000Z">
-<meta property="article:modified_time" content="2023-08-17T13:17:31.660Z">
+<meta property="article:modified_time" content="2023-08-17T14:03:34.120Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/confusion_matrix.png">
+<meta name="twitter:image" content="http://example.com/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/confusion_matrix.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -204,13 +204,13 @@
 </ul>
 </blockquote>
 <h2 id="confusion-matrix">Confusion Matrix</h2>
-<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/confusion_matrix.png"></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/confusion_matrix.png"></p>
 <p>Precision, Recall, F1, Ovarll accuracy 等都可以基于该矩阵(表格) 进行计算</p>
 <table>
 <colgroup>
+<col style="width: 32%">
+<col style="width: 29%">
 <col style="width: 37%">
-<col style="width: 20%">
-<col style="width: 41%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -242,7 +242,7 @@
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Matthew correlation coefficient (MCC)(马修斯相关系数)</td>
-<td style="text-align: center;"><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/mcc.png"></td>
+<td style="text-align: center;"><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/mcc.png"></td>
 <td style="text-align: center;">二分类模型结果的评估指标之一，值在[-1，+1], 由于Precision,recall只考虑了正类，而忽略了负类的表现，为了解决这个问题，可以将prediction与真实结果看为两个0-1分布，然后用马修斯相关系数衡量两个分布的相似性。当<strong>FP=FN=0 </strong>即完全预测正确时 <strong>MCC=1</strong>，当完全预测错误时<strong>MCC=-1</strong>，此时将标签逆转即可。</td>
 </tr>
 <tr class="even">
@@ -274,9 +274,9 @@
 <h2 id="针对线性目标提取的指标">针对线性目标提取的指标</h2>
 <table>
 <colgroup>
-<col style="width: 25%">
-<col style="width: 24%">
-<col style="width: 49%">
+<col style="width: 22%">
+<col style="width: 34%">
+<col style="width: 43%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -288,12 +288,12 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">OIS (<strong>Optimal Image Scale</strong>)</td>
-<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/OIS.png"></td>
+<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/OIS.png"></td>
 <td style="text-align: left;">针对数据集的每一张图片，遍历[0,1]的阈值，使该图片F1值最大，将数据集中所有图片的最佳F1值求平均值即得到OIS</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ODS (<strong>Optimal Dataset Scale</strong>)</td>
-<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ODS.png"></td>
+<td><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/ODS.png"></td>
 <td style="text-align: left;">遍历[0-1] 所有的阈值作为整个数据集分类的阈值，若某一个阈值下，使得整个数据集F1值最大时，该F1值即为 ODS。</td>
 </tr>
 <tr class="odd">
@@ -311,19 +311,19 @@
 <h1 id="p-r-曲线">P-R 曲线</h1>
 <blockquote>
 <p>选取不同的阈值对预测样本进行划分，可以计算出不同的 precision 和 recall, P-R曲线就是以不同阈值下取得的 precision(纵坐标）, recall（横坐标） 绘制曲线。平衡点（BEP）是P=R时的取值，如果这个值较大，则说明学习器的性能较好。。</p>
-<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/PR_curve.png"></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/PR_curve.png"></p>
 </blockquote>
 <h1 id="roc曲线"><strong>ROC曲线</strong></h1>
 <blockquote>
 <p>ROC 曲线最早应用于雷达信号检测区域，用于区分信号与噪声。<strong>很多分类器是为测试样本产生一个实值或概率预测，然后根据一个阈值对样本进行分类。若想得到更好的 precision, 则可以提高阈值，尽可能得使得对每一个预测值都有充分的自信。在不同阈值下得到的 FPR, TPR. 然后以 FPR 为横坐标，TPR 为纵坐标绘制 ROC 曲线。TPR, FPR 都是从实际样本出发，因此不受样本不平衡的影响</strong></p>
-<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/ROC.png"></p>
+<p><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/ROC.png"></p>
 <p><strong>AUC（曲线下面积，the area under the ROC curve)</strong> 是指 ROC曲线下与横坐标轴构成的区域面积， AUC表示了可分离的程度或测度。ROC 曲线纵坐标轴是 TPR，TPR 越高表示模型正确预测正例的概率越大，因此理想情况就是，曲线离 (0,1) 点越近，AUC面积越接近 1，模型性能越好。<strong>若连接对角线，AUC面积正好是 0.5 对角线的实际含义是：随机判断响应与不响应，正负样本覆盖率应该都是 50%，表示随机效果</strong></p>
 </blockquote>
 <table>
 <colgroup>
-<col style="width: 38%">
-<col style="width: 20%">
-<col style="width: 41%">
+<col style="width: 34%">
+<col style="width: 29%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -335,7 +335,7 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>Average Precision (AP)</strong></td>
-<td style="text-align: center;"><img src="/2022/06/25/Metric-Criterias-in-Machine-Learning-Task/assets/BlogImg/AP.png"></td>
+<td style="text-align: center;"><img src="./Metrics-Criterias-in-Segmentation//AP.png"></td>
 <td style="text-align: center;"><strong>等于P-R曲线下面积</strong>，一般通过逼近的方法求曲线下面积吗</td>
 </tr>
 <tr class="even">

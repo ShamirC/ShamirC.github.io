@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 43
+			总文章数 42
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -1023,9 +1023,7 @@
 </figure>
 <p><strong>Hue: 用角度度量，取值范围未为0~360°，颜色圆环上所有的颜色都是光谱上的颜色，hue=0 表示红色，hue=120 表示绿色，hue=240 表示蓝色等。</strong></p>
 <p>hsv 圆柱体的竖切剖面（ Hue=60 )</p>
-<figure>
-<img src="/2022/07/06/Data-augmentation/assets/blogImg/hsv2.png" alt="HSV model"><figcaption aria-hidden="true">HSV model</figcaption>
-</figure>
+<p><img src="/2022/07/06/Data-augmentation/hsv2.png"></p>
 <p><strong>S (saturation)表示接近光谱色的程度，值越高颜色越深，饱和度越低越接近白色</strong></p>
 <p><strong>V（Value) 表示明度，决定颜色空间中颜色的明暗程度，值越高表示越亮，0表示纯黑色</strong></p>
 <h3 id="hls">HLS</h3>
@@ -1035,9 +1033,7 @@
 <li>Light, 亮度，亮度为100，表示白色，亮度为0，表示黑色</li>
 <li>Saturation，饱和度，</li>
 </ul>
-<figure>
-<img src="/2022/07/06/Data-augmentation/assets/blogImg/hls.png" alt="HSV model"><figcaption aria-hidden="true">HSV model</figcaption>
-</figure>
+<p><img src="/2022/07/06/Data-augmentation/hls.png"></p>
 <h2 id="rgb----hsv">RGB --&gt; HSV</h2>
 <p><span class="math display">\[
 R^{&#39;} = R/255\\
@@ -1066,7 +1062,7 @@ S = \begin{cases}
 \\
 \]</span> 计算 Value (明度) <span class="math display">\[
 V = C_{max}
-\]</span> <img src="/2022/07/06/Data-augmentation/assets/BlogImg/rgb_hsv.png"></p>
+\]</span> <img src="/2022/07/06/Data-augmentation/rgb_hsv.png"></p>
 <h2 id="hsv----rgb">HSV --&gt; RGB</h2>
 <p><span class="math display">\[
 C = S\\
@@ -1082,7 +1078,7 @@ X = C(1-|H&#39;mod2-1)\\
 (C,0,X)\quad (5 &lt;= H&#39; &lt; 6)\\
 \end{cases}
 \]</span></p>
-<p><img src="/2022/07/06/Data-augmentation/assets/BlogImg/hsv_rgb.png"></p>
+<p><img src="/2022/07/06/Data-augmentation/hsv_rgb.png"></p>
 <h2 id="亮度变换">亮度变换</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 亮度变换，标签不需要变换</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_Brightness</span>(<span class="params">img,delta=<span class="number">32</span></span>):</span><br><span class="line">    <span class="comment"># 图像的像素值 增加或减少 [-delta, detla] 内的随机值</span></span><br><span class="line">    img = img.astype(np.float32) + t_random(-delta,delta)</span><br><span class="line">    img = np.clip(img,<span class="number">0</span>,<span class="number">255</span>)	<span class="comment"># 小于0的像素置为0，大于255的像素值置为255</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> img.astype(np.uint8)</span><br></pre></td></tr></table></figure>
 <h2 id="对比度变换">对比度变换</h2>

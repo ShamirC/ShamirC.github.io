@@ -1040,20 +1040,22 @@
 </figure>
 <h2 id="rgb----hsv">RGB --&gt; HSV</h2>
 <p>$$ R^{'} = R/255\ G^{'} = G/255\ B^{'} = B/255\</p>
-<p>C_{max} = max(R'G'B')\ C_{min} = min(R'G'B')\</p>
-= C_{max} - C_{min}\ \ 计算Hue:\ H =
+<p>C_{max} = max(R'G'B')\ C_{min} = min(R'G'B')\ Delta = C_{max} - C_{min} \</p>
+计算Hue: \ H =
 <span class="math display">\[\begin{cases}
 a^{\circ}\quad \Delta = 0\\
 60^{\circ}\times \left(\frac{G{}&#39;-B{}&#39;}{\Delta} + 0 \right)\quad ,C_{max}=R{}&#39;\\
 60^{\circ}\times \left(\frac{B{}&#39;-R{}&#39;}{\Delta} + 2 \right)\quad ,C_{max}=G{}&#39;\\
 60^{\circ}\times \left(\frac{R{}&#39;-G{}&#39;}{\Delta} + 4 \right)\quad ,C_{max}=B{}&#39;\\
 \end{cases}\]</span>
-\ \ 计算 Saturation\ S =
+<p>\</p>
+计算 Saturation \ S =
 <span class="math display">\[\begin{cases}
 0\quad C_{max}=0\\
 \frac{\Delta}{C_{max}}\quad C_{max}\ne0
 \end{cases}\]</span>
-<p>\ \ Value 计算 \ V = C_{max} $$</p>
+<p>\</p>
+<p>Value 计算 V = C_{max} $$</p>
 <p><img src="../assets/BlogImg/rgb_hsv.png" /></p>
 <h2 id="hsv----rgb">HSV --&gt; RGB</h2>
 <p><span class="math display">\[

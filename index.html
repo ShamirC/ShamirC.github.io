@@ -149,19 +149,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-列空间和零向量-Columnspace-and-Nullspace" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-向量空间和子空间-Vectorspace-and-Subspace" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/">列空间和零向量_Columnspace_and_Nullspace</a>
+      <a class="article-title" href="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/">Vector spaces and Subspaces</a>
     </h1>
   
 
         
-        <a href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/" class="archive-article-date">
+        <a href="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/" class="archive-article-date">
   	<time datetime="2023-08-17T01:51:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-17</time>
 </a>
         
@@ -220,13 +220,51 @@
 <p>对于一个 <span class="math inline">\(3*2\)</span> 的矩阵 A <span class="math display">\[
 \left[ \begin{matrix}   1 &amp; 0 \\   4 &amp; 3 \\ 2 &amp; 3  \end{matrix}  \right]
 \]</span></p>
-<p>Ax = <span class="math display">\[
+<p><span class="math display">\[
 Ax = \left[ \begin{matrix}   1 &amp; 0 \\   4 &amp; 3 \\ 2 &amp; 3  \end{matrix}  \right]
 \left[ \begin{matrix}   x1 \\ x2 \end{matrix}  \right]
-=
+= x1 \left[ \begin{matrix} 1\\4\\2 \end{matrix}\right] + x2 \left[ \begin{matrix} 0\\3\\3 \end{matrix}\right] = b
 \]</span></p>
+<p>A的列向量的所有线性组合张成(span) <span class="math inline">\(R^3\)</span>中的一个子空间。取一个特定的 [x1,x2]，其在<span class="math inline">\(R^3\)</span>中为一个过原点的平面，在这个平面外的 b 则无法找到相应的 x 使得 <span class="math inline">\(Ax = b\)</span></p>
+<p><img src="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/column_space.png"></p>
 <h2 id="零空间null-space">零空间（Null space）</h2>
-<p><span class="math inline">\(Ax = 0\)</span> 的所有解</p>
+<p>对与 方程 $Ax = 0 $</p>
+<blockquote>
+<ul>
+<li><p><strong>空间 <span class="math inline">\(R^n\)</span>的零空间 N(A)包含了 Ax = 0 的所有解，也包括 x = 0， 并且这些解 x 在 <span class="math inline">\(R^n\)</span> 内</strong></p></li>
+<li><p><strong>对 方程组 <span class="math inline">\(Ax = 0\)</span> 的 A 进行消元(从A消元到 U（行阶梯形式）到 R（简化行阶梯形式）)不会改变 A 的零空间 N(A) = N (U) =N(R)</strong></p>
+<p>A的简化行阶梯形式 <span class="math inline">\(R = rref(A)\)</span>的所有主元都为 1，并且主元的上下都是0：</p>
+<p>如对</p></li>
+</ul>
+<p><span class="math display">\[
+A = \left[ \begin{matrix}   1 &amp; 2 &amp;2 &amp;2 \\   2 &amp; 4 &amp;6 &amp;8 \\ 3 &amp; 6 &amp;8 &amp;10\end{matrix}  \right]
+\]</span></p>
+<p>​ 进行消元得到行阶梯形式（row echelon form) <span class="math display">\[
+U = \left[ \begin{matrix}   1 &amp; 2 &amp;2 &amp;2 \\   0 &amp; 0 &amp;2 &amp;4 \\ 0 &amp; 0 &amp;0 &amp;0\end{matrix}  \right]
+\]</span> ​ 简化行阶梯形式（reduced row echelon form) <span class="math display">\[
+R = \left[ \begin{matrix}   1 &amp; 2 &amp;0 &amp;-2 \\   0 &amp; 0 &amp;1 &amp;2 \\ 0 &amp; 0 &amp;0 &amp;0\end{matrix}  \right]
+\]</span> ​ U，R矩阵中，每一行的第一个非零元素为主元（pivot），主元所在的行、列称作主列(pivot column)、主行(pivot row)。非主元所在的列，行叫做自由列(free column)、自由行（free row)。</p>
+<ul>
+<li><p><strong>一个自由列 j（free column）对应着<span class="math inline">\(Ax = 0\)</span>的一个特解（令 <span class="math inline">\(x_j=0\)</span>)。</strong></p></li>
+<li><p><strong>矩阵 R 的 非零行向量的个数 = 主元个数 = 矩阵的秩 (rank，r)，自由列的个数为 n-r（也就是特解的个数）</strong></p></li>
+<li><p>**当 矩阵 A的大小为 m*n，m&lt;n时，<span class="math inline">\(Ax = 0\)</span>有非零解 **</p>
+<p>因为 矩阵的 <span class="math inline">\(rank &lt;= m\)</span>, 所以<span class="math inline">\(n-r &gt;= 1\)</span>，因此至少有一个特解</p></li>
+</ul>
+</blockquote>
+<p>例如解下面的方程<span class="math inline">\(Ax = 0\)</span> <span class="math display">\[
+ Ax = \left[ \begin{matrix}   1 &amp; 2 &amp;2 &amp;2 \\   2 &amp; 4 &amp;6 &amp;8 \\ 3 &amp; 6 &amp;8 &amp;10\end{matrix}  \right] \left[ \begin{matrix}   x_1 \\   x_2 \\ x_3\\x_4 \end{matrix}  \right]= \left[ \begin{matrix}   0 \\0 \\ 0\\0 \end{matrix}  \right]
+\]</span></p>
+<p>对A进行消元得到简化行阶梯形式 <span class="math display">\[
+R = \left[ \begin{matrix}   1 &amp; 2 &amp;0 &amp;-2 \\   0 &amp; 0 &amp;1 &amp;2 \\ 0 &amp; 0 &amp;0 &amp;0\end{matrix}  \right]
+\]</span> pivot columns（主列） 互相独立（线性无关），free columns（自由列） 是 pivot columns 的线性组合。要求 <span class="math inline">\(Ax=0\)</span> 的Null space，可以求得特解，这些特解的所有线性组合就是方程的所有解（零空间）</p>
+<p>令 <span class="math inline">\(x_2=0,x_4=1\)</span> <span class="math display">\[
+x_1 + 2x_2-2x_4=0\\
+x3 + 2x_4 = 0\\
+\]</span> 得到一个特解 <span class="math display">\[s_1 = c_1 \left[ \begin{matrix} 2,0,-2,1\end{matrix}  \right]\]</span></p>
+<p>令<span class="math inline">\(x_2=1, x_4=0\)</span> <span class="math display">\[
+x_1 + 2x_2-2x_4=0\\
+x3 + 2x_4 = 0\\
+\]</span> 得到另一个特解 <span class="math inline">\(s_2 = c_2 \left[ \begin{matrix} -2,1,0,0\end{matrix} \right]\)</span></p>
 
       
 
@@ -250,7 +288,7 @@ Ax = \left[ \begin{matrix}   1 &amp; 0 \\   4 &amp; 3 \\ 2 &amp; 3  \end{matrix}
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2023/08/17/%E5%88%97%E7%A9%BA%E9%97%B4%E5%92%8C%E9%9B%B6%E5%90%91%E9%87%8F-Columnspace-and-Nullspace/">展开全文 >></a>
+          <a class="article-more-a" href="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/">展开全文 >></a>
         </p>
       
 
@@ -392,7 +430,10 @@ Ax = \left[ \begin{matrix}   1 &amp; 0 \\   4 &amp; 3 \\ 2 &amp; 3  \end{matrix}
 <p>方法一、使用线性插值后，再使用时序滤波进行平滑</p>
 <blockquote>
 <p>使用待插值日期前后的影像进行线性插值，然后使用S-G等滤波方法对插值后的影像进行滤波；滤波可以平滑数据，并且起到填充缺失值的作用。</p>
+<p>GEE Javascript version:</p>
 <p>https://code.earthengine.google.com/2ec240f2558dd2d6a486483a38927dd4</p>
+<p>Python version</p>
+<p>https://github.com/ShamirC/GEE-LinearInterpolation-and-SGFilter</p>
 </blockquote>
 <p>方法二、使用往年同期的近30天影像的平均值进行插值</p>
 <blockquote>

@@ -16,7 +16,7 @@
 <meta property="og:description" content="光学遥感影像去云后后会留下空缺，本文记录如何在GEE中对空缺值进行填充 去云 根据网上的资料，GEE中常用的去云方法有三种：  利用光学遥感影像的质量评估（Quality assesment, QA）波段 如 S2（sentinel-2）的&quot;QA60&quot;波段，包含了云、云影、卷云、水体等信息。 参考：【遥感】遥感影像中的QA波段（质量评估波段）存储方式介绍_qa_pixel和bqa_碧空">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-07-28T09:25:17.000Z">
-<meta property="article:modified_time" content="2023-08-05T06:31:28.766Z">
+<meta property="article:modified_time" content="2023-08-19T08:01:43.672Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -189,7 +189,10 @@
 <p>方法一、使用线性插值后，再使用时序滤波进行平滑</p>
 <blockquote>
 <p>使用待插值日期前后的影像进行线性插值，然后使用S-G等滤波方法对插值后的影像进行滤波；滤波可以平滑数据，并且起到填充缺失值的作用。</p>
+<p>GEE Javascript version:</p>
 <p>https://code.earthengine.google.com/2ec240f2558dd2d6a486483a38927dd4</p>
+<p>Python version</p>
+<p>https://github.com/ShamirC/GEE-LinearInterpolation-and-SGFilter</p>
 </blockquote>
 <p>方法二、使用往年同期的近30天影像的平均值进行插值</p>
 <blockquote>

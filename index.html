@@ -183,7 +183,7 @@
 <p>2.如果 v 和 w在向量空间 S 中， 那么 v和 w 的线性组合 <span class="math inline">\(cv+dw\)</span>必定在 S 中</p>
 <p>3.空间 S 中的 “向量”可以是 矩阵 或 x 的函数。</p>
 <p>4.<span class="math inline">\(R^n\)</span> 的一个子空间是 <span class="math inline">\(R^n\)</span>内的一个向量空间，如：<span class="math inline">\(R^2\)</span>中的 <span class="math inline">\(y=3x\)</span></p>
-<p>5.A（矩阵） 的列空间 A 中列的所有线性组合，即：<span class="math inline">\(R^m\)</span>的一个列空间</p>
+<p>5.A（矩阵） 的列空间是 A 中列的所有线性组合，即：<span class="math inline">\(R^m\)</span>的一个列空间</p>
 <p>6.<strong>当 b 在列向量空间 <span class="math inline">\(C(A)\)</span>中时，<span class="math inline">\(Ax = b\)</span> 有解，因为列空间（column space）包含了<span class="math inline">\(Ax\)</span>的所有向量（Ax本质是对A的列向量进行线性组合，Ax就是A的列空间）。</strong>即当 b 是 A 的各列的线性组合，才存在对应的 x ， 使得 <span class="math inline">\(Ax = b\)</span></p>
 </blockquote>
 <h2 id="向量空间vector-space">向量空间（Vector space）</h2>
@@ -251,7 +251,8 @@ R = \left[ \begin{matrix}   1 &amp; 2 &amp;0 &amp;-2 \\   0 &amp; 0 &amp;1 &am
 <p>因为 矩阵的 <span class="math inline">\(rank &lt;= m\)</span>, 所以<span class="math inline">\(n-r &gt;= 1\)</span>，因此至少有一个特解</p></li>
 </ul>
 </blockquote>
-<p>例如解下面的方程<span class="math inline">\(Ax = 0\)</span> <span class="math display">\[
+<p><strong>Note:</strong> 自由列对应的 <span class="math inline">\(x\)</span> 可以自由赋值的原因是，自由列是由主列的线性组合得到的，也就是说自由列在主列构成的列空间内。所以自由列对应的 <span class="math inline">\(x\)</span> 取任意值，主列都可以找到一个对应的 <span class="math inline">\(x\)</span> ，使得方程等式成立。</p>
+<p>例如解下面的<span class="math inline">\(Ax = 0\)</span>方程 <span class="math display">\[
  Ax = \left[ \begin{matrix}   1 &amp; 2 &amp;2 &amp;2 \\   2 &amp; 4 &amp;6 &amp;8 \\ 3 &amp; 6 &amp;8 &amp;10\end{matrix}  \right] \left[ \begin{matrix}   x_1 \\   x_2 \\ x_3\\x_4 \end{matrix}  \right]= \left[ \begin{matrix}   0 \\0 \\ 0\\0 \end{matrix}  \right]
 \]</span></p>
 <p>对A进行消元得到简化行阶梯形式 <span class="math display">\[
@@ -265,6 +266,81 @@ x3 + 2x_4 = 0\\
 x_1 + 2x_2-2x_4=0\\
 x3 + 2x_4 = 0\\
 \]</span> 得到另一个特解 <span class="math inline">\(s_2 = c_2 \left[ \begin{matrix} -2,1,0,0\end{matrix} \right]\)</span></p>
+<h2 id="axb-的完整解"><span class="math inline">\(Ax=b\)</span> 的完整解</h2>
+<blockquote>
+<p>1.<strong><span class="math inline">\(Ax = b\)</span> 的完整解为：$x = x_p(一个特解) + x_n（零空间） $</strong>：</p>
+<p>​ <span class="math inline">\(Ax_p = b\)</span></p>
+<p>​ <span class="math inline">\(Ax_n=0\)</span></p>
+<p>2.对增广矩阵（augmented matrix）[A, b] 进行消元至 [R,d]. <span class="math inline">\(Ax = b\)</span> 的解等同于 <span class="math inline">\(Rx = d\)</span></p>
+<p>3.<strong><span class="math inline">\(Ax=b\)</span>和<span class="math inline">\(Rx=d\)</span> 仅当 R 中所有的零行，在d中对应的行也是零时才有解</strong> 如： <span class="math display">\[
+\left[ \begin{matrix}   R,d\end{matrix}  \right]= \left[ \begin{matrix}   1 &amp; 2 &amp;0 &amp;-2 &amp;1 \\   0 &amp; 0 &amp;1 &amp;2 &amp;3 \\ 0 &amp; 0 &amp;0 &amp;0 &amp;0\end{matrix}  \right]
+\]</span> R的最后一行为零，d也是，此时方程有解</p>
+<p>若 d 最后一行不为 0， 那么 d 无法使用 R的列的线性组合表示，即 d不在 C(R)中，因此没有解。</p>
+<p>4.当<span class="math inline">\(Rx=d\)</span>有解，将所有free variables（自由列对用的 x）一个特解 <span class="math inline">\(x_p\)</span></p>
+<p>5.当 A的零空间 N(A)=零向量时，A 的秩 r=n，列满秩（full column rank）：即没有自由变量（因为每列都有一个主元，所以没有自由列）</p>
+<p>6.当A的列空间 C(A)为 <span class="math inline">\(R^m\)</span>时， A的秩 <span class="math inline">\(r=m\)</span>，行满秩 (full row rank)：此时，<span class="math inline">\(Ax=b\)</span> 总是有解</p>
+<p>7.矩阵 A 的秩反应了方程的解：</p>
+<p>​ <strong>当 r = m = n 时（A为方阵），<span class="math inline">\(Ax=b\)</span> 只有 1 个解， <span class="math inline">\(x = A^{-1}b\)</span></strong></p>
+<p>​ <strong>当 r = n &lt; m 时（列满秩） （A的行数大于列数），A各列线性独立。所有的列都为主列，没有自由列（无特解），N(A) 只包含 0。此时，方程无解，或只有一个解</strong></p>
+<p>​ <strong>当 r = m &lt; n 时（行满秩）（A的列数大于行数），A各行线性独立。所有的行都为主行（含有主元的行），主列可以张成整个空间<span class="math inline">\(R^m\)</span>。自由列的个数为 n-r = n-m，所以方程有无穷多解</strong></p>
+<p>​ <strong>当 r &lt; m, r &lt; n时，无解或者有无穷多解</strong></p>
+</blockquote>
+<p><img src="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/differentR.png"></p>
+<h3 id="方程的一个特解x_pax_pb">方程的一个特解<span class="math inline">\(x_p\)</span>，<span class="math inline">\(Ax_p=b\)</span></h3>
+<p>对于方程 <span class="math display">\[
+Ax =\left[ \begin{matrix}   1 &amp; 3 &amp;0 &amp;2 \\   0 &amp; 0 &amp;1 &amp;4 \\ 0 &amp; 0 &amp;0 &amp;0\end{matrix}  \right] \left[ \begin{matrix}  x_1 \\x_2 \\ x_3 \\ x_4 \end{matrix}  \right] = \left[ \begin{matrix}  1 \\6 \\ 0 \end{matrix}  \right]
+\]</span> 求该方程的一个特解 <span class="math inline">\(x_p\)</span>，令自由变量为0 <span class="math display">\[
+x_1 +3x_2 +2x_4 = 1\\
+x_3 +4x_4 = 6
+\]</span> 令 <span class="math inline">\(x_2=0,x_4=0\)</span>，则 <span class="math display">\[
+x_3=6\\
+x_1=1
+\]</span> 得到特解 <span class="math inline">\(x_p\)</span> <span class="math display">\[
+x_p = [1,0,6,0]
+\]</span> 求 <span class="math inline">\(x_n\)</span>, <span class="math inline">\(Ax_n=0\)</span> : <span class="math display">\[
+Ax =\left[ \begin{matrix}   1 &amp; 3 &amp;0 &amp;2 \\   0 &amp; 0 &amp;1 &amp;4 \\ 0 &amp; 0 &amp;0 &amp;0\end{matrix}  \right] \left[ \begin{matrix}  x_1 \\x_2 \\ x_3 \\ x_4 \end{matrix}  \right] = \left[ \begin{matrix}  0 \\0 \\ 0 \end{matrix}  \right]
+\]</span> 分别令<span class="math inline">\(x_2=1,x_4=0\)</span>，<span class="math inline">\(x_2=0,x_4=1\)</span>得到两个特解 <span class="math display">\[
+s_1 = [-3,1,0,0]\\ s_2=[-2,0,-4,1]
+\]</span> 则 <span class="math display">\[
+x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \left[ \begin{matrix}  -2 \\0 \\ -4 \\ 1 \end{matrix}  \right]
+\]</span> <span class="math inline">\(Ax=b\)</span> 的完整解为 <span class="math inline">\(x_p+x_n=\)</span> <span class="math display">\[
+\left[ \begin{matrix}  1 \\0 \\ 6 \\ 0 \end{matrix}  \right]+ x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \left[ \begin{matrix}  -2 \\0 \\ -4 \\ 1 \end{matrix}  \right]
+\]</span></p>
+<h2 id="线性独立independence基basis和维数dimension">线性独立(Independence)，基(Basis)和维数(Dimension)</h2>
+<blockquote>
+<p><strong>若 A 的所有列线性独立：$Ax = 0 $的唯一解为 <span class="math inline">\(x=0\)</span>。零空间为 <span class="math inline">\(Z\)</span></strong></p>
+<p><strong>独立向量： 仅在所有 c = 0 时 <span class="math inline">\(c_1v_1+...+c_kv_k = 0\)</span>，向量组<span class="math inline">\(v_1,v_2,...,v_k\)</span>相互独立</strong></p>
+<p><strong>当向量 A 的行数 m &lt; n（列数），该矩阵有线性独立的列：至少有 n-m 个自由变量（自由列）/特解</strong></p>
+<p><strong><span class="math inline">\(v_1,...,v_k\)</span>张成(span)空间 S，如果 S = ( v 的所有线性组合)</strong></p>
+<p><strong>如果向量组 <span class="math inline">\(v_1,...,v_k\)</span>线性独立并且张成空间 S，那么它们是 S 的一组基(basis)</strong></p>
+<p><strong>空间 S 的维数 等于 S 的一个基的向量个数</strong></p>
+<p><strong>如果A 大小为 <span class="math inline">\(4*4\)</span>（方阵）并且可逆，A的列为<span class="math inline">\(R^4\)</span>的一个基。<span class="math inline">\(R^4\)</span>的维数为4。</strong></p>
+</blockquote>
+<h3 id="线性独立">线性独立</h3>
+<p><strong>对于一系列的向量 <span class="math inline">\(v_1,...,v_n\)</span>，如果仅在所有的x都为0时，才有 <span class="math inline">\(x_1v_1+x_2v_2+...+x_nv_n = 0\)</span>，那么这些向量线性独立。</strong></p>
+<p>如下图所示，使用 <span class="math inline">\(R^3\)</span> 中的三个向量解释向量的线性独立：</p>
+<p><img src="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/linearIndependent.png"></p>
+<p><strong>当矩阵列满秩时(r=n)，向量的列独立，有n个主元，且没有自由变量，零空间只有 <span class="math inline">\(x= 0\)</span></strong>。</p>
+<h3 id="基">基</h3>
+<p><strong>一系列向量的所有线性组合如果组成了整个空间，那么称这些向量张成了一个空间</strong></p>
+<p>若一个矩阵的列长成了一个列空间，但是不同的之间也可能时非线性独立的。如</p>
+<p>​ $ v1 = ,v2 = $ 张成了整个二维空间<span class="math inline">\(R^2\)</span>，但是$ v1 = ,v2 = , v3=$ 同样张成了整个<span class="math inline">\(R^2\)</span>。</p>
+<p><strong>行空间 (row space)</strong></p>
+<blockquote>
+<p><strong>一个矩阵A的行空间<span class="math inline">\(C(A^T)\)</span>是一个由矩阵的行张成的 <span class="math inline">\(R^n\)</span> 子空间；也就是<span class="math inline">\(A^T\)</span>的列空间。</strong></p>
+</blockquote>
+<p><strong>向量空间的基</strong></p>
+<blockquote>
+<p><strong>一个向量空间的基是具有一下两个性质的向量：</strong></p>
+<p>​ <strong>基向量线性独立，并且张成了向量空间</strong></p>
+</blockquote>
+<p>向量空间中的一个向量v，有且仅有一种基向量的线性组合能表示v。</p>
+<h3 id="向量空间的维数">向量空间的维数</h3>
+<p>一个向量空间的基有很多个，但是所有基中包含的向量个数是相同的</p>
+<blockquote>
+<p>如果 <span class="math inline">\(v_1,...,v_m\)</span> 和 <span class="math inline">\(w_1,...,w_n\)</span>是相同向量空间的基，那么 m=n</p>
+<p>基的向量的个数就是向量空间的维数</p>
+</blockquote>
 
       
 

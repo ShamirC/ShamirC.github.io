@@ -18,8 +18,9 @@
 <meta property="og:image" content="http://example.com/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/column_space.png">
 <meta property="og:image" content="http://example.com/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/differentR.png">
 <meta property="og:image" content="http://example.com/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/linearIndependent.png">
+<meta property="og:image" content="http://example.com/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/4spaces.png">
 <meta property="article:published_time" content="2023-08-17T01:51:09.000Z">
-<meta property="article:modified_time" content="2023-08-23T12:23:10.688Z">
+<meta property="article:modified_time" content="2023-08-24T03:56:51.933Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/column_space.png">
@@ -347,6 +348,24 @@ x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \
 <p>如果 <span class="math inline">\(v_1,...,v_m\)</span> 和 <span class="math inline">\(w_1,...,w_n\)</span>是相同向量空间的基，那么 m=n</p>
 <p>基的向量的个数就是向量空间的维数</p>
 </blockquote>
+<h3 id="四个子空间的维数">四个子空间的维数</h3>
+<p><strong>四个基本子空间</strong></p>
+<p>对于 <span class="math inline">\(m*n\)</span> 的矩阵 A：</p>
+<blockquote>
+<ol type="1">
+<li>行空间（row space）<span class="math inline">\(C(A^T)\)</span> ,为 <span class="math inline">\(R^n\)</span> 的子空间</li>
+<li>列空间 (column space) C(A)，为 <span class="math inline">\(R^m\)</span> 的子空间</li>
+<li>零空间 (nullspace) N(A)，为 <span class="math inline">\(R^n\)</span> 的子空间</li>
+<li>左零空间(left nullspace) N<span class="math inline">\((A^T)\)</span>，为 <span class="math inline">\(R^m\)</span> 的子空间。 -- <span class="math inline">\(A^Ty = 0\)</span>的解</li>
+</ol>
+</blockquote>
+<p><img src="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/4spaces.png"></p>
+<p><strong>行空间和列空间具有相同的维数 = 矩阵的秩</strong></p>
+<p><strong><span class="math inline">\(N(A)\)</span>和<span class="math inline">\(N(A^T)\)</span>的维数分别为 <span class="math inline">\(n-r\)</span> 和 <span class="math inline">\(m-r\)</span></strong></p>
+<p>​ 这很好解释，因为A的自由列的个数等于 n-r ，<span class="math inline">\(A^T\)</span>的自由列的个数为 m-r, 而自由列的个数对应了零空间的维数，也决定了特解的个数（零空间为特解的所有线性组合构成）</p>
+<p><strong>秩为1的矩阵 = 1个列乘以一个行：<span class="math inline">\(A = uv^T\)</span></strong>，如 <span class="math display">\[
+\left[ \begin{matrix}   2 &amp;3 &amp;7 &amp;8 \\   2a&amp; 3a&amp; 7a&amp; 8a \\ 2b &amp; 3b &amp;7b &amp;8b\end{matrix}  \right] = \left[ \begin{matrix}  1 \\ a \\ b \end{matrix}  \right] \left[ \begin{matrix}  2&amp;3&amp;7&amp;8\\ \end{matrix}  \right] = uv^T
+\]</span></p>
 
       
 

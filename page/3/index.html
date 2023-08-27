@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 42
+			总文章数 43
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,113 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Pytorch-Load-and-Save-State-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/04/Pytorch-Load-and-Save-State-dict/">Pytorch Load and Save State_dict</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/04/Pytorch-Load-and-Save-State-dict/" class="archive-article-date">
+  	<time datetime="2022-07-04T02:52:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="保存与加载模型参数">保存与加载模型参数</h1>
+<p>Pytorch 有如下保存模型级对应的加载方法</p>
+<blockquote>
+<ol type="1">
+<li><p><strong>保存整个模型结构，以及模型参数，保存的对象是 网络</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">torch.save(net, PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">model_dict = torch.load(PATH)</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>仅保存模型的参数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型的参数在stae_dict中</span></span><br><span class="line">torch.save(net.state_dict(), PATH)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">model_dict = model.load_state_dict(torch.load(PATH))</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>然而，在实验中除了模型参数，往往需要保存更多信息，如 Epoch, Optimizer, Learning Rate, Loss 等, 这样可以在训练中断后 resume train.</strong></p></li>
+</ol>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">checkpoint = &#123;</span><br><span class="line">    <span class="string">&quot;epoch&quot;</span>: epoch,	<span class="comment"># epoch</span></span><br><span class="line">    <span class="string">&quot;state_dict&quot;</span>: net.state_dict(),	<span class="comment"># 模型参数</span></span><br><span class="line">    <span class="string">&quot;optimizer&quot;</span>: optimizer.state_dict(),	<span class="comment"># 优化器参数</span></span><br><span class="line">    <span class="string">&quot;best_loss&quot;</span>: loss	<span class="comment"># 到保存时最低的loss</span></span><br><span class="line">&#125;</span><br><span class="line">torch.save(checkpoint, PATH)</span><br><span class="line">               </span><br><span class="line"><span class="comment"># 加载（断点继续训练）</span></span><br><span class="line"><span class="keyword">if</span> RESUME:</span><br><span class="line">    PATH = <span class="string">&quot;path/to/checkpoint.pth&quot;</span></span><br><span class="line">    <span class="comment"># 加载断点</span></span><br><span class="line">    checkpoint = torch.load(PATH)</span><br><span class="line">	<span class="comment"># 加载模型的可学习参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;state_dict&#x27;</span>])</span><br><span class="line">    <span class="comment"># 加载优化器参数</span></span><br><span class="line">    model.load_state_dict(checkpoint[<span class="string">&#x27;optimizer&#x27;</span>])\</span><br><span class="line">    <span class="comment"># 加载epoch，设置为继续训练的启示 epoch</span></span><br><span class="line">    start_epoch = checkpoint[<span class="string">&#x27;epoch&#x27;</span>]</span><br><span class="line">                   </span><br><span class="line"><span class="comment"># 继续训练</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(start_epoch + <span class="number">1</span>, EPOCH):</span><br><span class="line">    <span class="keyword">for</span> idx, (img, lab) <span class="keyword">in</span>  <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        train_output = net(img)</span><br><span class="line">        loss = loss_func(train_output, lab)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure></p>
+<p><strong>然而，<u>如果我们修改了模型结构，那么加载时需要过滤掉修改过的参数</u>，可以通过以下方式加载</strong></p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_checkpoint</span>(<span class="params">model, checkpoint, optimizer, loadOptimizer</span>):</span><br><span class="line">    <span class="keyword">if</span> checkpoint != <span class="literal">None</span>:</span><br><span class="line">        model_dict = model.state_dict()	<span class="comment">#修改后模型的参数</span></span><br><span class="line">        modelCheckpoint = torch.load(checkpoint)</span><br><span class="line">        <span class="comment"># 加载保存的（预训练）模型参数</span></span><br><span class="line">        pretrained_dict = modelCheckpoint[<span class="string">&#x27;state_dict&#x27;</span>]</span><br><span class="line">        <span class="comment"># 过滤操作</span></span><br><span class="line">        new_dict = &#123;k:v <span class="keyword">for</span> k,v <span class="keyword">in</span> pretrained_dict.items() <span class="keyword">if</span> k <span class="keyword">in</span> model_dict.keys()&#125;</span><br><span class="line">        <span class="comment"># 更新（重写）key-value对</span></span><br><span class="line">        model_dict.update(new_dict)</span><br><span class="line">        <span class="comment"># 打印出来，更新了多少参数</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Total: &#123;&#125;, update:&#123; &#125;&quot;</span>.<span class="built_in">format</span>(<span class="built_in">len</span>(pretrained_dict),<span class="built_in">len</span>(new_dict)))</span><br><span class="line">        <span class="comment"># 加载更新后的参数</span></span><br><span class="line">        model.load_state_dict(model_dict)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;loaded finished&#x27;</span>)</span><br><span class="line">                       </span><br><span class="line">        <span class="comment"># 如果不需要更新优化器，那么设置为false</span></span><br><span class="line">        <span class="keyword">if</span> loadOptimizer == <span class="literal">True</span>:</span><br><span class="line">            optimizer.load_state_dict(modelCheckpoint[<span class="string">&#x27;optimizer&#x27;</span>])</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;loaded! optimizer&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;not loaded optimizer&quot;</span>)</span><br><span class="line">                   </span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">&quot;No checkpoint is included&quot;</span>)</span><br><span class="line">                       </span><br><span class="line">	<span class="keyword">return</span> model, optimizer</span><br><span class="line">               </span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>有时候，我们需要冻结（不进行更新）部分参数。</p>
+<blockquote>
+<ol type="1">
+<li>添加下面代码到模型定义中</li>
+</ol>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在网络模型定义中需要冻结之前的位置添加如下：</span></span><br><span class="line"><span class="comment">#这样for循环之前的参数都被冻结，其后的正常更新</span></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> self.parameters():</span><br><span class="line">    p.requires_grad = <span class="literal">False</span></span><br></pre></td></tr></table></figure></p>
+<p>同时在优化器中添加：filter(lambda p: p.requires_grad, model.parameters())</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">optimizer = optim.Adam(<span class="built_in">filter</span>(<span class="keyword">lambda</span> p: p.requires_grad, model.parameters()), lr=<span class="number">0.001</span>, betas=(<span class="number">0.9</span>, <span class="number">0.999</span>),eps=<span class="number">1e-08</span>, weight_decay=<span class="number">1e-5</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># filter() 函数用于过滤序列，过滤掉不符合条件的元素，返回由符合条件元素组成的新列表,该接收两个参数，第一个为函数，第二个为序列，序列的每个元素作为参数传递给函数进行判断，然后返回 True 或 False，最后将返回 True 的元素放到新列表中。</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2" type="1">
+<li>参数保存在有序的字典中，那么可以通过查找参数的名字对应的id值，进行冻结</li>
+</ol>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">model_dict = torch.load(<span class="string">&#x27;net.pth.tar&#x27;</span>).state_dict()</span><br><span class="line">dict_name = <span class="built_in">list</span>(model_dict)</span><br><span class="line"><span class="keyword">for</span> i, p <span class="keyword">in</span> <span class="built_in">enumerate</span>(dict_name):</span><br><span class="line">    <span class="built_in">print</span>(i, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在模型中添加如下代码</span></span><br><span class="line"><span class="comment"># 冻结 索引小于165的参数</span></span><br><span class="line"><span class="keyword">for</span> i,p <span class="keyword">in</span> <span class="built_in">enumerate</span>(net.parameters()):</span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="number">165</span>:</span><br><span class="line">        p.requires_grad = <span class="literal">False</span></span><br><span class="line">同时在优化器中添加：</span><br><span class="line"><span class="built_in">filter</span>(<span class="keyword">lambda</span> p: p.requires_grad, model.parameters())</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="参考">参考</h1>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Yumi5251/p/16180360.html">PyTorch学习：加载模型和参数 - FFTang-coder - 博客园 (cnblogs.com)</a></p>
+<p>https://zhuanlan.zhihu.com/p/38056115</p>
+<p>https://zhuanlan.zhihu.com/p/133250753</p>
+<p>https://zhuanlan.zhihu.com/p/34147880</p>
+<p>https://zhuanlan.zhihu.com/p/137562717</p>
+<p>https://zhuanlan.zhihu.com/p/48524007</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pytorch//" class="article-tag-list-link color3">Pytorch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/04/Pytorch-Load-and-Save-State-dict/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Linux与硬件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1321,115 +1428,6 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/05/31/Python-%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86%E5%BA%93-sys/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-多重继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/30/Python-%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/">Python 多重继承</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/30/Python-%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2022-05-30T14:24:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="多重继承">多重继承</h1>
-<p>多重继承是指一个类可以同时从多个父类继承行为与特征的功能</p>
-<blockquote>
-<p>例如</p>
-<p>先定义一个 Leaf 类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Leaf</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, color=<span class="string">&#x27;green&#x27;</span></span>):</span><br><span class="line">        self.color = color</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>ColorChangingLeaf类，颜色可变的树叶，继承Leaf类：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ColorChangingLeaf</span>(<span class="title class_ inherited__">Leaf</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">change</span>(<span class="params">self, new_color=<span class="string">&#x27;brown&#x27;</span></span>):</span><br><span class="line">        self.color = new_color</span><br></pre></td></tr></table></figure>
-<p>DeciduousLeaf类，落叶类植物的树叶，继承Leaf类:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DeciduousLeaf</span>(<span class="title class_ inherited__">Leaf</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;A leaf is falling!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>MapleLeaf类，枫叶，枫叶颜色可变，同时枫树是落叶类植物，可以让它同时继承ColorChangingLeaf类和DeciduousLeaf类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MapleLeaf</span>(ColorChangingLeaf, DeciduousLeaf):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>多重继承在定义时，只需要用逗号将多个父类隔开。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MapleLeaf类只是简单的继承了两个类型。MapleLeaf类的对象可以使用两个父类的方法</span></span><br><span class="line"></span><br><span class="line">mleaf = MapleLeaf()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 例如从 Leaf 继承而来的属性</span></span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># &#x27;green&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从ColorChangingLeaf类继承而来的方法：</span></span><br><span class="line">mleaf.change(<span class="string">&quot;red&quot;</span>)</span><br><span class="line">mleaf.color</span><br><span class="line"><span class="comment"># &#x27;red&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从DeciduousLeaf类继承而来方法：</span></span><br><span class="line">mleaf.fall()</span><br><span class="line"><span class="comment"># A leaf is falling!</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="继承顺序">继承顺序</h2>
-<p>有时候多个父类可能会发生冲突。例如，可以在ColorChangingLeaf的定义中增加一个<code>.fall()</code>方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ColorChangingLeaf</span>(<span class="title class_ inherited__">Leaf</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">change</span>(<span class="params">self, new_color=<span class="string">&#x27;brown&#x27;</span></span>):</span><br><span class="line">        self.color = new_color</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fall</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;I am falling!!!!&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>在两个父类的<code>.fall()</code>方法不同时，Python会优先使用定义在前的父类的方法。</p>
-<p>当ColorChangingLeaf类在前时，使用的是ColorChangingLeaf类的方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MapleLeaf</span>(ColorChangingLeaf, DeciduousLeaf):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">mleaf = MapleLeaf()</span><br><span class="line"></span><br><span class="line">mleaf.fall()</span><br><span class="line"><span class="comment"># I am falling!!!!</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>反过来定义时，使用的是DeciduousLeaf类的方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MapleLeaf</span>(DeciduousLeaf, ColorChangingLeaf):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">mleaf = MapleLeaf()</span><br><span class="line">mleaf.fall()</span><br><span class="line"><span class="comment"># A leaf is falling!</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>继承的顺序可以通过该类的<code>.__mro__</code>属性或mro()方法来查看：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MapleLeaf.__mro__</span><br><span class="line"></span><br><span class="line"><span class="comment"># (__main__.MapleLeaf,</span></span><br><span class="line"><span class="comment"># __main__.DeciduousLeaf,</span></span><br><span class="line"><span class="comment"># __main__.ColorChangingLeaf,</span></span><br><span class="line"><span class="comment"># __main__.Leaf,</span></span><br><span class="line"><span class="comment"># object)</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/30/Python-%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/">展开全文 >></a>
         </p>
       
 

@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 42
+			总文章数 43
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,106 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-遗传算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">遗传算法</a>
+    </h1>
+  
+
+        
+        <a href="/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2023-08-27T12:40:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="genetic-algorithm">Genetic Algorithm</h1>
+<h2 id="相关概念">相关概念</h2>
+<h3 id="染色体和基因">染色体和基因</h3>
+<p>染色体即为函数的所有可行解，一个可行解中的元素称为基因</p>
+<p>如对于函数 <span class="math inline">\(3x+4y+5z&lt;100\)</span> 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为<strong>染色体</strong>，每个可行解中的元素称为组成染色体的<strong>基因</strong>。</p>
+<h3 id="适应度函数">适应度函数</h3>
+<p>适应度函数在每次迭代中为生成的染色体打分，来评判染色体的适应度。</p>
+<h3 id="交叉">交叉</h3>
+<p>对两条染色体进行交叉，生成新的染色体。根据适应度选择要进行交叉的染色体。</p>
+<p><span class="math inline">\(染色体i被选择的概率 = 染色体i的适应度 / 所有染色体的适应度之和\)</span></p>
+<h3 id="变异">变异</h3>
+<p>通过交叉生成新的染色体后，在染色体上随机选择若干个基因，然后随机修改基因的值，从而给现有的染色体引入了新的基因，有利于算法寻找到全局最优解</p>
+<h3 id="复制">复制</h3>
+<p>每次进化中，为了保留上一代优良的染色体，需要将上一代中适应度最高的几条染色体直接原封不动地复制给下一代。假设每次进化都需生成N条染色体，那么每次进化中，通过交叉方式需要生成N-M条染色体，剩余的M条染色体通过复制上一代适应度最高的M条染色体而来。</p>
+<h2 id="算法流程">算法流程</h2>
+<blockquote>
+<ul>
+<li>生成一组可行解，也就是第一代染色体</li>
+<li>采用适应度函数分别计算每一条染色体的适应度，并计算每条染色体在下一次进化（迭代）中被选中的概率</li>
+<li>通过“交叉”，生成N-M条染色体</li>
+<li>对交叉后生成的N-M条染色体进行“变异”操作</li>
+<li>然后使用“复制”的方式生成M条染色体</li>
+<li>进行下一次迭代</li>
+</ul>
+</blockquote>
+<p><img src="/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/flowchart.png"></p>
+<h2 id="实际案例">实际案例</h2>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-向量空间和子空间-Vectorspace-and-Subspace" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1064,80 +1164,6 @@ x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/09/27/Note/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Self-Attention-in-CNNs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/09/24/Self-Attention-in-CNNs/">Self Attention in CNNs</a>
-    </h1>
-  
-
-        
-        <a href="/2022/09/24/Self-Attention-in-CNNs/" class="archive-article-date">
-  	<time datetime="2022-09-24T02:02:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Deep-Learning//" class="article-tag-list-link color4">Deep Learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/09/24/Self-Attention-in-CNNs/">展开全文 >></a>
         </p>
       
 

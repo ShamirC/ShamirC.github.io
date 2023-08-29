@@ -8,16 +8,16 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>遗传算法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Genetic Algorithm 相关概念 染色体和基因 染色体即为函数的所有可行解，一个可行解中的元素称为基因 如对于函数 \(3x+4y+5z&lt;100\) 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为染色体，每个可行解中的元素称为组成染色体的基因。 适应度函数 适应度函数在每次迭代中为生成的染色体打分，来评判染色体的适应度。 交">
+  <meta name="description" content="Genetic Algorithm 相关概念 染色体和基因(chromosomes and genetics) 染色体即为函数的所有可行解，一个可行解中的元素称为基因 如对于函数 \(3x+4y+5z&lt;100\) 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为染色体，每个可行解中的元素称为组成染色体的基因。 适应度函数 适应度函数在每次迭">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遗传算法">
 <meta property="og:url" content="http://example.com/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Genetic Algorithm 相关概念 染色体和基因 染色体即为函数的所有可行解，一个可行解中的元素称为基因 如对于函数 \(3x+4y+5z&lt;100\) 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为染色体，每个可行解中的元素称为组成染色体的基因。 适应度函数 适应度函数在每次迭代中为生成的染色体打分，来评判染色体的适应度。 交">
+<meta property="og:description" content="Genetic Algorithm 相关概念 染色体和基因(chromosomes and genetics) 染色体即为函数的所有可行解，一个可行解中的元素称为基因 如对于函数 \(3x+4y+5z&lt;100\) 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为染色体，每个可行解中的元素称为组成染色体的基因。 适应度函数 适应度函数在每次迭">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/flowchart.png">
 <meta property="article:published_time" content="2023-08-27T12:40:42.000Z">
-<meta property="article:modified_time" content="2023-08-27T13:52:26.250Z">
+<meta property="article:modified_time" content="2023-08-29T09:08:17.676Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/flowchart.png">
@@ -68,7 +68,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 43
+			总文章数 44
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -175,17 +175,17 @@
       
         <h1 id="genetic-algorithm">Genetic Algorithm</h1>
 <h2 id="相关概念">相关概念</h2>
-<h3 id="染色体和基因">染色体和基因</h3>
+<h3 id="染色体和基因chromosomes-and-genetics">染色体和基因(chromosomes and genetics)</h3>
 <p>染色体即为函数的所有可行解，一个可行解中的元素称为基因</p>
 <p>如对于函数 <span class="math inline">\(3x+4y+5z&lt;100\)</span> 的可行解为 [1,2,3]、[1,3,2]、[3,2,1]，这三个可行解在遗传算法中称为<strong>染色体</strong>，每个可行解中的元素称为组成染色体的<strong>基因</strong>。</p>
 <h3 id="适应度函数">适应度函数</h3>
 <p>适应度函数在每次迭代中为生成的染色体打分，来评判染色体的适应度。</p>
-<h3 id="交叉">交叉</h3>
+<h3 id="交叉crossover">交叉(crossover)</h3>
 <p>对两条染色体进行交叉，生成新的染色体。根据适应度选择要进行交叉的染色体。</p>
 <p><span class="math inline">\(染色体i被选择的概率 = 染色体i的适应度 / 所有染色体的适应度之和\)</span></p>
-<h3 id="变异">变异</h3>
+<h3 id="变异mutation">变异(mutation)</h3>
 <p>通过交叉生成新的染色体后，在染色体上随机选择若干个基因，然后随机修改基因的值，从而给现有的染色体引入了新的基因，有利于算法寻找到全局最优解</p>
-<h3 id="复制">复制</h3>
+<h3 id="复制copy">复制(copy)</h3>
 <p>每次进化中，为了保留上一代优良的染色体，需要将上一代中适应度最高的几条染色体直接原封不动地复制给下一代。假设每次进化都需生成N条染色体，那么每次进化中，通过交叉方式需要生成N-M条染色体，剩余的M条染色体通过复制上一代适应度最高的M条染色体而来。</p>
 <h2 id="算法流程">算法流程</h2>
 <blockquote>
@@ -200,6 +200,8 @@
 </blockquote>
 <p><img src="/2023/08/27/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/flowchart.png"></p>
 <h2 id="实际案例">实际案例</h2>
+<p>参考</p>
+<p>https://zhuanlan.zhihu.com/p/33042667</p>
 
       
 
@@ -303,6 +305,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2023/08/29/%E8%87%AA%E5%9B%9E%E5%BD%92%E7%BB%BC%E5%90%88%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          自回归综合移动平均
+        
+      </div>
+    </a>
   
   
     <a href="/2023/08/17/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E5%92%8C%E5%AD%90%E7%A9%BA%E9%97%B4-Vectorspace-and-Subspace/" id="article-nav-older" class="article-nav-link-wrap">

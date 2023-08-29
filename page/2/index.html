@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 43
+			总文章数 44
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,73 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Note" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/09/27/Note/">Note</a>
+    </h1>
+  
+
+        
+        <a href="/2022/09/27/Note/" class="archive-article-date">
+  	<time datetime="2022-09-27T03:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol type="1">
+<li><strong>在构建多任务网络时，不同任务的分支应该单独初始化，不然得到的参数就是公共的，就是不同任务分支共享同一参数，这样无法得到不同任务的预测结果。</strong></li>
+<li>python 导入模块：https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time/14132912#14132912</li>
+</ol>
+<p>​</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/09/27/Note/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Self-Attention-in-CNNs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1279,87 +1346,6 @@ X = C(1-|H&#39;mod2-1)\\
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/07/05/Configruaion-of-Super-Parameters/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Pytorch-Random-Seed-Setup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/07/05/Pytorch-Random-Seed-Setup/">Pytorch Random Seed Setup</a>
-    </h1>
-  
-
-        
-        <a href="/2022/07/05/Pytorch-Random-Seed-Setup/" class="archive-article-date">
-  	<time datetime="2022-07-05T03:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="随机数种子">随机数种子</h1>
-<p>在深度学习实验中，很多地方会用到随机数，如 Dataloader 的 shuffle, 线上数据增强常用到的 RandomFlip, RandomCrop 等，这些方法都给实验引入了随机性。因此为了实验的可重复性，需要设定随机种子，固定每次运行代码产生的随机数。</p>
-<blockquote>
-<p><strong>随机种子尽量在所有 import 之后调用</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">set_seed</span>(<span class="params">seed</span>):</span><br><span class="line">   torch.manual_seed(seed) 	<span class="comment"># 当前 cpu 随机数种子</span></span><br><span class="line">   torch.cuda.manual_seed(seed)	<span class="comment"># 当前 gpu 随机数种子</span></span><br><span class="line">   np.random.seed(seed)	<span class="comment"># numpy 随机数种子</span></span><br><span class="line">   random.seed(seed)	<span class="comment"># random 模块随机数种子</span></span><br><span class="line">   torch.backends.cudnn.benchmark = <span class="literal">False</span>	<span class="comment">#为整个网络的每个卷积层搜索最适合它的卷积实现算法，进而实现网络的加速。</span></span><br><span class="line">   torch.backends.cudnn.deterministic = <span class="literal">True</span>	<span class="comment">#每次返回的卷积算法将是确定的</span></span><br><span class="line">   torch.cuda.manual_seed_all(seed)	<span class="comment"># 为所有 gpu 设置随机数种子</span></span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-<p><strong>除此之外，当 data_loader 的 num_workers &gt; 1时，也需要进行随机种子的设置。方法如下：</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">_init_fn</span>():</span><br><span class="line">   np.random.seed(<span class="number">0</span>)</span><br><span class="line">&gt;train_loader = DataLoader(data_sets, batch_size=<span class="number">8</span>, shuffle=<span class="literal">True</span>, </span><br><span class="line">                             num_workers=<span class="number">8</span>, worker_init_fn=_init_fn)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Pytorch//" class="article-tag-list-link color3">Pytorch</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/07/05/Pytorch-Random-Seed-Setup/">展开全文 >></a>
         </p>
       
 

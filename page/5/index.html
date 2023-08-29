@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 43
+			总文章数 44
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,118 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Python-高级函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/24/Python-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/">Python 高级函数“</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/24/Python-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2022-05-24T04:34:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以函数作为参数，或者返回一个函数的函数都是高阶函数。在Python中，函数也是一种基本类型的对象:</p>
+<ul>
+<li><p><strong>将函数作为参数传给另一个函数</strong></p></li>
+<li><p><strong>将函数名赋值给另一个变量</strong></p></li>
+<li><p><strong>将函数作为另一个函数的返回值</strong></p></li>
+</ul>
+<p>Python 内置的常见高阶函数有 map() 和 filter()</p>
+<blockquote>
+<p>map(f, sq) <strong>将函数 f 作用在序列 sq 的每一个元素上,得到的结果组成新序列</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>(square, <span class="built_in">range</span>(<span class="number">5</span>))	<span class="comment"># 返回一个 map 迭代器</span></span><br><span class="line"><span class="built_in">list</span>(<span class="built_in">map</span>(square, <span class="built_in">range</span>(<span class="number">5</span>))) <span class="comment"># 将 map 迭代器转换为列表 output: [0,1,4,9,16]</span></span><br></pre></td></tr></table></figure>
+<p>filter(f, sq) <strong>将函数 f 作用在序列 sq 的每一个元素上,保留所有结果为 True 的元素</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">is_even</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">filter</span> (is_even, <span class="built_in">range</span>(<span class="number">5</span>))</span><br><span class="line"><span class="built_in">list</span>(<span class="built_in">filter</span>(is_even, <span class="built_in">range</span>(<span class="number">5</span>)))	<span class="comment">#output:[0,2,4]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>函数的返回值也可以是一个函数</p>
+<blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">power_func</span>(<span class="params">num</span>):</span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">func</span>(<span class="params">x</span>):</span><br><span class="line">       <span class="keyword">return</span> x ** num</span><br><span class="line">   <span class="keyword">return</span> func</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment"># 平方和立方函数可以用该函数定义出来</span></span><br><span class="line">&gt;square2 = power_func(<span class="number">2</span>)</span><br><span class="line">&gt;cube2 = power_func(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">type</span>(square2) <span class="comment"># type: function</span></span><br><span class="line">&gt;square2(<span class="number">10</span>) <span class="comment"># 100</span></span><br><span class="line">&gt;cube2(<span class="number">3</span>)	<span class="comment"># 27</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>Lambda 表达式</strong></p>
+<blockquote>
+<p>lambda 用来定义匿名函数： lambda <variables> : <expression></expression></variables></p>
+<p>lambda 表达式返回的是一个<strong>函数对象</strong>，接受 <variables> 作为参数， 返回 <expression></expression></variables></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">square3 = <span class="keyword">lambda</span> x: x**<span class="number">2</span></span><br><span class="line">cube3 = <span class="keyword">lambda</span> x: x**<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span>(square3) <span class="comment"># function</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>递归</p>
+<blockquote>
+<p>递归是指函数在执行的过程中调用了本身，一般用于分治法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fact</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> n == <span class="number">0</span> <span class="keyword">else</span> n * fact(n-<span class="number">1</span>)</span><br><span class="line">fact(<span class="number">6</span>) <span class="comment"># 720</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/24/Python-%E9%AB%98%E7%BA%A7%E5%87%BD%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-loss-function-for-training-DL-model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">

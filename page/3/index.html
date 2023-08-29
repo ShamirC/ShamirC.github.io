@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 43
+			总文章数 44
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,6 +148,87 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Pytorch-Random-Seed-Setup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/05/Pytorch-Random-Seed-Setup/">Pytorch Random Seed Setup</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/05/Pytorch-Random-Seed-Setup/" class="archive-article-date">
+  	<time datetime="2022-07-05T03:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="随机数种子">随机数种子</h1>
+<p>在深度学习实验中，很多地方会用到随机数，如 Dataloader 的 shuffle, 线上数据增强常用到的 RandomFlip, RandomCrop 等，这些方法都给实验引入了随机性。因此为了实验的可重复性，需要设定随机种子，固定每次运行代码产生的随机数。</p>
+<blockquote>
+<p><strong>随机种子尽量在所有 import 之后调用</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">set_seed</span>(<span class="params">seed</span>):</span><br><span class="line">   torch.manual_seed(seed) 	<span class="comment"># 当前 cpu 随机数种子</span></span><br><span class="line">   torch.cuda.manual_seed(seed)	<span class="comment"># 当前 gpu 随机数种子</span></span><br><span class="line">   np.random.seed(seed)	<span class="comment"># numpy 随机数种子</span></span><br><span class="line">   random.seed(seed)	<span class="comment"># random 模块随机数种子</span></span><br><span class="line">   torch.backends.cudnn.benchmark = <span class="literal">False</span>	<span class="comment">#为整个网络的每个卷积层搜索最适合它的卷积实现算法，进而实现网络的加速。</span></span><br><span class="line">   torch.backends.cudnn.deterministic = <span class="literal">True</span>	<span class="comment">#每次返回的卷积算法将是确定的</span></span><br><span class="line">   torch.cuda.manual_seed_all(seed)	<span class="comment"># 为所有 gpu 设置随机数种子</span></span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<p><strong>除此之外，当 data_loader 的 num_workers &gt; 1时，也需要进行随机种子的设置。方法如下：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">def</span> <span class="title function_">_init_fn</span>():</span><br><span class="line">   np.random.seed(<span class="number">0</span>)</span><br><span class="line">&gt;train_loader = DataLoader(data_sets, batch_size=<span class="number">8</span>, shuffle=<span class="literal">True</span>, </span><br><span class="line">                             num_workers=<span class="number">8</span>, worker_init_fn=_init_fn)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Pytorch//" class="article-tag-list-link color3">Pytorch</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/05/Pytorch-Random-Seed-Setup/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-Pytorch-Load-and-Save-State-dict" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1314,120 +1395,6 @@ D_{KL}(p||q) = \sum_i p(x_i) log(\frac{p(x_i)}{q(x_i)})\\
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/06/11/%E5%A4%A7%E5%9B%BE%E5%83%8F%E5%88%87%E5%89%B2-Patches/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Python-系统相关标准库-sys" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/05/31/Python-%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86%E5%BA%93-sys/">Python 系统相关标准库 sys</a>
-    </h1>
-  
-
-        
-        <a href="/2022/05/31/Python-%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86%E5%BA%93-sys/" class="archive-article-date">
-  	<time datetime="2022-05-31T13:01:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="sys-系统相关模块">sys: 系统相关模块</h1>
-<p>sys模块是与系统相关的标准库模块</p>
-<p>sys模块一个重要的作用是解析命令行的参数。</p>
-<blockquote>
-<p>xxxxxxxxxx class All_file(metaclass=abc.ABCMeta):all_type='file'​<span class="citation" data-cites="abc.abstractmethod">@abc.abstractmethod</span> #定义抽象方法，无需实现功能​def read(self):   '子类必须定义读功能'​   pass​<span class="citation" data-cites="abc.abstractmethod">@abc.abstractmethod</span> #定义抽象方法，无需实现功能​def write(self):   '子类必须定义写功能'​   pass​python</p>
-<p><code>sys.argv</code></p>
-<p>返回一个列表对象，<strong>第一个参数是被调用的脚本的名称</strong></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="comment"># sys.argv是一个列表，是python命令后的各个参数列表，且所有的值都为字符串。如果参数字符串中有空格，需要用引号：</span></span><br><span class="line">!python print_args.py <span class="number">1</span> zhang san <span class="string">&quot;zhang san&quot;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># [&#x27;print_args.py&#x27;, &#x27;1&#x27;, &#x27;zhang&#x27;, &#x27;san&#x27;, &#x27;zhang san&#x27;]</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="系统参数">系统参数</h2>
-<blockquote>
-<p><code>sys.path</code></p>
-<p>该属性是一个由字符串组成的列表，其中各个元素表示的是 Python 搜索模块的路径；在程序启动期间被初始化</p>
-<p>模块搜索路径存储在 system 模块的 sys.path 变量中。变量里包含当前目录，PYTHONPATH和由安装过程决定的默认目录</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(sys.path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 脚本位于桌面</span></span><br><span class="line"></span><br><span class="line">[<span class="string">&#x27;c:\\Users\\chenximing\\Desktop&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\python38.zip&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\DLLs&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3&#x27;</span>, <span class="string">&#x27;C:\\Users\\chenximing\\AppData\\Roaming\\Python\\Python38\\site-packages&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib\\site-packages&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib\\site-packages\\locket-0.2.1-py3.8.egg&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib\\site-packages\\win32&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib\\site-packages\\win32\\lib&#x27;</span>, <span class="string">&#x27;D:\\ProgramFiles\\Anaconda3\\lib\\site-packages\\Pythonwin&#x27;</span>]</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="操作系统信息">操作系统信息</h2>
-<blockquote>
-<p><code>sys.platform</code></p>
-<p>不同的操作系统对应不同的值：</p>
-<ul>
-<li>Windows: win32。</li>
-<li>Mac: darwin。</li>
-<li>Linux: linux2。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">&gt;<span class="built_in">print</span>(sys.platform)</span><br><span class="line">&gt;<span class="comment"># win32</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="程序执行">程序执行</h2>
-<p>程序执行到代码末尾，解释器会自动退出，如果你<strong>希望中途退出程序，可以使用 sys.exit() 方法</strong>，<u><strong>n</strong> 可以传入一个整数，你可以在主程序中捕获对 sys.exit() 的调用并获得这个 n，一般 0 表示正常退出，其他为异常。</u></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>():</span><br><span class="line">    sys.exit(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    test()</span><br><span class="line"><span class="keyword">except</span> SystemExit <span class="keyword">as</span> e:</span><br><span class="line">    <span class="built_in">print</span>(e)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/05/31/Python-%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E6%A0%87%E5%87%86%E5%BA%93-sys/">展开全文 >></a>
         </p>
       
 

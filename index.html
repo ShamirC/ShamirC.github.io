@@ -900,7 +900,16 @@ x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="markov-chain">Markov chain</h1>
+<p>马尔可夫链在很多时间序列模型中得到广泛的应用，比如循环神经网络 RNN，隐式马尔可夫模型 HMM 等</p>
+<p>马尔可夫链是一个数学系统，根据特定的概率规则从<strong>状态空间</strong>中的一个状态到另一个状态转换的<strong>随机过程</strong>。</p>
+<p>马尔科夫链中，无论当前到下一状态的转变是如何进行的，下一个状态的概率是固定的。<strong>也就是说，即下一状态的概率分布只能由当前状态决定，在时间序列中它前面的事件均与之无关。</strong></p>
+<p><strong>状态空间或者所有可能状态</strong> 可以是任何事情：数字，字母，天气状况，股票表现。</p>
+<h2 id="数学定义">数学定义</h2>
+<p>对于任意的正整数 n, 和可能的状态 <span class="math inline">\(i_0, i_1, ..., i_n\)</span> （随机变量） <span class="math display">\[
+P(X_n = i_n|X_{n-1}=i_{n-1}) = P(X_n=i_n|X_0=i_0,X_1=i_1,...,X_{n-1}=i_{n-1})
+\]</span> 也就是说，只需要知道上一时刻的状态，就可以知道当前时刻的概率分布。</p>
+<h2 id="转移概率矩阵transition-matrices">转移概率矩阵（transition matrices）</h2>
 
       
 
@@ -910,6 +919,17 @@ x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">

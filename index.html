@@ -910,6 +910,47 @@ x_n = x_2 \left[ \begin{matrix}  -3 \\1 \\ 0 \\ 0 \end{matrix}  \right] +x_4 \
 P(X_n = i_n|X_{n-1}=i_{n-1}) = P(X_n=i_n|X_0=i_0,X_1=i_1,...,X_{n-1}=i_{n-1})
 \]</span> 也就是说，只需要知道上一时刻的状态，就可以知道当前时刻的概率分布。</p>
 <h2 id="转移概率矩阵transition-matrices">转移概率矩阵（transition matrices）</h2>
+<p>对于在时刻 <span class="math inline">\(t\)</span> 的 <span class="math inline">\({X}\)</span>，转移概率矩阵<span class="math inline">\(P_t\)</span> 包含了不同状态之间的转换信息。</p>
+<p>给定一个状态空间 S 按顺序组成的矩阵行 和 列，矩阵<span class="math inline">\(P_t\)</span>中第 <span class="math inline">\((i,j)^{th}\)</span> 元素的值为 <span class="math display">\[
+(P_t)_{i,j} = \mathbb{P}(X_{t+1} = j|X_t = i )
+\]</span> 这意味着，矩阵的每一行都是要给概率向量，其和为1</p>
+<p><strong>概率矩阵相乘得到的矩阵，表示了一个时间内的状态转换。</strong></p>
+<p>对于 k-step（k个状态）的转移矩阵 <span class="math inline">\(P_t^{(k)}=P_t⋅P_{t+1}⋯P_{t+k−1}\)</span> <span class="math display">\[
+P_t^{k} = \begin{bmatrix}
+{\mathbb{P}(X_{t+k}=1|X_{t}=1)}&amp;{\mathbb{P}(X_{t+k}=2|X_{t}=1)}&amp;{\cdots}&amp;{\mathbb{P}(X_{t+k}=n|X_{t}=1)}\\ 
+{\mathbb{P}(X_{t+k}=1|X_{t}=2)}&amp;{\mathbb{P}(X_{t+k}=2|X_{t}=2)}&amp;{\cdots}&amp;{\mathbb{P}(X_{t+k}=n|X_{t}=2)}\\
+{\vdots}&amp;{\vdots}&amp;{\ddots}&amp;{\vdots}\\
+{\mathbb{P}(X_{t+k}=1|X_{t}=n)}&amp;{\mathbb{P}(X_{t+k}=2|X_{t}=n)}&amp;{\cdots}&amp;{\mathbb{P}(X_{t+k}=n|X_{t}=n)}\\
+\end{bmatrix}
+\]</span> 上面矩阵，t+k=1，t+k=2，... t+k=n 表示第n个状态，<span class="math inline">\(\mathbb{P}(X_{t+k}=1|X_{t}=1)\)</span> 表示第一个状态转移至第1个状态的条件概率，<span class="math inline">\(\mathbb{P}(X_{t+k}=n|X_{t}=1)\)</span> 表示第一个状态转移到第n个状态的条件概率。<span class="math inline">\(\mathbb{P}(X_{t+k}=1|X_{t}=n)\)</span> 表示第n个状态转移到第1个状态的条件概率，<span class="math inline">\(\mathbb{P}(X_{t+k}=n|X_{t}=n)\)</span> 表示第n个状态转移到第n个状态的条件概率</p>
+<p>如以下的时间独立的马尔科夫链</p>
+<p><img src="/2023/07/18/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E9%93%BE-Markov-chain/transition_mat.png"></p>
+<p>上图中有两个状态，箭头表示了转换的方向，数字为概率。上图的马尔科夫链可以写成一个 2-step 的转移矩阵 <span class="math display">\[
+P = \begin{bmatrix}
+&amp;A&amp;B\\
+A&amp;0.3&amp;0.7\\
+B&amp;0.9&amp;0.1\\
+\end{bmatrix}
+\]</span> 如果相求两次运动后的状态概率分别是多少，通过一次矩阵相乘便可以得到 <span class="math display">\[
+P =\begin{bmatrix}
+&amp;A&amp;B\\
+A&amp;0.3&amp;0.7\\
+B&amp;0.9&amp;0.1\\
+\end{bmatrix}
+\begin{bmatrix}
+&amp;A&amp;B\\
+A&amp;0.3&amp;0.7\\
+B&amp;0.9&amp;0.1\\
+\end{bmatrix}
+=\begin{bmatrix}
+&amp;A&amp;B\\
+A&amp;0.72&amp;0.28\\
+B&amp;0.36&amp;0.64\\
+\end{bmatrix}
+\]</span> <strong>状态转移矩阵有一个非常重要的特性，经过一定有限次数序列的转换，最终一定可以得到一个稳定的概率分布 ，且与初始状态概率分布无关</strong></p>
+<p>参考</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/448575579">简述马尔可夫链【通俗易懂】 - 知乎 (zhihu.com)</a></p>
+<p>https://brilliant.org/wiki/markov-chains/</p>
 
       
 

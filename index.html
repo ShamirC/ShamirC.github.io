@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 46
+			总文章数 45
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -169,7 +169,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="auto-regressive-integrated-moving-average">Auto-Regressive Integrated Moving Average</h1>
+<p><strong>自回归移动平均（ARIMA）是时间序列预测中的常用方法，在遥感长时间序列数据（Long Time Series, LTS）处理中有很广泛的应用。</strong></p>
+<p>ARIMA是 ARMA（自回归移动平均的）加了差分后的衍生方法。</p>
+<p><strong>ARIMA假设时序通过数据自身的相关型描述而不是趋势(trends)和季节性 (seasonality)</strong></p>
+<p>ARIMA 由三个部分组成</p>
+<ol type="1">
+<li>AR(Auto regression)：自回归模型，自回归模型描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测。</li>
+<li>I(Integrated)：差分，使用前一时刻的观测值减去当前观测值，目的是使得序列更稳定。如果没有差分这一过程，则AR+MA为自回归移动平均 ARMA（auto-regressive moving average）</li>
+<li>MA(Moving average)：移动平均模型，利用观测值与残差（ residual error ）的依赖性</li>
+</ol>
+<p>上述三个部分可以表示为3个参数。标准的符号表示是 ARIMA(p,d,q)，p,d,q 参数为整数。</p>
+<ul>
+<li>p : 自回归模型中预测时使用的历史值的个数。</li>
+<li>d: 差分的次数，也叫差分阶数（ the degree of differencing）’</li>
+<li>q: 移动平均的窗口大小</li>
+</ul>
+<p>ARIMA的一般形式： <span class="math display">\[
+X_t = \alpha_1X_{t-1}+...+\alpha_pX_{t-p}+\epsilon_t+\theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q} \tag{1}
+\]</span> <strong>即预测的<span class="math inline">\(X_t\)</span> = constant + P个历史数据的线性组合 + q个滞后预测误差的线性组合。这里的X已经经过差分，以保证时间序列具有稳定性。</strong></p>
+<h2 id="自回归模型ar">自回归模型（AR）</h2>
+<p>一般的 p 阶自回归模型 <span class="math inline">\(ARIMA(p,0,0)\)</span>： <span class="math display">\[
+X_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p}+\mu_t \tag{2}
+\]</span> 如果随机扰动项是一个白噪声 <span class="math inline">\(\mu_t = \epsilon_t\)</span>，则称为一个纯AR（p）过程，记为： <span class="math display">\[
+X_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p}++\epsilon_t \tag{3}
+\]</span></p>
+<p>自回归模型首先需要确定一个阶数p，表示用几期的历史值来预测当前值，自回归模型的限制：</p>
+<blockquote>
+<p>（1）自回归模型是用自身的数据进行预测</p>
+<p>（2）时间序列数据必须具有平稳性</p>
+<p>（3）自回归只适用于预测与自身前期相关的现象（时间序列的自相关性）</p>
+</blockquote>
+<h2 id="移动平均模型ma">移动平均模型(MA)</h2>
+<p>在 AR 模型中，如果 <span class="math inline">\(\mu_t\)</span> 不是一个白噪声，通常认为它是一个 q 阶的移动平均。即 <span class="math display">\[
+\mu_t = \epsilon_t + \theta_{1}\epsilon_{t-1}+...+\theta_{q}\epsilon_{t-q} \tag{4}
+\]</span> 特别地，当 <span class="math inline">\(X_t = \mu_t\)</span> ，即时间序列当前值与历史值没有关系，而只依赖于历史白噪声的线性组合，就得到 <strong>移动平均模型 = <span class="math inline">\(ARIMA(0,0,q)\)</span>：</strong>如果时间序列是稳定的，但是与历史数据的误差相关，我们可以使用过去预测的误差进行回归。 <span class="math display">\[
+X_t = \epsilon_t + \theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q} \tag{5}
+\]</span> <span class="math inline">\(\theta_q\)</span> 为 <span class="math inline">\(t-q\)</span> 时刻 残差 <span class="math inline">\(\epsilon_{t-q}\)</span> 的系数</p>
+<h2 id="自回归移动平均模型-arma">自回归移动平均模型 ARMA</h2>
+<p>将自回归模型 <span class="math inline">\(AR(p)\)</span>：<span class="math inline">\(ARIMA(p,0,0)\)</span> 与 移动平均模型 <span class="math inline">\(AR(q)\)</span>：<span class="math inline">\(ARIMA(0,0,q)\)</span>结合，得到一个一般的自回归移动平均模型 ARMA：<span class="math inline">\(ARIMA(p,0,q)\)</span>: <span class="math display">\[
+x_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p} + \epsilon_t + \theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q}
+\]</span> 该式表明：</p>
+<p>（1）一个随机时间序列可以通过一个自回归移动平均模型来表示，即该序列可以由其自身的过去或滞后值以及随机扰动项来解释。</p>
+<p>（2）如果该序列是平稳的，即它的行为并不会随着时间的推移而变化，那么我们就可以通过该序列过去的行为来预测未来。</p>
+<h2 id="差分difference">差分（difference）</h2>
+<p>差分在自回归和移动平均之前进行，用于准备数据，差分的目的是使时间序列数据稳定（如去除影响回归模型的趋势和季节性结构）</p>
+<p><span class="math inline">\(ARIMA(p=0,d,q=0)\)</span> : <span class="math display">\[
+X_t = X_{t-1} + \mu_1 + \mu_2 + ... +\mu_d
+\]</span></p>
+<p>其中 <span class="math inline">\(X_{t-1}\)</span> 为上一时刻的观测值，<span class="math inline">\(\mu\)</span> 为 每一次差分得到的差值</p>
+<p>参考</p>
+<p>https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/</p>
+<p>https://zhuanlan.zhihu.com/p/60648709</p>
+<p>https://phdinds-aim.github.io/time_series_handbook/01_AutoRegressiveIntegratedMovingAverage/01_AutoRegressiveIntegratedMovingAverage.html</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/393594761">时间序列预测从入门到精通（一）：基础知识 - 知乎 (zhihu.com)</a></p>
 
       
 
@@ -179,6 +232,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
@@ -251,7 +315,7 @@
 <h3 id="差分方法">差分方法</h3>
 <p>差分方法（differencing）是时间序列去趋势的最简单的方法。将每个时间点的数据用该点的值与上一个时间点的值的插值代替： <span class="math display">\[
 value(t) = observation(t) - observation(t-1)
-\]</span> 这种方法在时间序列数据具有线性趋势时效果才会比较好。这个方法可以才同一个时序数据上使用多次来消除更加复杂的趋势（如同时有增加和下降趋势）</p>
+\]</span> 这种方法在时间序列数据具有线性趋势时效果才会比较好。这<strong>个方法可以才同一个时序数据上使用多次来消除更加复杂的趋势（如同时有增加和下降趋势）</strong></p>
 <h3 id="模型拟合法">模型拟合法</h3>
 <p>通过数据拟合，可以发现时序数据是否包含趋势。并且拟合模型还可以用于去趋势</p>
 <blockquote>
@@ -286,88 +350,6 @@ value(t) = observation(t) - observation(t-1)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/08/29/%E6%97%B6%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%8E%BB%E8%B6%8B%E5%8A%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-自回归综合移动平均" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/08/29/%E8%87%AA%E5%9B%9E%E5%BD%92%E7%BB%BC%E5%90%88%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87/">自回归综合移动平均</a>
-    </h1>
-  
-
-        
-        <a href="/2023/08/29/%E8%87%AA%E5%9B%9E%E5%BD%92%E7%BB%BC%E5%90%88%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87/" class="archive-article-date">
-  	<time datetime="2023-08-29T01:36:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="auto-regressive-integrated-moving-average">Auto-Regressive Integrated Moving Average</h1>
-<p><strong>自回归移动平均（ARIMA）是遥感长时间序列数据（Long Time Series, LTS）处理中的一个常用方法。</strong></p>
-<p>ARIMA 是一个流行的统计学方法，可以对数据进行预测。</p>
-<p>ARIMA 由三个部分组成</p>
-<ol type="1">
-<li>AR(Auto regression)：自回归</li>
-<li>I(Integrated)：综合，如果没有综合这一过程，则AR+MA为自回归移动平均 ARMA（auto-regressive moving average）</li>
-<li>MA(Moving average)：移动平均</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/08/29/%E8%87%AA%E5%9B%9E%E5%BD%92%E7%BB%BC%E5%90%88%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87/">展开全文 >></a>
         </p>
       
 
@@ -1193,6 +1175,147 @@ B&amp;0.36&amp;0.64\\
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2023/07/01/useful-tools-for-research/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Lecture-wirting-for-paper-and-program-application" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/06/12/Lecture-wirting-for-paper-and-program-application/">Lecture_wirting_for_paper_and_program_application</a>
+    </h1>
+  
+
+        
+        <a href="/2023/06/12/Lecture-wirting-for-paper-and-program-application/" class="archive-article-date">
+  	<time datetime="2023-06-12T07:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="年6月9日讲座论文和项目申请攥写">2023年6月9日讲座：论文和项目申请攥写</h1>
+<p>报告人：朱阿兴（教授）</p>
+<p>科学研究和科研问题是写作围绕的核心</p>
+<p>科研问题可以从<strong>应用项目</strong>和<strong>研究兴趣</strong>中凝练，</p>
+<p>应用项目（研究兴趣）--&gt;研究方向--&gt;文献阅读--&gt;知识体系（核心）--&gt;归纳总结--&gt;科学问题</p>
+<h2 id="知识体系建立">知识体系建立</h2>
+<p><strong>建立知识体系</strong>是核心，可以通过<strong>树状图</strong>表达研究方向的知识体系</p>
+<p>建立知识体系主要通过<strong>文献梳理</strong>，可以分为<strong>三个阶段</strong>：</p>
+<p>1.对于不了解的新领域，“地毯式”快速搜索相关文献，建立粗略的知识体系</p>
+<blockquote>
+<ul>
+<li>了解核心概念</li>
+<li>通过看书掌握文章的分类体系，不死磕论文</li>
+<li>泛读论文，理解主要思想即可，建立论文分类体系，讲论文归类，然后通过分类体系寻找自己的研究方向</li>
+</ul>
+</blockquote>
+<p>2.确定研究方向后，进行论文深度梳理，总结研究方向和知识体系中存在的问题</p>
+<blockquote>
+<ul>
+<li>建立初步知识体系</li>
+<li>子方向的主要思想，存在的问题：科学问题，研究思路和结论，存在的问题</li>
+<li>暂时先不关注具体的方法和实施细节</li>
+<li>不断循环完善知识体系</li>
+</ul>
+</blockquote>
+<p>3.建立知识体系后，找到研究方向后，需要确定科学问题。梳理研究方向的知识体系中存在的问题（缺陷），总结现状，归纳问题。<strong>寻找缺陷（问题）存在的机理，将缺陷提升为科学问题，并不断地思考方法</strong></p>
+<h2 id="科学问题的阐述和表达方法">科学问题的阐述和表达方法</h2>
+<p>科学问题的阐述和表达通常是论文或项目的引言部分。</p>
+<p><strong>科学问题的阐述和表达方法</strong></p>
+<p>对于方法研究类文章</p>
+<blockquote>
+<p>1.<strong>发展法</strong>，各类方法的要求、缺点、问题存在的机理</p>
+<p>2.<strong>重点法</strong>，阐述种是你需要改进的方法独特，将方法分类，并一一阐述是什么，如何做，有何问题</p>
+</blockquote>
+<p>对于知识类文章</p>
+<p>现有知识理论无法解释面临的现象</p>
+<blockquote>
+<p>1.发展法，阐述这方面的科学进步</p>
+<p>2.纠错法</p>
+</blockquote>
+<p><strong>科学问题的阐述基本模式</strong></p>
+<p>论文的引言部分</p>
+<blockquote>
+<p>第一部分，研究背景以及背景下的研究重点（热点），用于限制研究现状（范围）</p>
+<p>第二部分，阐述针对这个研究重点现有的知识体系</p>
+<p>第三部分，科学问题的阐述，找出问题的机理，总结研究方向存在的不足。</p>
+</blockquote>
+<p><strong>基金立项的依据部分</strong></p>
+<p>相当于论文引言</p>
+<p><strong>采用给 “没有相关研究知识”的读者讲解的手法，不要将研究现状种存在的问题同等对待，弱化不相关问题的内功，强化相关内容 </strong></p>
+<blockquote>
+<p><strong>研究背景与意义</strong></p>
+<ul>
+<li><p><strong>研究背景，具体背景</strong>：陈述研究领域是什么（通过阐述是什么让读者明白重要性，而不是直接讲它有多么重要）</p></li>
+<li><p><strong>研究方向及关键问题或热点</strong>：阐述上述研究领域的一个研究方向面临的一个关键问题或热点</p></li>
+<li><p><strong>研究意义，研究这个热点有何意义</strong>，解决这个问题的科学意义（理论意义）和应用意义</p></li>
+</ul>
+<p><strong>研究现状及分析</strong></p>
+<ul>
+<li>同论文引言部分的第二部分</li>
+</ul>
+<p><strong>研究的科学问题与定位</strong></p>
+<ul>
+<li>存在的科学问题，同论文引言部分的第三部分，根据研究现状剖析<strong>不足和缺点背后的机理</strong>，归纳出科学问题，也就是将现状分析凝聚到一个点（科学问题）</li>
+</ul>
+<p><strong>项目定位</strong></p>
+<p>阐述本子的核心思想，不讲研究过程和实施流程</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/others//" class="article-tag-list-link color2">others</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/06/12/Lecture-wirting-for-paper-and-program-application/">展开全文 >></a>
         </p>
       
 

@@ -62,7 +62,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 46
+			总文章数 45
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -148,106 +148,6 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-    <article id="post-Python读取超大尺寸图像" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/06/11/Python%E8%AF%BB%E5%8F%96%E8%B6%85%E5%A4%A7%E5%B0%BA%E5%AF%B8%E5%9B%BE%E5%83%8F/">Python读取超大尺寸图像</a>
-    </h1>
-  
-
-        
-        <a href="/2022/06/11/Python%E8%AF%BB%E5%8F%96%E8%B6%85%E5%A4%A7%E5%B0%BA%E5%AF%B8%E5%9B%BE%E5%83%8F/" class="archive-article-date">
-  	<time datetime="2022-06-11T08:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="读取超大图像">读取超大图像</h1>
-<p>在使用 <code>opecv</code>, <code>pillow</code> 等库进行大尺寸图像的读取时，常常会出错</p>
-<p>使用 opencv 读取时，像素大小不能超过 <code>2^30</code> 的像素，否则读取出来的就是 <code>None</code></p>
-<p>如果需要读取 超过 <code>2^30</code> (1G)个像素以上的图片，则需要修改源码</p>
-<p>打开源码中的 imgcodecs 模块，找到 loadsave.cpp</p>
-<p>改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utils::getConfigurationParameterSizeT(<span class="string">&quot;OPENCV_IO_MAX_IMAGE_PIXELS&quot;</span>, <span class="number">1</span> &lt;&lt; <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">utils::getConfigurationParameterSizeT(<span class="string">&quot;OPENCV_IO_MAX_IMAGE_PIXELS&quot;</span>, <span class="number">1</span> &lt;&lt; <span class="number">31</span>);</span><br></pre></td></tr></table></figure>
-<p>复制该模块的 .dll 和 .lib 到原本的库中即可</p>
-<p>此时，图像的最大值由 1 GB 提升到 2GB</p>
-<h1 id="使用-gdal-读取">使用 Gdal 读取</h1>
-<p>由于一些遥感影像通常较大，使用专门的地理数据处理库 Gdal 可以很方便的读取。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> osgeo <span class="keyword">import</span> gdal</span><br><span class="line"></span><br><span class="line">dataset = gdal.Open(<span class="string">&#x27;/your/file/path&#x27;</span>)</span><br><span class="line"><span class="comment"># numpy array 形式</span></span><br><span class="line">im_array = dataset.ReadAsArray()</span><br><span class="line"><span class="comment"># Note: gdal 读取的图像维度排序是 (C,H,W)</span></span><br></pre></td></tr></table></figure>
-<h1 id="参考">参考</h1>
-<p>https://blog.csdn.net/m0_37772174/article/details/107239364</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/06/11/Python%E8%AF%BB%E5%8F%96%E8%B6%85%E5%A4%A7%E5%B0%BA%E5%AF%B8%E5%9B%BE%E5%83%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
     <article id="post-大图像切割-Patches" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1193,6 +1093,98 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2022/05/26/Median-Frequency-Balancing/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Python-decorator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/25/Python-decorator/">Python decorator</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/25/Python-decorator/" class="archive-article-date">
+  	<time datetime="2022-05-25T02:55:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="decorator-装饰器">Decorator (装饰器)</h1>
+<h2 id="基础用法">基础用法</h2>
+<p>以函数作为参数，并且返回一个新函数的函数是一个装饰器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dec</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;I am decorating function <span class="subst">&#123;f.__name__&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> f</span><br><span class="line"></span><br><span class="line">dec(<span class="built_in">len</span>)</span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">I am decorating function <span class="built_in">len</span></span><br><span class="line">&lt;function <span class="built_in">len</span>(obj, /)&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 装饰器可以在函数定义时用 @ 定义</span></span><br><span class="line"><span class="meta">@dec</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line"><span class="comment"># output,调用add相当于调用 dec(add) </span></span><br><span class="line">I am decorating function add</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义两个装饰器函数，一个将原来的函数值加一，另一个乘二</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plus_one</span>(<span class="params">f</span>):</span><br><span class="line"><span class="comment">#     print(f)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(f(x))</span><br><span class="line">        <span class="keyword">return</span> f(x) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> new_func</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">times_two</span>(<span class="params">f</span>):</span><br><span class="line"><span class="comment">#     print(f.__name__())</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">        <span class="built_in">print</span>(f)</span><br><span class="line">        <span class="keyword">return</span> f(x) * <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> new_func</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@plus_one</span></span><br><span class="line"><span class="meta">@times_two</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用foo(x)相当于调用 plus_one(times_two(foo))(x)</span></span><br><span class="line">&lt;function foo at <span class="number">0x0000027B23E61670</span>&gt;</span><br><span class="line"><span class="number">26</span></span><br><span class="line">&lt;function foo at <span class="number">0x0000027B23E61670</span>&gt;</span><br><span class="line"><span class="number">27</span></span><br></pre></td></tr></table></figure>
+<h2 id="装饰器工厂">装饰器工厂</h2>
+<p>生成装饰器的函数较装饰器工厂</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">plus_n</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">plus_dec</span>(<span class="params">f</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">new_func</span>(<span class="params">x</span>):</span><br><span class="line">            <span class="keyword">return</span> f(x) + n</span><br><span class="line">        <span class="keyword">return</span> new_func</span><br><span class="line">    <span class="keyword">return</span> plus_dec</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 plus_one 替换成 plus_n(1)</span></span><br><span class="line"><span class="meta">@plus_n(<span class="params"><span class="number">1</span></span>)</span></span><br><span class="line"><span class="meta">@times_two</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Python//" class="article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/25/Python-decorator/">展开全文 >></a>
         </p>
       
 

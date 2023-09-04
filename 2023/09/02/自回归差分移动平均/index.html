@@ -16,7 +16,7 @@
 <meta property="og:description" content="Auto-Regressive Integrated Moving Average 自回归移动平均（ARIMA）是时间序列预测中的常用方法，在遥感长时间序列数据（Long Time Series, LTS）处理中有很广泛的应用。 ARIMA是 ARMA（自回归移动平均的）加了差分后的衍生方法。 ARIMA假设时序通过数据自身的相关型描述而不是趋势(trends)和季节性 (seasonali">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-02T02:40:39.000Z">
-<meta property="article:modified_time" content="2023-09-02T11:03:59.811Z">
+<meta property="article:modified_time" content="2023-09-04T00:17:59.839Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -175,19 +175,19 @@
 <p><strong>自回归移动平均（ARIMA）是时间序列预测中的常用方法，在遥感长时间序列数据（Long Time Series, LTS）处理中有很广泛的应用。</strong></p>
 <p>ARIMA是 ARMA（自回归移动平均的）加了差分后的衍生方法。</p>
 <p><strong>ARIMA假设时序通过数据自身的相关型描述而不是趋势(trends)和季节性 (seasonality)</strong></p>
-<p>ARIMA 由三个部分组成</p>
+<p>ARIMA 由三个部分组成：</p>
 <ol type="1">
-<li>AR(Auto regression)：自回归模型，自回归模型描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测。</li>
-<li>I(Integrated)：差分，使用前一时刻的观测值减去当前观测值，目的是使得序列更稳定。如果没有差分这一过程，则AR+MA为自回归移动平均 ARMA（auto-regressive moving average）</li>
-<li>MA(Moving average)：移动平均模型，利用观测值与残差（ residual error ）的依赖性</li>
+<li><strong>AR (Auto regression)：</strong>自回归模型，自回归模型描述当前值与历史值之间的关系，用变量自身的历史时间数据对自身进行预测。</li>
+<li><strong>I (Integrated)</strong>：差分，使用前一时刻的观测值减去当前观测值，目的是使得序列更稳定。如果没有差分这一过程，则AR+MA为自回归移动平均 ARMA（auto-regressive moving average）</li>
+<li><strong>MA (Moving average)：</strong>移动平均模型，利用观测值与残差（ residual error ）的依赖性</li>
 </ol>
-<p>上述三个部分可以表示为3个参数。标准的符号表示是 ARIMA(p,d,q)，p,d,q 参数为整数。</p>
+<p>上述三个部分可以表示为3个参数。标准的符号表示是 <strong>ARIMA(p,d,q)</strong>，p,d,q 参数为整数。</p>
 <ul>
 <li>p : 自回归模型中预测时使用的历史值的个数。</li>
 <li>d: 差分的次数，也叫差分阶数（ the degree of differencing）’</li>
 <li>q: 移动平均的窗口大小</li>
 </ul>
-<p>ARIMA的一般形式： <span class="math display">\[
+<p><strong>ARIMA的一般形式：</strong> <span class="math display">\[
 X_t = \alpha_1X_{t-1}+...+\alpha_pX_{t-p}+\epsilon_t+\theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q} \tag{1}
 \]</span> <strong>即预测的<span class="math inline">\(X_t\)</span> = constant + P个历史数据的线性组合 + q个滞后预测误差的线性组合。这里的X已经经过差分，以保证时间序列具有稳定性。</strong></p>
 <h2 id="自回归模型ar">自回归模型（AR）</h2>
@@ -210,7 +210,7 @@ X_t = \epsilon_t + \theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q} \tag{5}
 \]</span> <span class="math inline">\(\theta_q\)</span> 为 <span class="math inline">\(t-q\)</span> 时刻 残差 <span class="math inline">\(\epsilon_{t-q}\)</span> 的系数</p>
 <h2 id="自回归移动平均模型-arma">自回归移动平均模型 ARMA</h2>
 <p>将自回归模型 <span class="math inline">\(AR(p)\)</span>：<span class="math inline">\(ARIMA(p,0,0)\)</span> 与 移动平均模型 <span class="math inline">\(AR(q)\)</span>：<span class="math inline">\(ARIMA(0,0,q)\)</span>结合，得到一个一般的自回归移动平均模型 ARMA：<span class="math inline">\(ARIMA(p,0,q)\)</span>: <span class="math display">\[
-x_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p} + \epsilon_t + \theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q}
+x_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p} + \epsilon_t + \theta_1\epsilon_{t-1}+...+\theta_q\epsilon_{t-q} \tag{6}
 \]</span> 该式表明：</p>
 <p>（1）一个随机时间序列可以通过一个自回归移动平均模型来表示，即该序列可以由其自身的过去或滞后值以及随机扰动项来解释。</p>
 <p>（2）如果该序列是平稳的，即它的行为并不会随着时间的推移而变化，那么我们就可以通过该序列过去的行为来预测未来。</p>
@@ -220,6 +220,16 @@ x_t = \alpha_1X_{t-1}+\alpha_2X_{t-2}+...+\alpha_{p}X_{t-p} + \epsilon_t + \thet
 X_t = X_{t-1} + \mu_1 + \mu_2 + ... +\mu_d
 \]</span></p>
 <p>其中 <span class="math inline">\(X_{t-1}\)</span> 为上一时刻的观测值，<span class="math inline">\(\mu\)</span> 为 每一次差分得到的差值</p>
+<h2 id="确定参数-p-d-q">确定参数 p, d, q</h2>
+<p>确定 p, d, q 参数以得到一个优秀的 ARIMA 模型是困难的。但是我们可以通过一些自动搜索的方法来寻找最优的参数，如网格搜索法，R语言自带的 auto.arima() 函数等。用得比较多的方法是 <strong>ADF检验：</strong> <strong>Augmented-Dickey Fuller Test (ADF)</strong> ，<strong>自相关方程：AutoCorrelation Function (ACF),</strong> 以及<strong>偏自相关系数：Partial Autocorrelation Function (PACF)</strong> 分别搜索 p, d, q 参数。</p>
+<p><strong>因此得到 ARIMA 模型的基本步骤为：</strong></p>
+<blockquote>
+<ol type="1">
+<li>对序列绘图，进行 ADF 检验，观察序列是否平稳；对于非平稳时间序列要先进行 d 阶差分，转化为平稳时间序列；</li>
+<li>经过第一步处理，已经得到平稳时间序列。要对平稳时间序列分别求得其自相关系数（ACF）和偏自相关系数（PACF），通过对自相关图和偏自相关图的分析，得到最佳的阶数 p、q；</li>
+<li>由以上得到的d、q、p ，得到 ARIMA 模型。然后开始对得到的模型进行模型检验（如检查残差的高斯分布）。</li>
+</ol>
+</blockquote>
 <p>参考</p>
 <p>https://machinelearningmastery.com/arima-for-time-series-forecasting-with-python/</p>
 <p>https://zhuanlan.zhihu.com/p/60648709</p>
